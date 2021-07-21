@@ -1,0 +1,2127 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>community.aws.ec2_asg – Create or delete AWS AutoScaling Groups (ASGs) &mdash; Ansible Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.svg"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://docs.ansible.com/ansible/latest/collections/community/aws/ec2_asg_module.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="community.aws.ec2_asg_info – Gather information about ec2 Auto Scaling Groups (ASGs) in AWS" href="ec2_asg_info_module.html" />
+    <link rel="prev" title="community.aws.ec2_ami_copy – copies AMI between AWS regions, return new image id" href="ec2_ami_copy_module.html" /><!---- extra head elements for Ansible beyond RTD Sphinx Theme --->
+<script type="text/javascript" src="https://www.redhat.com/dtm.js"></script>
+
+
+<!-- <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> -->
+<meta class="swiftype" name="version" data-type="string" content="devel">
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+ dataLayer = [];
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+<!-- End Google Tag Manager -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Ansible
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                devel
+              </div>
+            
+          
+
+          <!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    <div class="version-dropdown">
+      <script>
+        function switchVersionTo(slug) {
+          var current_url_path = window.location.pathname;
+          var url_version = current_url_path.search("/devel/") > -1
+            ? "/devel/"
+            : "/latest/";
+          var new_version_url = current_url_path.replace(url_version, "/" + slug + "/");
+          window.location.replace(new_version_url);
+        }
+      </script>
+      <select
+          class="version-list"
+          id="version-list"
+          onchange="switchVersionTo(this.value);"
+      >
+        
+        <option
+            value="latest"
+            
+        >
+            latest
+        </option>
+        
+        <option
+            value="2.9"
+            
+        >
+            2.9
+        </option>
+        
+        <option
+            value="devel"
+            selected="selected"
+        >
+            devel
+        </option>
+        
+      </select>
+    </div>
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Installation, Upgrade &amp; Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guide/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../porting_guides/porting_guides.html">Ansible Porting Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Ansible Community Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Ansible Scenarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/cloud_guides.html">Public Cloud Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/network_guides.html">Network Technology Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/virt_guides.html">Virtualization and Containerization Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Automation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/getting_started/index.html">Network Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/user_guide/index.html">Network Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/dev_guide/index.html">Network Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ansible Galaxy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/user_guide.html">Galaxy User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/dev_guide.html">Galaxy Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference &amp; Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Collection Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../amazon/index.html">Collections in the Amazon Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ansible/index.html">Collections in the Ansible Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../arista/index.html">Collections in the Arista Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awx/index.html">Collections in the Awx Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../azure/index.html">Collections in the Azure Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../check_point/index.html">Collections in the Check_point Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chocolatey/index.html">Collections in the Chocolatey Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cisco/index.html">Collections in the Cisco Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloudscale_ch/index.html">Collections in the Cloudscale_ch Namespace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Collections in the Community Namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Community.Aws</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#plugin-index">Plugin Index</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../azure/index.html">Community.Azure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../crypto/index.html">Community.Crypto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../digitalocean/index.html">Community.Digitalocean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html">Community.Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fortios/index.html">Community.Fortios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../general/index.html">Community.General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../google/index.html">Community.Google</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../grafana/index.html">Community.Grafana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hashi_vault/index.html">Community.Hashi_Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hrobot/index.html">Community.Hrobot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes/index.html">Community.Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubevirt/index.html">Community.Kubevirt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libvirt/index.html">Community.Libvirt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mongodb/index.html">Community.Mongodb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mysql/index.html">Community.Mysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../network/index.html">Community.Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../okd/index.html">Community.Okd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../postgresql/index.html">Community.Postgresql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../proxysql/index.html">Community.Proxysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/index.html">Community.Rabbitmq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../routeros/index.html">Community.Routeros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../skydive/index.html">Community.Skydive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sops/index.html">Community.Sops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vmware/index.html">Community.Vmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../windows/index.html">Community.Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../zabbix/index.html">Community.Zabbix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../containers/index.html">Collections in the Containers Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cyberark/index.html">Collections in the Cyberark Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dellemc/index.html">Collections in the Dellemc Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../f5networks/index.html">Collections in the F5networks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fortinet/index.html">Collections in the Fortinet Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../frr/index.html">Collections in the Frr Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gluster/index.html">Collections in the Gluster Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../google/index.html">Collections in the Google Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hetzner/index.html">Collections in the Hetzner Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpe/index.html">Collections in the Hpe Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ibm/index.html">Collections in the Ibm Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../infinidat/index.html">Collections in the Infinidat Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inspur/index.html">Collections in the Inspur Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../junipernetworks/index.html">Collections in the Junipernetworks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/index.html">Collections in the Kubernetes Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mellanox/index.html">Collections in the Mellanox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp/index.html">Collections in the Netapp Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp_eseries/index.html">Collections in the Netapp_eseries Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netbox/index.html">Collections in the Netbox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ngine_io/index.html">Collections in the Ngine_io Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openstack/index.html">Collections in the Openstack Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openvswitch/index.html">Collections in the Openvswitch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ovirt/index.html">Collections in the Ovirt Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../purestorage/index.html">Collections in the Purestorage Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sensu/index.html">Collections in the Sensu Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../servicenow/index.html">Collections in the Servicenow Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../splunk/index.html">Collections in the Splunk Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../t_systems_mms/index.html">Collections in the T_systems_mms Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theforeman/index.html">Collections in the Theforeman Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vyos/index.html">Collections in the Vyos Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wti/index.html">Collections in the Wti Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../all_plugins.html">Indexes of all modules and plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/playbooks_keywords.html">Playbook Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/common_return_values.html">Return Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/config.html">Ansible Configuration Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/general_precedence.html">Controlling how Ansible behaves: precedence rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/YAMLSyntax.html">YAML Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/python_3_support.html">Python 3 Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/interpreter_discovery.html">Interpreter Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/release_and_maintenance.html">Releases and maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/test_strategies.html">Testing Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/testing/sanity/index.html">Sanity Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/module_utils.html">Ansible Reference: Module Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/special_variables.html">Special Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/tower.html">Red Hat Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/automationhub.html">Ansible Automation Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/logging.html">Logging Ansible output</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Roadmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap/ansible_roadmap_index.html">Ansible Roadmap</a></li>
+</ul>
+
+            
+          <!-- extra nav elements for Ansible beyond RTD Sphinx Theme --->
+<!-- changeable widget links to tower - do not change as image controlled by Ansible-->
+<div id="sideBanner">
+  <br/>
+  <a href="https://www.ansible.com/docs-left?utm_source=docs">
+    <img style="border-width:0px;" src="https://cdn2.hubspot.net/hubfs/330046/docs-graphics/ASB-docs-left-rail.png" />
+  </a>
+  <br/><br/><br/>
+</div>
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ansible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Collection Index</a> &raquo;</li>
+        
+          <li><a href="../index.html">Collections in the Community Namespace</a> &raquo;</li>
+        
+          <li><a href="index.html">Community.Aws</a> &raquo;</li>
+        
+      <li>community.aws.ec2_asg – Create or delete AWS AutoScaling Groups (ASGs)</li>
+    
+    
+  <li class="wy-breadcrumbs-aside">
+          <!-- Ansible-specific additions for modules etc -->
+            
+            <!--  <a href="https://github.com/ansible/ansible/edit/devel/lib/ansible/modules/?description=%23%23%23%23%23%20SUMMARY%0A%3C!---%20Your%20description%20here%20--%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a> -->
+              <br>
+            
+  </li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+  <script>
+    function startsWith(str, needle) {
+      return str.slice(0, needle.length) == needle
+    }
+    function startsWithOneOf(str, needles) {
+      return needles.some(function (needle) {
+        return startsWith(str, needle);
+      });
+    }
+    var banner = '';
+    var survey_banner =
+      '<div id="latest_survey_banner_id" class="admonition important">' +
+      '<br>' +
+      '<p>' +
+        'Please take our ' +
+        '<a href="https://www.surveymonkey.co.uk/r/2VWVJY3">survey</a> ' +
+        'to help us improve support for collections and roles in GalaxyNG.' +
+      '</p>' +
+      '<br>' +
+      '</div>';
+    // Create a banner if we're not on the official docs site
+    if (location.host == "docs.testing.ansible.com") {
+      document.write('<div id="testing_banner_id" class="admonition important">' +
+                     '<p>This is the testing site for Ansible Documentation. Unless you are reviewing pre-production changes, please visit the <a href="https://docs.ansible.com/ansible/latest/">official documentation website</a>.</p> <p></p>' +
+                     '</div>');
+    }
+    
+      // Create a banner
+      current_url_path = window.location.pathname;
+
+      var important = false;
+      var msg = '<p>';
+      if (startsWith(current_url_path, "/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/4/"])) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        msg += 'You are reading the latest community version of the Ansible documentation. Red Hat subscribers, select <b>2.9</b> in the version selection to the left for the most recent Red Hat release.';
+      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+        msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
+      } else if (startsWith(current_url_path, "/ansible/devel/")) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        /* temp banner to advertise survey
+        important = true;
+        msg += 'Please take our <a href="https://www.surveymonkey.co.uk/r/B9V3CDY">Docs survey</a> before December 31 to help us improve Ansible documentation.';
+        */
+
+        msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the latest stable released version.';
+      } else {
+        msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the latest stable released version.';
+      }
+      msg += '</p>';
+
+      banner += '<div id="banner_id" class="admonition ';
+      banner += important ? 'important' : 'caution';
+      banner += '">';
+      banner += important ? '<br>' : '';
+      banner += msg;
+      banner += important ? '<br>' : '';
+      banner += '</div>';
+      document.write(banner);
+    
+  </script>
+
+
+  
+           <div itemprop="articleBody">
+            
+  <span class="target" id="ansible-collections-community-aws-ec2-asg-module"></span><div class="section" id="community-aws-ec2-asg-create-or-delete-aws-autoscaling-groups-asgs">
+<h1>community.aws.ec2_asg – Create or delete AWS AutoScaling Groups (ASGs)<a class="headerlink" href="#community-aws-ec2-asg-create-or-delete-aws-autoscaling-groups-asgs" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/community/aws">community.aws collection</a> (version 1.5.0).</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">community.aws</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">community.aws.ec2_asg</span></code>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.0: </span>of community.aws</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id2">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id3">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id4">Notes</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id5">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id6">Return Values</a></p></li>
+</ul>
+</div>
+<div class="section" id="synopsis">
+<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Can create or delete AWS AutoScaling Groups.</p></li>
+<li><p>Can be used with the <a class="reference internal" href="ec2_lc_module.html#ansible-collections-community-aws-ec2-lc-module"><span class="std std-ref">community.aws.ec2_lc</span></a> module to manage Launch Configurations.</p></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The below requirements are needed on the host that executes this module.</p>
+<ul class="simple">
+<li><p>boto</p></li>
+<li><p>boto3</p></li>
+<li><p>botocore</p></li>
+<li><p>python &gt;= 2.6</p></li>
+</ul>
+</div>
+<div class="section" id="parameters">
+<h2><a class="toc-backref" href="#id3">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<table  border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="3">Parameter</th>
+        <th>Choices/<font color="blue">Defaults</font></th>
+                    <th width="100%">Comments</th>
+    </tr>
+                <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-availability_zones"></div>
+                <b>availability_zones</b>
+                <a class="ansibleOptionLink" href="#parameter-availability_zones" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>List of availability zone names in which to create the group.</div>
+                                        <div>Defaults to all the availability zones in the region if <em>vpc_zone_identifier</em> is not set.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-aws_access_key"></div>
+                <b>aws_access_key</b>
+                <a class="ansibleOptionLink" href="#parameter-aws_access_key" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>AWS access key. If not set then the value of the AWS_ACCESS_KEY_ID, AWS_ACCESS_KEY or EC2_ACCESS_KEY environment variable is used.</div>
+                                        <div>If <em>profile</em> is set this parameter is ignored.</div>
+                                        <div>Passing the <em>aws_access_key</em> and <em>profile</em> options at the same time has been deprecated and the options will be made mutually exclusive after 2022-06-01.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: ec2_access_key, access_key</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-aws_ca_bundle"></div>
+                <b>aws_ca_bundle</b>
+                <a class="ansibleOptionLink" href="#parameter-aws_ca_bundle" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">path</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The location of a CA Bundle to use when validating SSL certificates.</div>
+                                        <div>Only used for boto3 based modules.</div>
+                                        <div>Note: The CA Bundle is read &#x27;module&#x27; side and may need to be explicitly copied from the controller if not run locally.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-aws_config"></div>
+                <b>aws_config</b>
+                <a class="ansibleOptionLink" href="#parameter-aws_config" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A dictionary to modify the botocore configuration.</div>
+                                        <div>Parameters can be found at <a href='https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config'>https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config</a>.</div>
+                                        <div>Only the &#x27;user_agent&#x27; key is used for boto modules. See <a href='http://boto.cloudhackers.com/en/latest/boto_config_tut.html#boto'>http://boto.cloudhackers.com/en/latest/boto_config_tut.html#boto</a> for more boto configuration.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-aws_secret_key"></div>
+                <b>aws_secret_key</b>
+                <a class="ansibleOptionLink" href="#parameter-aws_secret_key" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>AWS secret key. If not set then the value of the AWS_SECRET_ACCESS_KEY, AWS_SECRET_KEY, or EC2_SECRET_KEY environment variable is used.</div>
+                                        <div>If <em>profile</em> is set this parameter is ignored.</div>
+                                        <div>Passing the <em>aws_secret_key</em> and <em>profile</em> options at the same time has been deprecated and the options will be made mutually exclusive after 2022-06-01.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: ec2_secret_key, secret_key</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-debug_botocore_endpoint_logs"></div>
+                <b>debug_botocore_endpoint_logs</b>
+                <a class="ansibleOptionLink" href="#parameter-debug_botocore_endpoint_logs" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Use a botocore.endpoint logger to parse the unique (rather than total) &quot;resource:action&quot; API calls made during a task, outputing the set to the resource_actions key in the task results. Use the aws_resource_action callback to output to total list made during a playbook. The ANSIBLE_DEBUG_BOTOCORE_LOGS environment variable may also be used.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-default_cooldown"></div>
+                <b>default_cooldown</b>
+                <a class="ansibleOptionLink" href="#parameter-default_cooldown" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">300</div>
+                                </td>
+                                                            <td>
+                                        <div>The number of seconds after a scaling activity completes before another can begin.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-desired_capacity"></div>
+                <b>desired_capacity</b>
+                <a class="ansibleOptionLink" href="#parameter-desired_capacity" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Desired number of instances in group, if unspecified then the current group value will be used.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-ec2_url"></div>
+                <b>ec2_url</b>
+                <a class="ansibleOptionLink" href="#parameter-ec2_url" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Url to use to connect to EC2 or your Eucalyptus cloud (by default the module will use EC2 endpoints). Ignored for modules where region is required. Must be specified for all other modules if region is not used. If not set then the value of the EC2_URL environment variable, if any, is used.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: aws_endpoint_url, endpoint_url</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-health_check_period"></div>
+                <b>health_check_period</b>
+                <a class="ansibleOptionLink" href="#parameter-health_check_period" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">300</div>
+                                </td>
+                                                            <td>
+                                        <div>Length of time in seconds after a new EC2 instance comes into service that Auto Scaling starts checking its health.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-health_check_type"></div>
+                <b>health_check_type</b>
+                <a class="ansibleOptionLink" href="#parameter-health_check_type" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>EC2</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>ELB</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>The service you want the health status from, Amazon EC2 or Elastic Load Balancer.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-launch_config_name"></div>
+                <b>launch_config_name</b>
+                <a class="ansibleOptionLink" href="#parameter-launch_config_name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Name of the Launch configuration to use for the group. See the community.aws.ec2_lc) module for managing these.</div>
+                                        <div>If unspecified then the current group value will be used.  One of <em>launch_config_name</em> or <em>launch_template</em> must be provided.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-launch_template"></div>
+                <b>launch_template</b>
+                <a class="ansibleOptionLink" href="#parameter-launch_template" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Dictionary describing the Launch Template to use</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-launch_template/launch_template_id"></div>
+                <b>launch_template_id</b>
+                <a class="ansibleOptionLink" href="#parameter-launch_template/launch_template_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The id of the launch template. Only one of <em>launch_template_name</em> or <em>launch_template_id</em> is required.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-launch_template/launch_template_name"></div>
+                <b>launch_template_name</b>
+                <a class="ansibleOptionLink" href="#parameter-launch_template/launch_template_name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The name of the launch template. Only one of <em>launch_template_name</em> or <em>launch_template_id</em> is required.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-launch_template/version"></div>
+                <b>version</b>
+                <a class="ansibleOptionLink" href="#parameter-launch_template/version" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The version number of the launch template to use.</div>
+                                        <div>Defaults to latest version if not provided.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-lc_check"></div>
+                <b>lc_check</b>
+                <a class="ansibleOptionLink" href="#parameter-lc_check" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Check to make sure instances that are being replaced with <em>replace_instances</em> do not already have the current <em>launch_config</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-load_balancers"></div>
+                <b>load_balancers</b>
+                <a class="ansibleOptionLink" href="#parameter-load_balancers" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>List of ELB names to use for the group. Use for classic load balancers.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-lt_check"></div>
+                <b>lt_check</b>
+                <a class="ansibleOptionLink" href="#parameter-lt_check" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Check to make sure instances that are being replaced with <em>replace_instances</em> do not already have the current <em>launch_template or I(launch_template</em> <em>version</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-max_instance_lifetime"></div>
+                <b>max_instance_lifetime</b>
+                <a class="ansibleOptionLink" href="#parameter-max_instance_lifetime" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The maximum amount of time, in seconds, that an instance can be in service.</div>
+                                        <div>Maximum instance lifetime must be equal to 0, between 604800 and 31536000 seconds (inclusive), or not specified.</div>
+                                        <div>Value of 0 removes lifetime restriction.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-max_size"></div>
+                <b>max_size</b>
+                <a class="ansibleOptionLink" href="#parameter-max_size" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Maximum number of instances in group, if unspecified then the current group value will be used.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-metrics_collection"></div>
+                <b>metrics_collection</b>
+                <a class="ansibleOptionLink" href="#parameter-metrics_collection" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Enable ASG metrics collection.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-metrics_granularity"></div>
+                <b>metrics_granularity</b>
+                <a class="ansibleOptionLink" href="#parameter-metrics_granularity" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">"1Minute"</div>
+                                </td>
+                                                            <td>
+                                        <div>When <em>metrics_collection=true</em> this will determine the granularity of metrics collected by CloudWatch.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-metrics_list"></div>
+                <b>metrics_list</b>
+                <a class="ansibleOptionLink" href="#parameter-metrics_list" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">["GroupMinSize", "GroupMaxSize", "GroupDesiredCapacity", "GroupInServiceInstances", "GroupPendingInstances", "GroupStandbyInstances", "GroupTerminatingInstances", "GroupTotalInstances"]</div>
+                                </td>
+                                                            <td>
+                                        <div>List of autoscaling metrics to collect when <em>metrics_collection=true</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-min_size"></div>
+                <b>min_size</b>
+                <a class="ansibleOptionLink" href="#parameter-min_size" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Minimum number of instances in group, if unspecified then the current group value will be used.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy"></div>
+                <b>mixed_instances_policy</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A mixed instance policy to use for the ASG.</div>
+                                        <div>Only used when the ASG is configured to use a Launch Template (<em>launch_template</em>).</div>
+                                        <div>See also <a href='https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-mixedinstancespolicy.html'>https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-autoscaling-autoscalinggroup-mixedinstancespolicy.html</a></div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instance_types"></div>
+                <b>instance_types</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instance_types" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of instance_types.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution"></div>
+                <b>instances_distribution</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Specifies the distribution of On-Demand Instances and Spot Instances, the maximum price to pay for Spot Instances, and how the Auto Scaling group allocates instance types to fulfill On-Demand and Spot capacity.</div>
+                                        <div>See also <a href='https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_InstancesDistribution.html'>https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_InstancesDistribution.html</a></div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution/on_demand_allocation_strategy"></div>
+                <b>on_demand_allocation_strategy</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution/on_demand_allocation_strategy" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Indicates how to allocate instance types to fulfill On-Demand capacity.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution/on_demand_base_capacity"></div>
+                <b>on_demand_base_capacity</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution/on_demand_base_capacity" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The minimum amount of the Auto Scaling group&#x27;s capacity that must be fulfilled by On-Demand Instances. This base portion is provisioned first as your group scales.</div>
+                                        <div>Default if not set is 0. If you leave it set to 0, On-Demand Instances are launched as a percentage of the Auto Scaling group&#x27;s desired capacity, per the OnDemandPercentageAboveBaseCapacity setting.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution/on_demand_percentage_above_base_capacity"></div>
+                <b>on_demand_percentage_above_base_capacity</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution/on_demand_percentage_above_base_capacity" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Controls the percentages of On-Demand Instances and Spot Instances for your additional capacity beyond OnDemandBaseCapacity.</div>
+                                        <div>Default if not set is 100. If you leave it set to 100, the percentages are 100% for On-Demand Instances and 0% for Spot Instances.</div>
+                                        <div>Valid range: 0 to 100</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution/spot_allocation_strategy"></div>
+                <b>spot_allocation_strategy</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution/spot_allocation_strategy" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Indicates how to allocate instances across Spot Instance pools.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution/spot_instance_pools"></div>
+                <b>spot_instance_pools</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution/spot_instance_pools" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The number of Spot Instance pools across which to allocate your Spot Instances. The Spot pools are determined from the different instance types in the Overrides array of LaunchTemplate. Default if not set is 2.</div>
+                                        <div>Used only when the Spot allocation strategy is lowest-price.</div>
+                                        <div>Valid Range: Minimum value of 1. Maximum value of 20.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mixed_instances_policy/instances_distribution/spot_max_price"></div>
+                <b>spot_max_price</b>
+                <a class="ansibleOptionLink" href="#parameter-mixed_instances_policy/instances_distribution/spot_max_price" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 1.5.0 of community.aws
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The maximum price per unit hour that you are willing to pay for a Spot Instance.</div>
+                                        <div>If you leave the value of this parameter blank (which is the default), the maximum Spot price is set at the On-Demand price.</div>
+                                        <div>To remove a value that you previously set, include the parameter but leave the value blank.</div>
+                                                    </td>
+        </tr>
+
+
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-name"></div>
+                <b>name</b>
+                <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Unique name for group to be created or deleted.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-notification_topic"></div>
+                <b>notification_topic</b>
+                <a class="ansibleOptionLink" href="#parameter-notification_topic" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A SNS topic ARN to send auto scaling notifications to.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-notification_types"></div>
+                <b>notification_types</b>
+                <a class="ansibleOptionLink" href="#parameter-notification_types" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">["autoscaling:EC2_INSTANCE_LAUNCH", "autoscaling:EC2_INSTANCE_LAUNCH_ERROR", "autoscaling:EC2_INSTANCE_TERMINATE", "autoscaling:EC2_INSTANCE_TERMINATE_ERROR"]</div>
+                                </td>
+                                                            <td>
+                                        <div>A list of auto scaling events to trigger notifications on.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-placement_group"></div>
+                <b>placement_group</b>
+                <a class="ansibleOptionLink" href="#parameter-placement_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Physical location of your cluster placement group created in Amazon EC2.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-profile"></div>
+                <b>profile</b>
+                <a class="ansibleOptionLink" href="#parameter-profile" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Uses a boto profile. Only works with boto &gt;= 2.24.0.</div>
+                                        <div>Using <em>profile</em> will override <em>aws_access_key</em>, <em>aws_secret_key</em> and <em>security_token</em> and support for passing them at the same time as <em>profile</em> has been deprecated.</div>
+                                        <div><em>aws_access_key</em>, <em>aws_secret_key</em> and <em>security_token</em> will be made mutually exclusive with <em>profile</em> after 2022-06-01.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: aws_profile</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-region"></div>
+                <b>region</b>
+                <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The AWS region to use. If not specified then the value of the AWS_REGION or EC2_REGION environment variable, if any, is used. See <a href='http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region'>http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region</a></div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: aws_region, ec2_region</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-replace_all_instances"></div>
+                <b>replace_all_instances</b>
+                <a class="ansibleOptionLink" href="#parameter-replace_all_instances" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>In a rolling fashion, replace all instances that used the old launch configuration with one from the new launch configuration. It increases the ASG size by <em>replace_batch_size</em>, waits for the new instances to be up and running. After that, it terminates a batch of old instances, waits for the replacements, and repeats, until all old instances are replaced. Once that&#x27;s done the ASG size is reduced back to the expected size.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-replace_batch_size"></div>
+                <b>replace_batch_size</b>
+                <a class="ansibleOptionLink" href="#parameter-replace_batch_size" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">1</div>
+                                </td>
+                                                            <td>
+                                        <div>Number of instances you&#x27;d like to replace at a time.  Used with <em>replace_all_instances</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-replace_instances"></div>
+                <b>replace_instances</b>
+                <a class="ansibleOptionLink" href="#parameter-replace_instances" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>List of <em>instance_ids</em> belonging to the named AutoScalingGroup that you would like to terminate and be replaced with instances matching the current launch configuration.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-security_token"></div>
+                <b>security_token</b>
+                <a class="ansibleOptionLink" href="#parameter-security_token" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>AWS STS security token. If not set then the value of the AWS_SECURITY_TOKEN or EC2_SECURITY_TOKEN environment variable is used.</div>
+                                        <div>If <em>profile</em> is set this parameter is ignored.</div>
+                                        <div>Passing the <em>security_token</em> and <em>profile</em> options at the same time has been deprecated and the options will be made mutually exclusive after 2022-06-01.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: aws_security_token, access_token</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-state"></div>
+                <b>state</b>
+                <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>present</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>absent</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Register or deregister the instance.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-suspend_processes"></div>
+                <b>suspend_processes</b>
+                <a class="ansibleOptionLink" href="#parameter-suspend_processes" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">[]</div>
+                                </td>
+                                                            <td>
+                                        <div>A list of scaling processes to suspend.</div>
+                                        <div>Valid values include:</div>
+                                        <div><code>Launch</code>, <code>Terminate</code>, <code>HealthCheck</code>, <code>ReplaceUnhealthy</code>, <code>AZRebalance</code>, <code>AlarmNotification</code>, <code>ScheduledActions</code>, <code>AddToLoadBalancer</code></div>
+                                        <div>Full documentation of valid values can be found in the AWS documentation:</div>
+                                        <div><a href='https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html'>https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html</a></div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-tags"></div>
+                <b>tags</b>
+                <a class="ansibleOptionLink" href="#parameter-tags" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of tags to add to the Auto Scale Group.</div>
+                                        <div>Optional key is <em>propagate_at_launch</em>, which defaults to true.</div>
+                                        <div>When <em>propagate_at_launch</em> is true the tags will be propagated to the Instances created.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-target_group_arns"></div>
+                <b>target_group_arns</b>
+                <a class="ansibleOptionLink" href="#parameter-target_group_arns" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>List of target group ARNs to use for the group. Use for application load balancers.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-termination_policies"></div>
+                <b>termination_policies</b>
+                <a class="ansibleOptionLink" href="#parameter-termination_policies" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">"Default"</div>
+                                </td>
+                                                            <td>
+                                        <div>An ordered list of criteria used for selecting instances to be removed from the Auto Scaling group when reducing capacity.</div>
+                                        <div>Using <em>termination_policies=Default</em> when modifying an existing AutoScalingGroup will result in the existing policy being retained instead of changed to <code>Default</code>.</div>
+                                        <div>Valid values include: <code>Default</code>, <code>OldestInstance</code>, <code>NewestInstance</code>, <code>OldestLaunchConfiguration</code>, <code>ClosestToNextInstanceHour</code></div>
+                                        <div>Full documentation of valid values can be found in the AWS documentation:</div>
+                                        <div><a href='https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#custom-termination-policy'>https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#custom-termination-policy</a></div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-validate_certs"></div>
+                <b>validate_certs</b>
+                <a class="ansibleOptionLink" href="#parameter-validate_certs" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>When set to &quot;no&quot;, SSL certificates will not be validated for boto versions &gt;= 2.6.0.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-vpc_zone_identifier"></div>
+                <b>vpc_zone_identifier</b>
+                <a class="ansibleOptionLink" href="#parameter-vpc_zone_identifier" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>List of VPC subnets to use</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-wait_for_instances"></div>
+                <b>wait_for_instances</b>
+                <a class="ansibleOptionLink" href="#parameter-wait_for_instances" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Wait for the ASG instances to be in a ready state before exiting.  If instances are behind an ELB, it will wait until the ELB determines all instances have a lifecycle_state of  &quot;InService&quot; and  a health_status of &quot;Healthy&quot;.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
+                <b>wait_timeout</b>
+                <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">300</div>
+                                </td>
+                                                            <td>
+                                        <div>How long to wait for instances to become viable when replaced.  If you experience the error &quot;Waited too long for ELB instances to be healthy&quot;, try increasing this value.</div>
+                                                    </td>
+        </tr>
+                    </table>
+<br/></div>
+<div class="section" id="notes">
+<h2><a class="toc-backref" href="#id4">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>If parameters are not set within the module, the following environment variables can be used in decreasing order of precedence <code class="docutils literal notranslate"><span class="pre">AWS_URL</span></code> or <code class="docutils literal notranslate"><span class="pre">EC2_URL</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_PROFILE</span></code> or <code class="docutils literal notranslate"><span class="pre">AWS_DEFAULT_PROFILE</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_ACCESS_KEY_ID</span></code> or <code class="docutils literal notranslate"><span class="pre">AWS_ACCESS_KEY</span></code> or <code class="docutils literal notranslate"><span class="pre">EC2_ACCESS_KEY</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_SECRET_ACCESS_KEY</span></code> or <code class="docutils literal notranslate"><span class="pre">AWS_SECRET_KEY</span></code> or <code class="docutils literal notranslate"><span class="pre">EC2_SECRET_KEY</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_SECURITY_TOKEN</span></code> or <code class="docutils literal notranslate"><span class="pre">EC2_SECURITY_TOKEN</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_REGION</span></code> or <code class="docutils literal notranslate"><span class="pre">EC2_REGION</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_CA_BUNDLE</span></code></p></li>
+<li><p>Ansible uses the boto configuration file (typically ~/.boto) if no credentials are provided. See <a class="reference external" href="https://boto.readthedocs.io/en/latest/boto_config_tut.html">https://boto.readthedocs.io/en/latest/boto_config_tut.html</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AWS_REGION</span></code> or <code class="docutils literal notranslate"><span class="pre">EC2_REGION</span></code> can be typically be used to specify the AWS region, when required, but this can also be configured in the boto config file</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic configuration with Launch Configuration</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">community.aws.ec2_asg</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">special</span>
+    <span class="nt">load_balancers</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;lb1&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;lb2&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">availability_zones</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;eu-west-1a&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;eu-west-1b&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">launch_config_name</span><span class="p">:</span> <span class="s">&#39;lc-1&#39;</span>
+    <span class="nt">min_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="nt">max_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="nt">desired_capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">vpc_zone_identifier</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;subnet-abcd1234&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;subnet-1a2b3c4d&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">tags</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">environment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">production</span>
+        <span class="nt">propagate_at_launch</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+
+<span class="c1"># Rolling ASG Updates</span>
+
+<span class="c1"># Below is an example of how to assign a new launch config to an ASG and terminate old instances.</span>
+<span class="c1">#</span>
+<span class="c1"># All instances in &quot;myasg&quot; that do not have the launch configuration named &quot;my_new_lc&quot; will be terminated in</span>
+<span class="c1"># a rolling fashion with instances using the current launch configuration, &quot;my_new_lc&quot;.</span>
+<span class="c1">#</span>
+<span class="c1"># This could also be considered a rolling deploy of a pre-baked AMI.</span>
+<span class="c1">#</span>
+<span class="c1"># If this is a newly created group, the instances will not be replaced since all instances</span>
+<span class="c1"># will have the current launch configuration.</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create launch config</span>
+  <span class="nt">community.aws.ec2_lc</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_new_lc</span>
+    <span class="nt">image_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ami-lkajsf</span>
+    <span class="nt">key_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mykey</span>
+    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+    <span class="nt">security_groups</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sg-23423</span>
+    <span class="nt">instance_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">m1.small</span>
+    <span class="nt">assign_public_ip</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">community.aws.ec2_asg</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myasg</span>
+    <span class="nt">launch_config_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_new_lc</span>
+    <span class="nt">health_check_period</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>
+    <span class="nt">health_check_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ELB</span>
+    <span class="nt">replace_all_instances</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class="nt">min_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">max_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">desired_capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+
+<span class="c1"># To only replace a couple of instances instead of all of them, supply a list</span>
+<span class="c1"># to &quot;replace_instances&quot;:</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">community.aws.ec2_asg</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myasg</span>
+    <span class="nt">launch_config_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_new_lc</span>
+    <span class="nt">health_check_period</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>
+    <span class="nt">health_check_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ELB</span>
+    <span class="nt">replace_instances</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">i-b345231</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">i-24c2931</span>
+    <span class="nt">min_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">max_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">desired_capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+
+<span class="c1"># Basic Configuration with Launch Template</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">community.aws.ec2_asg</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">special</span>
+    <span class="nt">load_balancers</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;lb1&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;lb2&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">availability_zones</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;eu-west-1a&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;eu-west-1b&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">launch_template</span><span class="p">:</span>
+        <span class="nt">version</span><span class="p">:</span> <span class="s">&#39;1&#39;</span>
+        <span class="nt">launch_template_name</span><span class="p">:</span> <span class="s">&#39;lt-example&#39;</span>
+        <span class="nt">launch_template_id</span><span class="p">:</span> <span class="s">&#39;lt-123456&#39;</span>
+    <span class="nt">min_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="nt">max_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="nt">desired_capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">vpc_zone_identifier</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;subnet-abcd1234&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;subnet-1a2b3c4d&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">tags</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">environment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">production</span>
+        <span class="nt">propagate_at_launch</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+
+<span class="c1"># Basic Configuration with Launch Template using mixed instance policy</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">community.aws.ec2_asg</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">special</span>
+    <span class="nt">load_balancers</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;lb1&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;lb2&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">availability_zones</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;eu-west-1a&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;eu-west-1b&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">launch_template</span><span class="p">:</span>
+        <span class="nt">version</span><span class="p">:</span> <span class="s">&#39;1&#39;</span>
+        <span class="nt">launch_template_name</span><span class="p">:</span> <span class="s">&#39;lt-example&#39;</span>
+        <span class="nt">launch_template_id</span><span class="p">:</span> <span class="s">&#39;lt-123456&#39;</span>
+    <span class="nt">mixed_instances_policy</span><span class="p">:</span>
+        <span class="nt">instance_types</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">t3a.large</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">t3.large</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">t2.large</span>
+        <span class="nt">instances_distribution</span><span class="p">:</span>
+            <span class="nt">on_demand_percentage_above_base_capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+            <span class="nt">spot_allocation_strategy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">capacity-optimized</span>
+    <span class="nt">min_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="nt">max_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="nt">desired_capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+    <span class="nt">vpc_zone_identifier</span><span class="p">:</span> <span class="p p-Indicator">[</span> <span class="s">&#39;subnet-abcd1234&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;subnet-1a2b3c4d&#39;</span> <span class="p p-Indicator">]</span>
+    <span class="nt">tags</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">environment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">production</span>
+        <span class="nt">propagate_at_launch</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return-values">
+<h2><a class="toc-backref" href="#id6">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this headline">¶</a></h2>
+<p>Common return values are documented <a class="reference internal" href="../../../reference_appendices/common_return_values.html#common-return-values"><span class="std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="1">Key</th>
+        <th>Returned</th>
+        <th width="100%">Description</th>
+    </tr>
+                <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-auto_scaling_group_arn"></div>
+                <b>auto_scaling_group_arn</b>
+                <a class="ansibleOptionLink" href="#return-auto_scaling_group_arn" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The unique ARN of the autoscaling group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">arn:aws:autoscaling:us-east-1:123456789012:autoScalingGroup:6a09ad6d-eeee-1234-b987-ee123ced01ad:autoScalingGroupName/myasg</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-auto_scaling_group_name"></div>
+                <b>auto_scaling_group_name</b>
+                <a class="ansibleOptionLink" href="#return-auto_scaling_group_name" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The unique name of the auto scaling group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">myasg</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-availability_zones"></div>
+                <b>availability_zones</b>
+                <a class="ansibleOptionLink" href="#return-availability_zones" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The availability zones for the auto scaling group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;us-east-1d&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-created_time"></div>
+                <b>created_time</b>
+                <a class="ansibleOptionLink" href="#return-created_time" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Timestamp of create time of the auto scaling group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2017-11-08T14:41:48.272000+00:00</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-default_cooldown"></div>
+                <b>default_cooldown</b>
+                <a class="ansibleOptionLink" href="#return-default_cooldown" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The default cooldown time in seconds.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">300</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-desired_capacity"></div>
+                <b>desired_capacity</b>
+                <a class="ansibleOptionLink" href="#return-desired_capacity" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The number of EC2 instances that should be running in this group.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-healthcheck_period"></div>
+                <b>healthcheck_period</b>
+                <a class="ansibleOptionLink" href="#return-healthcheck_period" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Length of time in seconds after a new EC2 instance comes into service that Auto Scaling starts checking its health.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">30</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-healthcheck_type"></div>
+                <b>healthcheck_type</b>
+                <a class="ansibleOptionLink" href="#return-healthcheck_type" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The service you want the health status from, one of &quot;EC2&quot; or &quot;ELB&quot;.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ELB</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-healthy_instances"></div>
+                <b>healthy_instances</b>
+                <a class="ansibleOptionLink" href="#return-healthy_instances" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Number of instances in a healthy state</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-in_service_instances"></div>
+                <b>in_service_instances</b>
+                <a class="ansibleOptionLink" href="#return-in_service_instances" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Number of instances in service</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-instance_facts"></div>
+                <b>instance_facts</b>
+                <a class="ansibleOptionLink" href="#return-instance_facts" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">dictionary</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Dictionary of EC2 instances and their status as it relates to the ASG.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;i-0123456789012&#x27;: {&#x27;health_status&#x27;: &#x27;Healthy&#x27;, &#x27;launch_config_name&#x27;: &#x27;public-webapp-production-1&#x27;, &#x27;lifecycle_state&#x27;: &#x27;InService&#x27;}}</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-instances"></div>
+                <b>instances</b>
+                <a class="ansibleOptionLink" href="#return-instances" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>list of instance IDs in the ASG</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;i-0123456789012&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-launch_config_name"></div>
+                <b>launch_config_name</b>
+                <a class="ansibleOptionLink" href="#return-launch_config_name" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Name of launch configuration associated with the ASG. Same as launch_configuration_name, provided for compatibility with ec2_asg module.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">public-webapp-production-1</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-load_balancers"></div>
+                <b>load_balancers</b>
+                <a class="ansibleOptionLink" href="#return-load_balancers" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>List of load balancers names attached to the ASG.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;elb-webapp-prod&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-max_instance_lifetime"></div>
+                <b>max_instance_lifetime</b>
+                <a class="ansibleOptionLink" href="#return-max_instance_lifetime" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The maximum amount of time, in seconds, that an instance can be in service.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">604800</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-max_size"></div>
+                <b>max_size</b>
+                <a class="ansibleOptionLink" href="#return-max_size" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Maximum size of group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-metrics_collection"></div>
+                <b>metrics_collection</b>
+                <a class="ansibleOptionLink" href="#return-metrics_collection" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>List of enabled AutosSalingGroup metrics</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;Granularity&#x27;: &#x27;1Minute&#x27;, &#x27;Metric&#x27;: &#x27;GroupInServiceInstances&#x27;}]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-min_size"></div>
+                <b>min_size</b>
+                <a class="ansibleOptionLink" href="#return-min_size" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Minimum size of group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-mixed_instances_policy"></div>
+                <b>mixed_instances_policy</b>
+                <a class="ansibleOptionLink" href="#return-mixed_instances_policy" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Returns the list of instance types if a mixed instances policy is set.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;t3.micro&#x27;, &#x27;t3a.micro&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-mixed_instances_policy_full"></div>
+                <b>mixed_instances_policy_full</b>
+                <a class="ansibleOptionLink" href="#return-mixed_instances_policy_full" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">dictionary</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Returns the full dictionary representation of the mixed instances policy if a mixed instances policy is set.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;instances_distribution&#x27;: {&#x27;on_demand_allocation_strategy&#x27;: &#x27;prioritized&#x27;, &#x27;on_demand_base_capacity&#x27;: 0, &#x27;on_demand_percentage_above_base_capacity&#x27;: 0, &#x27;spot_allocation_strategy&#x27;: &#x27;capacity-optimized&#x27;}, &#x27;launch_template&#x27;: {&#x27;launch_template_specification&#x27;: {&#x27;launch_template_id&#x27;: &#x27;lt-53c2425cffa544c23&#x27;, &#x27;launch_template_name&#x27;: &#x27;random-LaunchTemplate&#x27;, &#x27;version&#x27;: &#x27;2&#x27;}, &#x27;overrides&#x27;: [{&#x27;instance_type&#x27;: &#x27;m5.xlarge&#x27;}, {&#x27;instance_type&#x27;: &#x27;m5a.xlarge&#x27;}]}}</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-pending_instances"></div>
+                <b>pending_instances</b>
+                <a class="ansibleOptionLink" href="#return-pending_instances" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Number of instances in pending state</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-tags"></div>
+                <b>tags</b>
+                <a class="ansibleOptionLink" href="#return-tags" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>List of tags for the ASG, and whether or not each tag propagates to instances at launch.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;key&#x27;: &#x27;Name&#x27;, &#x27;propagate_at_launch&#x27;: &#x27;true&#x27;, &#x27;resource_id&#x27;: &#x27;public-webapp-production-1&#x27;, &#x27;resource_type&#x27;: &#x27;auto-scaling-group&#x27;, &#x27;value&#x27;: &#x27;public-webapp-production-1&#x27;}, {&#x27;key&#x27;: &#x27;env&#x27;, &#x27;propagate_at_launch&#x27;: &#x27;true&#x27;, &#x27;resource_id&#x27;: &#x27;public-webapp-production-1&#x27;, &#x27;resource_type&#x27;: &#x27;auto-scaling-group&#x27;, &#x27;value&#x27;: &#x27;production&#x27;}]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-target_group_arns"></div>
+                <b>target_group_arns</b>
+                <a class="ansibleOptionLink" href="#return-target_group_arns" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>List of ARNs of the target groups that the ASG populates</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;arn:aws:elasticloadbalancing:ap-southeast-2:123456789012:targetgroup/target-group-host-hello/1a2b3c4d5e6f1a2b&#x27;, &#x27;arn:aws:elasticloadbalancing:ap-southeast-2:123456789012:targetgroup/target-group-path-world/abcd1234abcd1234&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-target_group_names"></div>
+                <b>target_group_names</b>
+                <a class="ansibleOptionLink" href="#return-target_group_names" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>List of names of the target groups that the ASG populates</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;target-group-host-hello&#x27;, &#x27;target-group-path-world&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-termination_policies"></div>
+                <b>termination_policies</b>
+                <a class="ansibleOptionLink" href="#return-termination_policies" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>A list of termination policies for the group.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;Default&#x27;]</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-unhealthy_instances"></div>
+                <b>unhealthy_instances</b>
+                <a class="ansibleOptionLink" href="#return-unhealthy_instances" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Number of instances in an unhealthy state</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-viable_instances"></div>
+                <b>viable_instances</b>
+                <a class="ansibleOptionLink" href="#return-viable_instances" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Number of instances in a viable state</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-vpc_zone_identifier"></div>
+                <b>vpc_zone_identifier</b>
+                <a class="ansibleOptionLink" href="#return-vpc_zone_identifier" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>VPC zone ID / subnet id for the auto scaling group</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">subnet-a31ef45f</div>
+                                </td>
+        </tr>
+                    </table>
+<br/><br/><div class="section" id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Gareth Rushgrove (&#64;garethr)</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          
+
+<footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="ec2_asg_info_module.html" class="btn btn-neutral float-right" title="community.aws.ec2_asg_info – Gather information about ec2 Auto Scaling Groups (ASGs) in AWS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ec2_ami_copy_module.html" class="btn btn-neutral float-left" title="community.aws.ec2_ami_copy – copies AMI between AWS regions, return new image id" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Ansible project contributors.
+      <span class="lastupdated">
+        Last updated on Jul 21, 2021.
+      </span>
+
+    </p>
+  </div>
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  <!-- extra footer elements for Ansible beyond RTD Sphinx Theme --->
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+      (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+      n.id=i;n.src = 'https://js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+      e.parentNode.insertBefore(n, e);
+      })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+  _satellite.pageBottom();
+}
+</script>
+
+</body>
+</html>

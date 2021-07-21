@@ -1,0 +1,2509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cisco.nxos.nxos_ospf_interfaces – OSPF Interfaces Resource Module. &mdash; Ansible Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.svg"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://docs.ansible.com/ansible/latest/collections/cisco/nxos/nxos_ospf_interfaces_module.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="cisco.nxos.nxos_ospf_vrf – (deprecated, removed after 2022-10-01)Manages a VRF for an OSPF router." href="nxos_ospf_vrf_module.html" />
+    <link rel="prev" title="cisco.nxos.nxos_ospf – (deprecated, removed after 2022-06-01) Manages configuration of an ospf instance." href="nxos_ospf_module.html" /><!---- extra head elements for Ansible beyond RTD Sphinx Theme --->
+<script type="text/javascript" src="https://www.redhat.com/dtm.js"></script>
+
+
+<!-- <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> -->
+<meta class="swiftype" name="version" data-type="string" content="devel">
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+ dataLayer = [];
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+<!-- End Google Tag Manager -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Ansible
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                devel
+              </div>
+            
+          
+
+          <!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    <div class="version-dropdown">
+      <script>
+        function switchVersionTo(slug) {
+          var current_url_path = window.location.pathname;
+          var url_version = current_url_path.search("/devel/") > -1
+            ? "/devel/"
+            : "/latest/";
+          var new_version_url = current_url_path.replace(url_version, "/" + slug + "/");
+          window.location.replace(new_version_url);
+        }
+      </script>
+      <select
+          class="version-list"
+          id="version-list"
+          onchange="switchVersionTo(this.value);"
+      >
+        
+        <option
+            value="latest"
+            
+        >
+            latest
+        </option>
+        
+        <option
+            value="2.9"
+            
+        >
+            2.9
+        </option>
+        
+        <option
+            value="devel"
+            selected="selected"
+        >
+            devel
+        </option>
+        
+      </select>
+    </div>
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Installation, Upgrade &amp; Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guide/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../porting_guides/porting_guides.html">Ansible Porting Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Ansible Community Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Ansible Scenarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/cloud_guides.html">Public Cloud Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/network_guides.html">Network Technology Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/virt_guides.html">Virtualization and Containerization Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Automation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/getting_started/index.html">Network Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/user_guide/index.html">Network Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/dev_guide/index.html">Network Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ansible Galaxy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/user_guide.html">Galaxy User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/dev_guide.html">Galaxy Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference &amp; Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Collection Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../amazon/index.html">Collections in the Amazon Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ansible/index.html">Collections in the Ansible Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../arista/index.html">Collections in the Arista Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awx/index.html">Collections in the Awx Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../azure/index.html">Collections in the Azure Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../check_point/index.html">Collections in the Check_point Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chocolatey/index.html">Collections in the Chocolatey Namespace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Collections in the Cisco Namespace</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../aci/index.html">Cisco.Aci</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../asa/index.html">Cisco.Asa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intersight/index.html">Cisco.Intersight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ios/index.html">Cisco.Ios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../iosxr/index.html">Cisco.Iosxr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../meraki/index.html">Cisco.Meraki</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mso/index.html">Cisco.Mso</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nso/index.html">Cisco.Nso</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Cisco.Nxos</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#plugin-index">Plugin Index</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ucs/index.html">Cisco.Ucs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloudscale_ch/index.html">Collections in the Cloudscale_ch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/index.html">Collections in the Community Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../containers/index.html">Collections in the Containers Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cyberark/index.html">Collections in the Cyberark Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dellemc/index.html">Collections in the Dellemc Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../f5networks/index.html">Collections in the F5networks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fortinet/index.html">Collections in the Fortinet Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../frr/index.html">Collections in the Frr Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gluster/index.html">Collections in the Gluster Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../google/index.html">Collections in the Google Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hetzner/index.html">Collections in the Hetzner Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpe/index.html">Collections in the Hpe Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ibm/index.html">Collections in the Ibm Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../infinidat/index.html">Collections in the Infinidat Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inspur/index.html">Collections in the Inspur Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../junipernetworks/index.html">Collections in the Junipernetworks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/index.html">Collections in the Kubernetes Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mellanox/index.html">Collections in the Mellanox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp/index.html">Collections in the Netapp Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp_eseries/index.html">Collections in the Netapp_eseries Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netbox/index.html">Collections in the Netbox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ngine_io/index.html">Collections in the Ngine_io Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openstack/index.html">Collections in the Openstack Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openvswitch/index.html">Collections in the Openvswitch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ovirt/index.html">Collections in the Ovirt Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../purestorage/index.html">Collections in the Purestorage Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sensu/index.html">Collections in the Sensu Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../servicenow/index.html">Collections in the Servicenow Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../splunk/index.html">Collections in the Splunk Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../t_systems_mms/index.html">Collections in the T_systems_mms Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theforeman/index.html">Collections in the Theforeman Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vyos/index.html">Collections in the Vyos Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wti/index.html">Collections in the Wti Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../all_plugins.html">Indexes of all modules and plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/playbooks_keywords.html">Playbook Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/common_return_values.html">Return Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/config.html">Ansible Configuration Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/general_precedence.html">Controlling how Ansible behaves: precedence rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/YAMLSyntax.html">YAML Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/python_3_support.html">Python 3 Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/interpreter_discovery.html">Interpreter Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/release_and_maintenance.html">Releases and maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/test_strategies.html">Testing Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/testing/sanity/index.html">Sanity Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/module_utils.html">Ansible Reference: Module Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/special_variables.html">Special Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/tower.html">Red Hat Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/automationhub.html">Ansible Automation Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/logging.html">Logging Ansible output</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Roadmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap/ansible_roadmap_index.html">Ansible Roadmap</a></li>
+</ul>
+
+            
+          <!-- extra nav elements for Ansible beyond RTD Sphinx Theme --->
+<!-- changeable widget links to tower - do not change as image controlled by Ansible-->
+<div id="sideBanner">
+  <br/>
+  <a href="https://www.ansible.com/docs-left?utm_source=docs">
+    <img style="border-width:0px;" src="https://cdn2.hubspot.net/hubfs/330046/docs-graphics/ASB-docs-left-rail.png" />
+  </a>
+  <br/><br/><br/>
+</div>
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ansible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Collection Index</a> &raquo;</li>
+        
+          <li><a href="../index.html">Collections in the Cisco Namespace</a> &raquo;</li>
+        
+          <li><a href="index.html">Cisco.Nxos</a> &raquo;</li>
+        
+      <li>cisco.nxos.nxos_ospf_interfaces – OSPF Interfaces Resource Module.</li>
+    
+    
+  <li class="wy-breadcrumbs-aside">
+          <!-- Ansible-specific additions for modules etc -->
+            
+            <!--  <a href="https://github.com/ansible/ansible/edit/devel/lib/ansible/modules/?description=%23%23%23%23%23%20SUMMARY%0A%3C!---%20Your%20description%20here%20--%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a> -->
+              <br>
+            
+  </li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+  <script>
+    function startsWith(str, needle) {
+      return str.slice(0, needle.length) == needle
+    }
+    function startsWithOneOf(str, needles) {
+      return needles.some(function (needle) {
+        return startsWith(str, needle);
+      });
+    }
+    var banner = '';
+    var survey_banner =
+      '<div id="latest_survey_banner_id" class="admonition important">' +
+      '<br>' +
+      '<p>' +
+        'Please take our ' +
+        '<a href="https://www.surveymonkey.co.uk/r/2VWVJY3">survey</a> ' +
+        'to help us improve support for collections and roles in GalaxyNG.' +
+      '</p>' +
+      '<br>' +
+      '</div>';
+    // Create a banner if we're not on the official docs site
+    if (location.host == "docs.testing.ansible.com") {
+      document.write('<div id="testing_banner_id" class="admonition important">' +
+                     '<p>This is the testing site for Ansible Documentation. Unless you are reviewing pre-production changes, please visit the <a href="https://docs.ansible.com/ansible/latest/">official documentation website</a>.</p> <p></p>' +
+                     '</div>');
+    }
+    
+      // Create a banner
+      current_url_path = window.location.pathname;
+
+      var important = false;
+      var msg = '<p>';
+      if (startsWith(current_url_path, "/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/4/"])) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        msg += 'You are reading the latest community version of the Ansible documentation. Red Hat subscribers, select <b>2.9</b> in the version selection to the left for the most recent Red Hat release.';
+      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+        msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
+      } else if (startsWith(current_url_path, "/ansible/devel/")) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        /* temp banner to advertise survey
+        important = true;
+        msg += 'Please take our <a href="https://www.surveymonkey.co.uk/r/B9V3CDY">Docs survey</a> before December 31 to help us improve Ansible documentation.';
+        */
+
+        msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the latest stable released version.';
+      } else {
+        msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the latest stable released version.';
+      }
+      msg += '</p>';
+
+      banner += '<div id="banner_id" class="admonition ';
+      banner += important ? 'important' : 'caution';
+      banner += '">';
+      banner += important ? '<br>' : '';
+      banner += msg;
+      banner += important ? '<br>' : '';
+      banner += '</div>';
+      document.write(banner);
+    
+  </script>
+
+
+  
+           <div itemprop="articleBody">
+            
+  <span class="target" id="ansible-collections-cisco-nxos-nxos-ospf-interfaces-module"></span><div class="section" id="cisco-nxos-nxos-ospf-interfaces-ospf-interfaces-resource-module">
+<h1>cisco.nxos.nxos_ospf_interfaces – OSPF Interfaces Resource Module.<a class="headerlink" href="#cisco-nxos-nxos-ospf-interfaces-ospf-interfaces-resource-module" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/cisco/nxos">cisco.nxos collection</a> (version 2.4.0).</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">cisco.nxos</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">cisco.nxos.nxos_ospf_interfaces</span></code>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.0: </span>of cisco.nxos</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+</ul>
+</div>
+<div class="section" id="synopsis">
+<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This module manages OSPF(v2/v3) configuration of interfaces on devices running Cisco NX-OS.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This module has a corresponding <a class="reference internal" href="../../../plugins/action.html#action-plugins"><span class="std std-ref">action plugin</span></a>.</p>
+</div>
+</div>
+<div class="section" id="parameters">
+<h2><a class="toc-backref" href="#id2">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<table  border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="5">Parameter</th>
+        <th>Choices/<font color="blue">Defaults</font></th>
+                    <th width="100%">Comments</th>
+    </tr>
+                <tr>
+                                                            <td colspan="5">
+                <div class="ansibleOptionAnchor" id="parameter-config"></div>
+                <b>config</b>
+                <a class="ansibleOptionLink" href="#parameter-config" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of OSPF configuration for interfaces.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family"></div>
+                <b>address_family</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>OSPF settings on the interfaces in address-family context.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/afi"></div>
+                <b>afi</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/afi" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>ipv4</li>
+                                                                                                                                                                                            <li>ipv6</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Address Family Identifier (AFI) for OSPF settings on the interfaces.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication"></div>
+                <b>authentication</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Authentication settings on the interface.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication/enable"></div>
+                <b>enable</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication/enable" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Enable/disable authentication on the interface.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication/key_chain"></div>
+                <b>key_chain</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication/key_chain" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Authentication password key-chain.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication/message_digest"></div>
+                <b>message_digest</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication/message_digest" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Use message-digest authentication.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication/null_auth"></div>
+                <b>null_auth</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication/null_auth" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Use null(disable) authentication.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication_key"></div>
+                <b>authentication_key</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication_key" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Configure the authentication key for the interface.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication_key/encryption"></div>
+                <b>encryption</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication_key/encryption" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>0 Specifies an UNENCRYPTED authentication key will follow.</div>
+                                        <div>3 Specifies an 3DES ENCRYPTED authentication key will follow.</div>
+                                        <div>7 Specifies a Cisco type 7  ENCRYPTED authentication key will follow.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/authentication_key/key"></div>
+                <b>key</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/authentication_key/key" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Authentication key.</div>
+                                        <div>Valid values are Cisco type 7 ENCRYPTED password, 3DES ENCRYPTED password and UNENCRYPTED (cleartext) password based on the value of encryption key.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/cost"></div>
+                <b>cost</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/cost" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Cost associated with interface.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/dead_interval"></div>
+                <b>dead_interval</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/dead_interval" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Dead interval value (in seconds).</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/default_passive_interface"></div>
+                <b>default_passive_interface</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/default_passive_interface" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Set passive-interface attribute on this interface to default.</div>
+                                        <div>This option is mutually exclusive with <em>passive_interface</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/hello_interval"></div>
+                <b>hello_interval</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/hello_interval" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Hello interval value (in seconds).</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/instance"></div>
+                <b>instance</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/instance" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Instance identifier.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/message_digest_key"></div>
+                <b>message_digest_key</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/message_digest_key" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Message digest authentication password (key) settings.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/message_digest_key/encryption"></div>
+                <b>encryption</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/message_digest_key/encryption" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>0 Specifies an UNENCRYPTED ospf password (key) will follow.</div>
+                                        <div>3 Specifies an 3DES ENCRYPTED ospf password (key) will follow.</div>
+                                        <div>7 Specifies a Cisco type 7 ENCRYPTED the ospf password (key) will follow.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/message_digest_key/key"></div>
+                <b>key</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/message_digest_key/key" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Authentication key.</div>
+                                        <div>Valid values are Cisco type 7 ENCRYPTED password, 3DES ENCRYPTED password and UNENCRYPTED (cleartext) password based on the value of encryption key.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/message_digest_key/key_id"></div>
+                <b>key_id</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/message_digest_key/key_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Key ID.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/mtu_ignore"></div>
+                <b>mtu_ignore</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/mtu_ignore" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Enable/disable OSPF MTU mismatch detection.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/multi_areas"></div>
+                <b>multi_areas</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/multi_areas" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Multi-Areas associated with interface (not tied to OSPF process).</div>
+                                        <div>Valid values are Area Ids as an integer or IP address.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/network"></div>
+                <b>network</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/network" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>broadcast</li>
+                                                                                                                                                                                            <li>point-to-point</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Network type.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/passive_interface"></div>
+                <b>passive_interface</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/passive_interface" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Suppress routing updates on the interface.</div>
+                                        <div>This option is mutually exclusive with <em>default_passive_interface</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/priority"></div>
+                <b>priority</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/priority" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Router priority.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/processes"></div>
+                <b>processes</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/processes" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Interfaces configuration for an OSPF process.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/processes/area"></div>
+                <b>area</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/processes/area" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Area associated with interface.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/processes/area/area_id"></div>
+                <b>area_id</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/processes/area/area_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Area ID as a decimal or IP address format.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/processes/area/secondaries"></div>
+                <b>secondaries</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/processes/area/secondaries" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Do not include secondary IPv4/IPv6 addresses.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/processes/multi_areas"></div>
+                <b>multi_areas</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/processes/multi_areas" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Multi-Areas associated with interface.</div>
+                                        <div>Valid values are Area Ids as an integer or IP address.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/processes/process_id"></div>
+                <b>process_id</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/processes/process_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>OSPF process tag.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/retransmit_interval"></div>
+                <b>retransmit_interval</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/retransmit_interval" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Packet retransmission interval.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/shutdown"></div>
+                <b>shutdown</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/shutdown" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Shutdown OSPF on this interface.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                <td class="elbow-placeholder"></td>
+                                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="parameter-config/address_family/transmit_delay"></div>
+                <b>transmit_delay</b>
+                <a class="ansibleOptionLink" href="#parameter-config/address_family/transmit_delay" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Packet transmission delay.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="parameter-config/name"></div>
+                <b>name</b>
+                <a class="ansibleOptionLink" href="#parameter-config/name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Name/Identifier of the interface.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                            <td colspan="5">
+                <div class="ansibleOptionAnchor" id="parameter-running_config"></div>
+                <b>running_config</b>
+                <a class="ansibleOptionLink" href="#parameter-running_config" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This option is used only with state <em>parsed</em>.</div>
+                                        <div>The value of this option should be the output received from the NX-OS device by executing the command <b>show running-config | section &quot;^interface&quot;</b>.</div>
+                                        <div>The state <em>parsed</em> reads the configuration from <code>running_config</code> option and transforms it into Ansible structured data as per the resource module&#x27;s argspec and the value is then returned in the <em>parsed</em> key within the result.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="5">
+                <div class="ansibleOptionAnchor" id="parameter-state"></div>
+                <b>state</b>
+                <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>merged</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>replaced</li>
+                                                                                                                                                                                            <li>overridden</li>
+                                                                                                                                                                                            <li>deleted</li>
+                                                                                                                                                                                            <li>gathered</li>
+                                                                                                                                                                                            <li>parsed</li>
+                                                                                                                                                                                            <li>rendered</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>The state the configuration should be left in.</div>
+                                                    </td>
+        </tr>
+                    </table>
+<br/></div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id3">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using merged</span>
+
+<span class="c1"># Before state:</span>
+<span class="c1"># -------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Merge the provided configuration with the existing running configuration</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">config</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/1</span>
+        <span class="nt">address_family</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+          <span class="nt">processes</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;100&quot;</span>
+            <span class="nt">area</span><span class="p">:</span>
+              <span class="nt">area_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+              <span class="nt">secondaries</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+          <span class="nt">multi_areas</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">11.11.11.11</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv6</span>
+          <span class="nt">processes</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;200&quot;</span>
+            <span class="nt">area</span><span class="p">:</span>
+              <span class="nt">area_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.2.2.2</span>
+            <span class="nt">multi_areas</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">21.0.0.0</span>
+          <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;300&quot;</span>
+            <span class="nt">multi_areas</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">50.50.50.50</span>
+          <span class="nt">multi_areas</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">16.10.10.10</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/2</span>
+        <span class="nt">address_family</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+          <span class="nt">authentication</span><span class="p">:</span>
+            <span class="nt">enable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+            <span class="nt">key_chain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test-1</span>
+          <span class="nt">message_digest_key</span><span class="p">:</span>
+            <span class="nt">key_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+            <span class="nt">encryption</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+            <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">abc01d272be25d29</span>
+          <span class="nt">cost</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv6</span>
+          <span class="nt">network</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">broadcast</span>
+          <span class="nt">shutdown</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/3</span>
+        <span class="nt">address_family</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+          <span class="nt">authentication_key</span><span class="p">:</span>
+            <span class="nt">encryption</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
+            <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">12090404011C03162E</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">merged</span>
+
+<span class="c1"># Task output</span>
+<span class="c1"># -------------</span>
+<span class="c1"># &quot;before&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;commands&quot;: [</span>
+<span class="c1">#        &quot;interface Ethernet1/1&quot;,</span>
+<span class="c1">#        &quot;ip router ospf multi-area 11.11.11.11&quot;,</span>
+<span class="c1">#        &quot;ip router ospf 100 area 1.1.1.1 secondaries none&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 multi-area 16.10.10.10&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 200 area 2.2.2.2&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 200 multi-area 21.0.0.0&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 300 multi-area 50.50.50.50&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/2&quot;,</span>
+<span class="c1">#        &quot;ip ospf authentication key-chain test-1&quot;,</span>
+<span class="c1">#        &quot;ip ospf authentication&quot;,</span>
+<span class="c1">#        &quot;ip ospf message-digest-key 10 md5 3 abc01d272be25d29&quot;,</span>
+<span class="c1">#        &quot;ip ospf cost 100&quot;,</span>
+<span class="c1">#        &quot;ospfv3 network broadcast&quot;,</span>
+<span class="c1">#        &quot;ospfv3 shutdown&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/3&quot;,</span>
+<span class="c1">#        &quot;ip ospf authentication-key 7 12090404011C03162E&quot;</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;after&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.11&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;16.10.10.10&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;2.2.2.2&quot;</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;21.0.0.0&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;200&quot;</span>
+<span class="c1">#                        },</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;50.50.50.50&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;300&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># After state:</span>
+<span class="c1"># -------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.11</span>
+<span class="c1">#   ipv6 router ospfv3 200 area 2.2.2.2</span>
+<span class="c1">#   ipv6 router ospfv3 multi-area 16.10.10.10</span>
+<span class="c1">#   ipv6 router ospfv3 200 multi-area 21.0.0.0</span>
+<span class="c1">#   ipv6 router ospfv3 300 multi-area 50.50.50.50</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+
+<span class="c1"># Using replaced</span>
+
+<span class="c1"># Before state:</span>
+<span class="c1"># ------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.11</span>
+<span class="c1">#   ipv6 router ospfv3 200 area 2.2.2.2</span>
+<span class="c1">#   ipv6 router ospfv3 multi-area 16.10.10.10</span>
+<span class="c1">#   ipv6 router ospfv3 200 multi-area 21.0.0.0</span>
+<span class="c1">#   ipv6 router ospfv3 300 multi-area 50.50.50.50</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Replace OSPF configurations of listed interfaces with provided configurations</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">config</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/1</span>
+      <span class="nt">address_family</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+        <span class="nt">processes</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;100&quot;</span>
+          <span class="nt">area</span><span class="p">:</span>
+            <span class="nt">area_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+            <span class="nt">secondaries</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+        <span class="nt">multi_areas</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">11.11.11.12</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/3</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">replaced</span>
+
+<span class="c1"># Task output</span>
+<span class="c1"># -------------</span>
+<span class="c1"># &quot;before&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.11&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;16.10.10.10&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;2.2.2.2&quot;</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;21.0.0.0&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;200&quot;</span>
+<span class="c1">#                        },</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;50.50.50.50&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;300&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;commands&quot;: [</span>
+<span class="c1">#        &quot;interface Ethernet1/1&quot;,</span>
+<span class="c1">#        &quot;ip router ospf multi-area 11.11.11.12&quot;,</span>
+<span class="c1">#        &quot;no ip router ospf multi-area 11.11.11.11&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 multi-area 16.10.10.10&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 area 2.2.2.2&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 multi-area 21.0.0.0&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 300 multi-area 50.50.50.50&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/3&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication-key 7 12090404011C03162E&quot;</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;after&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.12&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                        &quot;enable&quot;: true,</span>
+<span class="c1">#                        &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#</span>
+<span class="c1"># After state:</span>
+<span class="c1"># -------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.12</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+
+
+<span class="c1"># Using overridden</span>
+
+<span class="c1"># Before state:</span>
+<span class="c1"># ------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.11</span>
+<span class="c1">#   ipv6 router ospfv3 200 area 2.2.2.2</span>
+<span class="c1">#   ipv6 router ospfv3 multi-area 16.10.10.10</span>
+<span class="c1">#   ipv6 router ospfv3 200 multi-area 21.0.0.0</span>
+<span class="c1">#   ipv6 router ospfv3 300 multi-area 50.50.50.50</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Override all OSPF interfaces configuration with provided configuration</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">config</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/1</span>
+      <span class="nt">address_family</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+        <span class="nt">processes</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;100&quot;</span>
+          <span class="nt">area</span><span class="p">:</span>
+            <span class="nt">area_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+            <span class="nt">secondaries</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+        <span class="nt">multi_areas</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">11.11.11.12</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">overridden</span>
+
+<span class="c1"># Task output</span>
+<span class="c1"># -------------</span>
+<span class="c1"># &quot;before&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.11&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;16.10.10.10&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;2.2.2.2&quot;</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;21.0.0.0&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;200&quot;</span>
+<span class="c1">#                        },</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;50.50.50.50&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;300&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;commands&quot;: [</span>
+<span class="c1">#        &quot;interface Ethernet1/2&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication key-chain test-1&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication&quot;,</span>
+<span class="c1">#        &quot;no ip ospf message-digest-key 10 md5 3 abc01d272be25d29&quot;,</span>
+<span class="c1">#        &quot;no ip ospf cost 100&quot;,</span>
+<span class="c1">#        &quot;no ospfv3 network broadcast&quot;,</span>
+<span class="c1">#        &quot;no ospfv3 shutdown&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/3&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication-key 7 12090404011C03162E&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/1&quot;,</span>
+<span class="c1">#        &quot;ip router ospf multi-area 11.11.11.12&quot;,</span>
+<span class="c1">#        &quot;no ip router ospf multi-area 11.11.11.11&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 multi-area 16.10.10.10&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 area 2.2.2.2&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 multi-area 21.0.0.0&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 300 multi-area 50.50.50.50&quot;</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;after&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.12&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># After state:</span>
+<span class="c1"># -------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.12</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+
+<span class="c1"># Using deleted to delete OSPF config of a single interface</span>
+
+<span class="c1"># Before state:</span>
+<span class="c1"># ------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.11</span>
+<span class="c1">#   ipv6 router ospfv3 200 area 2.2.2.2</span>
+<span class="c1">#   ipv6 router ospfv3 multi-area 16.10.10.10</span>
+<span class="c1">#   ipv6 router ospfv3 200 multi-area 21.0.0.0</span>
+<span class="c1">#   ipv6 router ospfv3 300 multi-area 50.50.50.50</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Delete OSPF config from a single interface</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">config</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/1</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">deleted</span>
+
+<span class="c1"># Task output</span>
+<span class="c1"># -------------</span>
+<span class="c1"># &quot;before&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.11&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;16.10.10.10&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;2.2.2.2&quot;</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;21.0.0.0&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;200&quot;</span>
+<span class="c1">#                        },</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;50.50.50.50&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;300&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;commands&quot;: [</span>
+<span class="c1">#        &quot;interface Ethernet1/1&quot;,</span>
+<span class="c1">#        &quot;no ip router ospf multi-area 11.11.11.11&quot;,</span>
+<span class="c1">#        &quot;no ip router ospf 100 area 1.1.1.1 secondaries none&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 multi-area 16.10.10.10&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 area 2.2.2.2&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 multi-area 21.0.0.0&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 300 multi-area 50.50.50.50&quot;</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;before&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># After state:</span>
+<span class="c1"># ------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+<span class="c1"># Using deleted to delete OSPF config from all interfaces</span>
+
+<span class="c1"># Before state:</span>
+<span class="c1"># ------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.11</span>
+<span class="c1">#   ipv6 router ospfv3 200 area 2.2.2.2</span>
+<span class="c1">#   ipv6 router ospfv3 multi-area 16.10.10.10</span>
+<span class="c1">#   ipv6 router ospfv3 200 multi-area 21.0.0.0</span>
+<span class="c1">#   ipv6 router ospfv3 300 multi-area 50.50.50.50</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Delete OSPF config from all interfaces</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">deleted</span>
+
+<span class="c1"># Task output</span>
+<span class="c1"># -------------</span>
+<span class="c1"># &quot;before&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.11&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;16.10.10.10&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;2.2.2.2&quot;</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;21.0.0.0&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;200&quot;</span>
+<span class="c1">#                        },</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;50.50.50.50&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;300&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;commands&quot;: [</span>
+<span class="c1">#        &quot;interface Ethernet1/1&quot;,</span>
+<span class="c1">#        &quot;no ip router ospf multi-area 11.11.11.11&quot;,</span>
+<span class="c1">#        &quot;no ip router ospf 100 area 1.1.1.1 secondaries none&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 multi-area 16.10.10.10&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 area 2.2.2.2&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 200 multi-area 21.0.0.0&quot;,</span>
+<span class="c1">#        &quot;no ipv6 router ospfv3 300 multi-area 50.50.50.50&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/2&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication key-chain test-1&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication&quot;,</span>
+<span class="c1">#        &quot;no ip ospf message-digest-key 10 md5 3 abc01d272be25d29&quot;,</span>
+<span class="c1">#        &quot;no ip ospf cost 100&quot;,</span>
+<span class="c1">#        &quot;no ospfv3 network broadcast&quot;,</span>
+<span class="c1">#        &quot;no ospfv3 shutdown&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/3&quot;,</span>
+<span class="c1">#        &quot;no ip ospf authentication-key 7 12090404011C03162E&quot;</span>
+<span class="c1"># ]</span>
+<span class="c1">#</span>
+<span class="c1"># &quot;after&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># After state:</span>
+<span class="c1"># ------------</span>
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+
+<span class="c1"># Using rendered</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Render platform specific configuration lines with state rendered (without connecting to the device)</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">config</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/1</span>
+        <span class="nt">address_family</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+          <span class="nt">processes</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;100&quot;</span>
+            <span class="nt">area</span><span class="p">:</span>
+              <span class="nt">area_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+              <span class="nt">secondaries</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+          <span class="nt">multi_areas</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">11.11.11.11</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv6</span>
+          <span class="nt">processes</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;200&quot;</span>
+            <span class="nt">area</span><span class="p">:</span>
+              <span class="nt">area_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.2.2.2</span>
+            <span class="nt">multi_areas</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">21.0.0.0</span>
+          <span class="p p-Indicator">-</span> <span class="nt">process_id</span><span class="p">:</span> <span class="s">&quot;300&quot;</span>
+            <span class="nt">multi_areas</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">50.50.50.50</span>
+          <span class="nt">multi_areas</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">16.10.10.10</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/2</span>
+        <span class="nt">address_family</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+          <span class="nt">authentication</span><span class="p">:</span>
+            <span class="nt">enable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+            <span class="nt">key_chain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test-1</span>
+          <span class="nt">message_digest_key</span><span class="p">:</span>
+            <span class="nt">key_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+            <span class="nt">encryption</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+            <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">abc01d272be25d29</span>
+          <span class="nt">cost</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv6</span>
+          <span class="nt">network</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">broadcast</span>
+          <span class="nt">shutdown</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ethernet1/3</span>
+        <span class="nt">address_family</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">afi</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipv4</span>
+          <span class="nt">authentication_key</span><span class="p">:</span>
+            <span class="nt">encryption</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
+            <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">12090404011C03162E</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rendered</span>
+
+<span class="c1"># Task Output (redacted)</span>
+<span class="c1"># -----------------------</span>
+<span class="c1"># &quot;rendered&quot;: [</span>
+<span class="c1">#        &quot;interface Ethernet1/1&quot;,</span>
+<span class="c1">#        &quot;ip router ospf multi-area 11.11.11.11&quot;,</span>
+<span class="c1">#        &quot;ip router ospf 100 area 1.1.1.1 secondaries none&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 multi-area 16.10.10.10&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 200 area 2.2.2.2&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 200 multi-area 21.0.0.0&quot;,</span>
+<span class="c1">#        &quot;ipv6 router ospfv3 300 multi-area 50.50.50.50&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/2&quot;,</span>
+<span class="c1">#        &quot;ip ospf authentication key-chain test-1&quot;,</span>
+<span class="c1">#        &quot;ip ospf authentication&quot;,</span>
+<span class="c1">#        &quot;ip ospf message-digest-key 10 md5 3 abc01d272be25d29&quot;,</span>
+<span class="c1">#        &quot;ip ospf cost 100&quot;,</span>
+<span class="c1">#        &quot;ospfv3 network broadcast&quot;,</span>
+<span class="c1">#        &quot;ospfv3 shutdown&quot;,</span>
+<span class="c1">#        &quot;interface Ethernet1/3&quot;,</span>
+<span class="c1">#        &quot;ip ospf authentication-key 7 12090404011C03162E&quot;</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># Using parsed</span>
+
+<span class="c1"># parsed.cfg</span>
+<span class="c1"># ------------</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.11</span>
+<span class="c1">#   ipv6 router ospfv3 200 area 2.2.2.2</span>
+<span class="c1">#   ipv6 router ospfv3 200 multi-area 21.0.0.0</span>
+<span class="c1">#   ipv6 router ospfv3 300 multi-area 50.50.50.50</span>
+<span class="c1">#   ipv6 router ospfv3 multi-area 16.10.10.10</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   ip ospf authentication-key 7 12090404011C03162E</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">arse externally provided OSPF interfaces config</span>
+  <span class="nt">cisco.nxos.nxos_ospf_interfaces</span><span class="p">:</span>
+    <span class="nt">running_config</span><span class="p">:</span> <span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">lookup</span><span class="o">(</span><span class="s1">&#39;file&#39;</span><span class="o">,</span> <span class="s1">&#39;ospf_interfaces.cfg&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="s">&quot;</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">parsed</span>
+
+<span class="c1"># Task output (redacted)</span>
+<span class="c1"># -----------------------</span>
+<span class="c1"># &quot;parsed&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.11&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;16.10.10.10&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;2.2.2.2&quot;</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;21.0.0.0&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;200&quot;</span>
+<span class="c1">#                        },</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;multi_areas&quot;: [</span>
+<span class="c1">#                                &quot;50.50.50.50&quot;</span>
+<span class="c1">#                            ],</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;300&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                       &quot;enable&quot;: true,</span>
+<span class="c1">#                       &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 7,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;12090404011C03162E&quot;</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># Using gathered</span>
+
+<span class="c1"># On-box config</span>
+
+<span class="c1"># NXOS# show running-config | section ^interface</span>
+<span class="c1"># interface Ethernet1/1</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip router ospf 100 area 1.1.1.1 secondaries none</span>
+<span class="c1">#   ip router ospf multi-area 11.11.11.12</span>
+<span class="c1"># interface Ethernet1/2</span>
+<span class="c1">#   no switchport</span>
+<span class="c1">#   ip ospf authentication</span>
+<span class="c1">#   ip ospf authentication key-chain test-1</span>
+<span class="c1">#   ip ospf message-digest-key 10 md5 3 abc01d272be25d29</span>
+<span class="c1">#   ip ospf cost 100</span>
+<span class="c1">#   ospfv3 network broadcast</span>
+<span class="c1">#   ospfv3 shutdown</span>
+<span class="c1"># interface Ethernet1/3</span>
+<span class="c1">#   no switchport</span>
+
+<span class="c1"># Task output (redacted)</span>
+<span class="c1"># -----------------------</span>
+<span class="c1"># &quot;gathered&quot;: [</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;multi_areas&quot;: [</span>
+<span class="c1">#                        &quot;11.11.11.12&quot;</span>
+<span class="c1">#                    ],</span>
+<span class="c1">#                    &quot;processes&quot;: [</span>
+<span class="c1">#                        {</span>
+<span class="c1">#                            &quot;area&quot;: {</span>
+<span class="c1">#                                &quot;area_id&quot;: &quot;1.1.1.1&quot;,</span>
+<span class="c1">#                                &quot;secondaries&quot;: false</span>
+<span class="c1">#                            },</span>
+<span class="c1">#                            &quot;process_id&quot;: &quot;100&quot;</span>
+<span class="c1">#                        }</span>
+<span class="c1">#                    ]</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/1&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;address_family&quot;: [</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv4&quot;,</span>
+<span class="c1">#                    &quot;authentication&quot;: {</span>
+<span class="c1">#                        &quot;enable&quot;: true,</span>
+<span class="c1">#                        &quot;key_chain&quot;: &quot;test-1&quot;</span>
+<span class="c1">#                    },</span>
+<span class="c1">#                    &quot;cost&quot;: 100,</span>
+<span class="c1">#                    &quot;message_digest_key&quot;: {</span>
+<span class="c1">#                        &quot;encryption&quot;: 3,</span>
+<span class="c1">#                        &quot;key&quot;: &quot;abc01d272be25d29&quot;,</span>
+<span class="c1">#                        &quot;key_id&quot;: 10</span>
+<span class="c1">#                    }</span>
+<span class="c1">#                },</span>
+<span class="c1">#                {</span>
+<span class="c1">#                    &quot;afi&quot;: &quot;ipv6&quot;,</span>
+<span class="c1">#                    &quot;network&quot;: &quot;broadcast&quot;,</span>
+<span class="c1">#                    &quot;shutdown&quot;: true</span>
+<span class="c1">#                }</span>
+<span class="c1">#            ],</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/2&quot;</span>
+<span class="c1">#        },</span>
+<span class="c1">#        {</span>
+<span class="c1">#            &quot;name&quot;: &quot;Ethernet1/3&quot;</span>
+<span class="c1">#        },</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return-values">
+<h2><a class="toc-backref" href="#id4">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this headline">¶</a></h2>
+<p>Common return values are documented <a class="reference internal" href="../../../reference_appendices/common_return_values.html#common-return-values"><span class="std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="1">Key</th>
+        <th>Returned</th>
+        <th width="100%">Description</th>
+    </tr>
+                <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-after"></div>
+                <b>after</b>
+                <a class="ansibleOptionLink" href="#return-after" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>when changed</td>
+            <td>
+                                        <div>The resulting configuration model invocation.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">The configuration returned will always be in the same format
+ of the parameters above.</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-before"></div>
+                <b>before</b>
+                <a class="ansibleOptionLink" href="#return-before" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>always</td>
+            <td>
+                                        <div>The configuration prior to the model invocation.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">The configuration returned will always be in the same format
+ of the parameters above.</div>
+                                </td>
+        </tr>
+                            <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-commands"></div>
+                <b>commands</b>
+                <a class="ansibleOptionLink" href="#return-commands" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>always</td>
+            <td>
+                                        <div>The set of commands pushed to the remote device.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;interface Ethernet1/1&#x27;, &#x27;ip router ospf multi-area 11.11.11.11&#x27;, &#x27;ip router ospf 100 area 1.1.1.1 secondaries none&#x27;, &#x27;no ipv6 router ospfv3 multi-area 16.10.10.10&#x27;, &#x27;ipv6 router ospfv3 200 area 2.2.2.2&#x27;, &#x27;ipv6 router ospfv3 200 multi-area 21.0.0.0&#x27;, &#x27;ipv6 router ospfv3 300 multi-area 50.50.50.50&#x27;, &#x27;interface Ethernet1/2&#x27;, &#x27;no ip ospf authentication key-chain test-1&#x27;, &#x27;ip ospf authentication&#x27;]</div>
+                                </td>
+        </tr>
+                    </table>
+<br/><br/><div class="section" id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Nilashish Chakraborty (&#64;NilashishC)</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          
+
+<footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="nxos_ospf_vrf_module.html" class="btn btn-neutral float-right" title="cisco.nxos.nxos_ospf_vrf – (deprecated, removed after 2022-10-01)Manages a VRF for an OSPF router." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nxos_ospf_module.html" class="btn btn-neutral float-left" title="cisco.nxos.nxos_ospf – (deprecated, removed after 2022-06-01) Manages configuration of an ospf instance." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Ansible project contributors.
+      <span class="lastupdated">
+        Last updated on Jul 21, 2021.
+      </span>
+
+    </p>
+  </div>
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  <!-- extra footer elements for Ansible beyond RTD Sphinx Theme --->
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+      (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+      n.id=i;n.src = 'https://js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+      e.parentNode.insertBefore(n, e);
+      })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+  _satellite.pageBottom();
+}
+</script>
+
+</body>
+</html>

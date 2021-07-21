@@ -1,0 +1,2100 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>google.cloud.gcp_compute_backend_service_info – Gather info for GCP BackendService &mdash; Ansible Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.svg"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://docs.ansible.com/ansible/latest/collections/google/cloud/gcp_compute_backend_service_info_module.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="google.cloud.gcp_compute_disk – Creates a GCP Disk" href="gcp_compute_disk_module.html" />
+    <link rel="prev" title="google.cloud.gcp_compute_backend_service – Creates a GCP BackendService" href="gcp_compute_backend_service_module.html" /><!---- extra head elements for Ansible beyond RTD Sphinx Theme --->
+<script type="text/javascript" src="https://www.redhat.com/dtm.js"></script>
+
+
+<!-- <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> -->
+<meta class="swiftype" name="version" data-type="string" content="devel">
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+ dataLayer = [];
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+<!-- End Google Tag Manager -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Ansible
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                devel
+              </div>
+            
+          
+
+          <!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    <div class="version-dropdown">
+      <script>
+        function switchVersionTo(slug) {
+          var current_url_path = window.location.pathname;
+          var url_version = current_url_path.search("/devel/") > -1
+            ? "/devel/"
+            : "/latest/";
+          var new_version_url = current_url_path.replace(url_version, "/" + slug + "/");
+          window.location.replace(new_version_url);
+        }
+      </script>
+      <select
+          class="version-list"
+          id="version-list"
+          onchange="switchVersionTo(this.value);"
+      >
+        
+        <option
+            value="latest"
+            
+        >
+            latest
+        </option>
+        
+        <option
+            value="2.9"
+            
+        >
+            2.9
+        </option>
+        
+        <option
+            value="devel"
+            selected="selected"
+        >
+            devel
+        </option>
+        
+      </select>
+    </div>
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Installation, Upgrade &amp; Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guide/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../porting_guides/porting_guides.html">Ansible Porting Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Ansible Community Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Ansible Scenarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/cloud_guides.html">Public Cloud Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/network_guides.html">Network Technology Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/virt_guides.html">Virtualization and Containerization Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Automation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/getting_started/index.html">Network Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/user_guide/index.html">Network Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/dev_guide/index.html">Network Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ansible Galaxy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/user_guide.html">Galaxy User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/dev_guide.html">Galaxy Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference &amp; Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Collection Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../amazon/index.html">Collections in the Amazon Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ansible/index.html">Collections in the Ansible Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../arista/index.html">Collections in the Arista Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awx/index.html">Collections in the Awx Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../azure/index.html">Collections in the Azure Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../check_point/index.html">Collections in the Check_point Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chocolatey/index.html">Collections in the Chocolatey Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cisco/index.html">Collections in the Cisco Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloudscale_ch/index.html">Collections in the Cloudscale_ch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/index.html">Collections in the Community Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../containers/index.html">Collections in the Containers Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cyberark/index.html">Collections in the Cyberark Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dellemc/index.html">Collections in the Dellemc Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../f5networks/index.html">Collections in the F5networks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fortinet/index.html">Collections in the Fortinet Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../frr/index.html">Collections in the Frr Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gluster/index.html">Collections in the Gluster Namespace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Collections in the Google Namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Google.Cloud</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#plugin-index">Plugin Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hetzner/index.html">Collections in the Hetzner Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpe/index.html">Collections in the Hpe Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ibm/index.html">Collections in the Ibm Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../infinidat/index.html">Collections in the Infinidat Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inspur/index.html">Collections in the Inspur Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../junipernetworks/index.html">Collections in the Junipernetworks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/index.html">Collections in the Kubernetes Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mellanox/index.html">Collections in the Mellanox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp/index.html">Collections in the Netapp Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp_eseries/index.html">Collections in the Netapp_eseries Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netbox/index.html">Collections in the Netbox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ngine_io/index.html">Collections in the Ngine_io Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openstack/index.html">Collections in the Openstack Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openvswitch/index.html">Collections in the Openvswitch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ovirt/index.html">Collections in the Ovirt Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../purestorage/index.html">Collections in the Purestorage Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sensu/index.html">Collections in the Sensu Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../servicenow/index.html">Collections in the Servicenow Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../splunk/index.html">Collections in the Splunk Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../t_systems_mms/index.html">Collections in the T_systems_mms Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theforeman/index.html">Collections in the Theforeman Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vyos/index.html">Collections in the Vyos Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wti/index.html">Collections in the Wti Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../all_plugins.html">Indexes of all modules and plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/playbooks_keywords.html">Playbook Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/common_return_values.html">Return Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/config.html">Ansible Configuration Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/general_precedence.html">Controlling how Ansible behaves: precedence rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/YAMLSyntax.html">YAML Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/python_3_support.html">Python 3 Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/interpreter_discovery.html">Interpreter Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/release_and_maintenance.html">Releases and maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/test_strategies.html">Testing Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/testing/sanity/index.html">Sanity Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/module_utils.html">Ansible Reference: Module Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/special_variables.html">Special Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/tower.html">Red Hat Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/automationhub.html">Ansible Automation Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/logging.html">Logging Ansible output</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Roadmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap/ansible_roadmap_index.html">Ansible Roadmap</a></li>
+</ul>
+
+            
+          <!-- extra nav elements for Ansible beyond RTD Sphinx Theme --->
+<!-- changeable widget links to tower - do not change as image controlled by Ansible-->
+<div id="sideBanner">
+  <br/>
+  <a href="https://www.ansible.com/docs-left?utm_source=docs">
+    <img style="border-width:0px;" src="https://cdn2.hubspot.net/hubfs/330046/docs-graphics/ASB-docs-left-rail.png" />
+  </a>
+  <br/><br/><br/>
+</div>
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ansible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Collection Index</a> &raquo;</li>
+        
+          <li><a href="../index.html">Collections in the Google Namespace</a> &raquo;</li>
+        
+          <li><a href="index.html">Google.Cloud</a> &raquo;</li>
+        
+      <li>google.cloud.gcp_compute_backend_service_info – Gather info for GCP BackendService</li>
+    
+    
+  <li class="wy-breadcrumbs-aside">
+          <!-- Ansible-specific additions for modules etc -->
+            
+            <!--  <a href="https://github.com/ansible/ansible/edit/devel/lib/ansible/modules/?description=%23%23%23%23%23%20SUMMARY%0A%3C!---%20Your%20description%20here%20--%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a> -->
+              <br>
+            
+  </li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+  <script>
+    function startsWith(str, needle) {
+      return str.slice(0, needle.length) == needle
+    }
+    function startsWithOneOf(str, needles) {
+      return needles.some(function (needle) {
+        return startsWith(str, needle);
+      });
+    }
+    var banner = '';
+    var survey_banner =
+      '<div id="latest_survey_banner_id" class="admonition important">' +
+      '<br>' +
+      '<p>' +
+        'Please take our ' +
+        '<a href="https://www.surveymonkey.co.uk/r/2VWVJY3">survey</a> ' +
+        'to help us improve support for collections and roles in GalaxyNG.' +
+      '</p>' +
+      '<br>' +
+      '</div>';
+    // Create a banner if we're not on the official docs site
+    if (location.host == "docs.testing.ansible.com") {
+      document.write('<div id="testing_banner_id" class="admonition important">' +
+                     '<p>This is the testing site for Ansible Documentation. Unless you are reviewing pre-production changes, please visit the <a href="https://docs.ansible.com/ansible/latest/">official documentation website</a>.</p> <p></p>' +
+                     '</div>');
+    }
+    
+      // Create a banner
+      current_url_path = window.location.pathname;
+
+      var important = false;
+      var msg = '<p>';
+      if (startsWith(current_url_path, "/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/4/"])) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        msg += 'You are reading the latest community version of the Ansible documentation. Red Hat subscribers, select <b>2.9</b> in the version selection to the left for the most recent Red Hat release.';
+      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+        msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
+      } else if (startsWith(current_url_path, "/ansible/devel/")) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        /* temp banner to advertise survey
+        important = true;
+        msg += 'Please take our <a href="https://www.surveymonkey.co.uk/r/B9V3CDY">Docs survey</a> before December 31 to help us improve Ansible documentation.';
+        */
+
+        msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the latest stable released version.';
+      } else {
+        msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the latest stable released version.';
+      }
+      msg += '</p>';
+
+      banner += '<div id="banner_id" class="admonition ';
+      banner += important ? 'important' : 'caution';
+      banner += '">';
+      banner += important ? '<br>' : '';
+      banner += msg;
+      banner += important ? '<br>' : '';
+      banner += '</div>';
+      document.write(banner);
+    
+  </script>
+
+
+  
+           <div itemprop="articleBody">
+            
+  <span class="target" id="ansible-collections-google-cloud-gcp-compute-backend-service-info-module"></span><div class="section" id="google-cloud-gcp-compute-backend-service-info-gather-info-for-gcp-backendservice">
+<h1>google.cloud.gcp_compute_backend_service_info – Gather info for GCP BackendService<a class="headerlink" href="#google-cloud-gcp-compute-backend-service-info-gather-info-for-gcp-backendservice" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/google/cloud">google.cloud collection</a> (version 1.0.2).</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">google.cloud</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">google.cloud.gcp_compute_backend_service_info</span></code>.</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id2">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id3">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id4">Notes</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id5">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id6">Return Values</a></p></li>
+</ul>
+</div>
+<div class="section" id="synopsis">
+<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Gather info for GCP BackendService</p></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The below requirements are needed on the host that executes this module.</p>
+<ul class="simple">
+<li><p>python &gt;= 2.6</p></li>
+<li><p>requests &gt;= 2.18.4</p></li>
+<li><p>google-auth &gt;= 1.3.0</p></li>
+</ul>
+</div>
+<div class="section" id="parameters">
+<h2><a class="toc-backref" href="#id3">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<table  border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="1">Parameter</th>
+        <th>Choices/<font color="blue">Defaults</font></th>
+                    <th width="100%">Comments</th>
+    </tr>
+                <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-auth_kind"></div>
+                <b>auth_kind</b>
+                <a class="ansibleOptionLink" href="#parameter-auth_kind" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>application</li>
+                                                                                                                                                                                            <li>machineaccount</li>
+                                                                                                                                                                                            <li>serviceaccount</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>The type of credential used.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-env_type"></div>
+                <b>env_type</b>
+                <a class="ansibleOptionLink" href="#parameter-env_type" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Specifies which Ansible environment you&#x27;re running this module within.</div>
+                                        <div>This should not be set unless you know what you&#x27;re doing.</div>
+                                        <div>This only alters the User Agent string for any API requests.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-filters"></div>
+                <b>filters</b>
+                <a class="ansibleOptionLink" href="#parameter-filters" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of filter value pairs. Available filters are listed here <a href='https://cloud.google.com/sdk/gcloud/reference/topic/filters'>https://cloud.google.com/sdk/gcloud/reference/topic/filters</a>.</div>
+                                        <div>Each additional filter in the list will act be added as an AND condition (filter1 and filter2) .</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-project"></div>
+                <b>project</b>
+                <a class="ansibleOptionLink" href="#parameter-project" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The Google Cloud Platform project to use.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-scopes"></div>
+                <b>scopes</b>
+                <a class="ansibleOptionLink" href="#parameter-scopes" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Array of scopes to be used</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-service_account_contents"></div>
+                <b>service_account_contents</b>
+                <a class="ansibleOptionLink" href="#parameter-service_account_contents" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">jsonarg</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The contents of a Service Account JSON file, either in a dictionary or as a JSON string that represents it.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-service_account_email"></div>
+                <b>service_account_email</b>
+                <a class="ansibleOptionLink" href="#parameter-service_account_email" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>An optional service account email address if machineaccount is selected and the user does not wish to use the default email.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-service_account_file"></div>
+                <b>service_account_file</b>
+                <a class="ansibleOptionLink" href="#parameter-service_account_file" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">path</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The path of a Service Account JSON file if serviceaccount is selected as type.</div>
+                                                    </td>
+        </tr>
+                    </table>
+<br/></div>
+<div class="section" id="notes">
+<h2><a class="toc-backref" href="#id4">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>for authentication, you can set service_account_file using the <code class="docutils literal notranslate"><span class="pre">gcp_service_account_file</span></code> env variable.</p></li>
+<li><p>for authentication, you can set service_account_contents using the <code class="docutils literal notranslate"><span class="pre">GCP_SERVICE_ACCOUNT_CONTENTS</span></code> env variable.</p></li>
+<li><p>For authentication, you can set service_account_email using the <code class="docutils literal notranslate"><span class="pre">GCP_SERVICE_ACCOUNT_EMAIL</span></code> env variable.</p></li>
+<li><p>For authentication, you can set auth_kind using the <code class="docutils literal notranslate"><span class="pre">GCP_AUTH_KIND</span></code> env variable.</p></li>
+<li><p>For authentication, you can set scopes using the <code class="docutils literal notranslate"><span class="pre">GCP_SCOPES</span></code> env variable.</p></li>
+<li><p>Environment variables values will only be used if the playbook values are not set.</p></li>
+<li><p>The <em>service_account_email</em> and <em>service_account_file</em> options are mutually exclusive.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">get info on a backend service</span>
+  <span class="nt">gcp_compute_backend_service_info</span><span class="p">:</span>
+    <span class="nt">filters</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name = test_object</span>
+    <span class="nt">project</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test_project</span>
+    <span class="nt">auth_kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">serviceaccount</span>
+    <span class="nt">service_account_file</span><span class="p">:</span> <span class="s">&quot;/tmp/auth.pem&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return-values">
+<h2><a class="toc-backref" href="#id6">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this headline">¶</a></h2>
+<p>Common return values are documented <a class="reference internal" href="../../../reference_appendices/common_return_values.html#common-return-values"><span class="std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="5">Key</th>
+        <th>Returned</th>
+        <th width="100%">Description</th>
+    </tr>
+                <tr>
+                            <td colspan="5">
+                <div class="ansibleOptionAnchor" id="return-resources"></div>
+                <b>resources</b>
+                <a class="ansibleOptionLink" href="#return-resources" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>always</td>
+            <td>
+                                        <div>List of resources</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/affinityCookieTtlSec"></div>
+                <b>affinityCookieTtlSec</b>
+                <a class="ansibleOptionLink" href="#return-resources/affinityCookieTtlSec" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day.</div>
+                                        <div>When the load balancing scheme is INTERNAL, this field is not used.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/backends"></div>
+                <b>backends</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The set of backends that serve this BackendService.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/balancingMode"></div>
+                <b>balancingMode</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/balancingMode" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Specifies the balancing mode for this backend.</div>
+                                        <div>For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/capacityScaler"></div>
+                <b>capacityScaler</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/capacityScaler" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>A multiplier applied to the group&#x27;s maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION).</div>
+                                        <div>Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/description"></div>
+                <b>description</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/description" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>An optional description of this resource.</div>
+                                        <div>Provide this property when you create the resource.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/group"></div>
+                <b>group</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/group" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The fully-qualified URL of an Instance Group or Network Endpoint Group resource. In case of instance group this defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.</div>
+                                        <div>For Network Endpoint Groups this defines list of endpoints. All endpoints of Network Endpoint Group must be hosted on instances located in the same zone as the Network Endpoint Group.</div>
+                                        <div>Backend services cannot mix Instance Group and Network Endpoint Group backends.</div>
+                                        <div>Note that you must specify an Instance Group or Network Endpoint Group resource using the fully-qualified URL, rather than a partial URL.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxConnections"></div>
+                <b>maxConnections</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxConnections" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes.</div>
+                                        <div>For CONNECTION mode, either maxConnections or one of maxConnectionsPerInstance or maxConnectionsPerEndpoint, as appropriate for group type, must be set.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxConnectionsPerEndpoint"></div>
+                <b>maxConnectionsPerEndpoint</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxConnectionsPerEndpoint" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The max number of simultaneous connections that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes.</div>
+                                        <div>For CONNECTION mode, either maxConnections or maxConnectionsPerEndpoint must be set.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxConnectionsPerInstance"></div>
+                <b>maxConnectionsPerInstance</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxConnectionsPerInstance" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The max number of simultaneous connections that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes.</div>
+                                        <div>For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxRate"></div>
+                <b>maxRate</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxRate" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The max requests per second (RPS) of the group.</div>
+                                        <div>Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. For RATE mode, either maxRate or one of maxRatePerInstance or maxRatePerEndpoint, as appropriate for group type, must be set.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxRatePerEndpoint"></div>
+                <b>maxRatePerEndpoint</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxRatePerEndpoint" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The max requests per second (RPS) that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerEndpoint must be set.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxRatePerInstance"></div>
+                <b>maxRatePerInstance</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxRatePerInstance" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/backends/maxUtilization"></div>
+                <b>maxUtilization</b>
+                <a class="ansibleOptionLink" href="#return-resources/backends/maxUtilization" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. The default is 0.8. Valid range is [0.0, 1.0].</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy"></div>
+                <b>cdnPolicy</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Cloud CDN configuration for this BackendService.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/cacheKeyPolicy"></div>
+                <b>cacheKeyPolicy</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/cacheKeyPolicy" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The CacheKeyPolicy for this CdnPolicy.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/cacheKeyPolicy/includeHost"></div>
+                <b>includeHost</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/cacheKeyPolicy/includeHost" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">boolean</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>If true requests to different hosts will be cached separately.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/cacheKeyPolicy/includeProtocol"></div>
+                <b>includeProtocol</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/cacheKeyPolicy/includeProtocol" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">boolean</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>If true, http and https requests will be cached separately.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/cacheKeyPolicy/includeQueryString"></div>
+                <b>includeQueryString</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/cacheKeyPolicy/includeQueryString" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">boolean</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included.</div>
+                                        <div>If false, the query string will be excluded from the cache key entirely.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/cacheKeyPolicy/queryStringBlacklist"></div>
+                <b>queryStringBlacklist</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/cacheKeyPolicy/queryStringBlacklist" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Names of query string parameters to exclude in cache keys.</div>
+                                        <div>All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both.</div>
+                                        <div>&#x27;&amp;&#x27; and &#x27;=&#x27; will be percent encoded and not treated as delimiters.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/cacheKeyPolicy/queryStringWhitelist"></div>
+                <b>queryStringWhitelist</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/cacheKeyPolicy/queryStringWhitelist" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Names of query string parameters to include in cache keys.</div>
+                                        <div>All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both.</div>
+                                        <div>&#x27;&amp;&#x27; and &#x27;=&#x27; will be percent encoded and not treated as delimiters.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/cdnPolicy/signedUrlCacheMaxAgeSec"></div>
+                <b>signedUrlCacheMaxAgeSec</b>
+                <a class="ansibleOptionLink" href="#return-resources/cdnPolicy/signedUrlCacheMaxAgeSec" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Maximum number of seconds the response to a signed URL request will be considered fresh, defaults to 1hr (3600s). After this time period, the response will be revalidated before being served.</div>
+                                        <div>When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a &quot;Cache-Control: public, max-age=[TTL]&quot; header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/circuitBreakers"></div>
+                <b>circuitBreakers</b>
+                <a class="ansibleOptionLink" href="#return-resources/circuitBreakers" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Settings controlling the volume of connections to a backend service. This field is applicable only when the load_balancing_scheme is set to INTERNAL_SELF_MANAGED.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/circuitBreakers/maxConnections"></div>
+                <b>maxConnections</b>
+                <a class="ansibleOptionLink" href="#return-resources/circuitBreakers/maxConnections" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The maximum number of connections to the backend cluster.</div>
+                                        <div>Defaults to 1024.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/circuitBreakers/maxPendingRequests"></div>
+                <b>maxPendingRequests</b>
+                <a class="ansibleOptionLink" href="#return-resources/circuitBreakers/maxPendingRequests" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The maximum number of pending requests to the backend cluster.</div>
+                                        <div>Defaults to 1024.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/circuitBreakers/maxRequests"></div>
+                <b>maxRequests</b>
+                <a class="ansibleOptionLink" href="#return-resources/circuitBreakers/maxRequests" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The maximum number of parallel requests to the backend cluster.</div>
+                                        <div>Defaults to 1024.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/circuitBreakers/maxRequestsPerConnection"></div>
+                <b>maxRequestsPerConnection</b>
+                <a class="ansibleOptionLink" href="#return-resources/circuitBreakers/maxRequestsPerConnection" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Maximum requests for a single backend connection. This parameter is respected by both the HTTP/1.1 and HTTP/2 implementations. If not specified, there is no limit. Setting this parameter to 1 will effectively disable keep alive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/circuitBreakers/maxRetries"></div>
+                <b>maxRetries</b>
+                <a class="ansibleOptionLink" href="#return-resources/circuitBreakers/maxRetries" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The maximum number of parallel retries to the backend cluster.</div>
+                                        <div>Defaults to 3.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/connectionDraining"></div>
+                <b>connectionDraining</b>
+                <a class="ansibleOptionLink" href="#return-resources/connectionDraining" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Settings for connection draining .</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/connectionDraining/drainingTimeoutSec"></div>
+                <b>drainingTimeoutSec</b>
+                <a class="ansibleOptionLink" href="#return-resources/connectionDraining/drainingTimeoutSec" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Time for which instance will be drained (not accept new connections, but still work to finish started).</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash"></div>
+                <b>consistentHash</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field only applies if the load_balancing_scheme is set to INTERNAL_SELF_MANAGED. This field is only applicable when locality_lb_policy is set to MAGLEV or RING_HASH.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpCookie"></div>
+                <b>httpCookie</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpCookie" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated.</div>
+                                        <div>This field is applicable if the sessionAffinity is set to HTTP_COOKIE.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpCookie/name"></div>
+                <b>name</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpCookie/name" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Name of the cookie.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpCookie/path"></div>
+                <b>path</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpCookie/path" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Path to set for the cookie.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpCookie/ttl"></div>
+                <b>ttl</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpCookie/ttl" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Lifetime of the cookie.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpCookie/ttl/nanos"></div>
+                <b>nanos</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpCookie/ttl/nanos" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Span of time that&#x27;s a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 seconds field and a positive nanos field. Must be from 0 to 999,999,999 inclusive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpCookie/ttl/seconds"></div>
+                <b>seconds</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpCookie/ttl/seconds" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Span of time at a resolution of a second.</div>
+                                        <div>Must be from 0 to 315,576,000,000 inclusive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/httpHeaderName"></div>
+                <b>httpHeaderName</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/httpHeaderName" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The hash based on the value of the specified header field.</div>
+                                        <div>This field is applicable if the sessionAffinity is set to HEADER_FIELD.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/consistentHash/minimumRingSize"></div>
+                <b>minimumRingSize</b>
+                <a class="ansibleOptionLink" href="#return-resources/consistentHash/minimumRingSize" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The minimum number of virtual nodes to use for the hash ring.</div>
+                                        <div>Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.</div>
+                                        <div>Defaults to 1024.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/creationTimestamp"></div>
+                <b>creationTimestamp</b>
+                <a class="ansibleOptionLink" href="#return-resources/creationTimestamp" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Creation timestamp in RFC3339 text format.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/customRequestHeaders"></div>
+                <b>customRequestHeaders</b>
+                <a class="ansibleOptionLink" href="#return-resources/customRequestHeaders" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Headers that the HTTP/S load balancer should add to proxied requests.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/description"></div>
+                <b>description</b>
+                <a class="ansibleOptionLink" href="#return-resources/description" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>An optional description of this resource.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/enableCDN"></div>
+                <b>enableCDN</b>
+                <a class="ansibleOptionLink" href="#return-resources/enableCDN" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">boolean</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>If true, enable Cloud CDN for this BackendService.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/fingerprint"></div>
+                <b>fingerprint</b>
+                <a class="ansibleOptionLink" href="#return-resources/fingerprint" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/healthChecks"></div>
+                <b>healthChecks</b>
+                <a class="ansibleOptionLink" href="#return-resources/healthChecks" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">list</span>
+                   / <span style="color: purple">elements=string</span>                    </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified.</div>
+                                        <div>A health check must be specified unless the backend service uses an internet or serverless NEG as a backend.</div>
+                                        <div>For internal load balancing, a URL to a HealthCheck resource must be specified instead.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/iap"></div>
+                <b>iap</b>
+                <a class="ansibleOptionLink" href="#return-resources/iap" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Settings for enabling Cloud Identity Aware Proxy.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/iap/enabled"></div>
+                <b>enabled</b>
+                <a class="ansibleOptionLink" href="#return-resources/iap/enabled" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">boolean</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Enables IAP.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/iap/oauth2ClientId"></div>
+                <b>oauth2ClientId</b>
+                <a class="ansibleOptionLink" href="#return-resources/iap/oauth2ClientId" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>OAuth2 Client ID for IAP .</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/iap/oauth2ClientSecret"></div>
+                <b>oauth2ClientSecret</b>
+                <a class="ansibleOptionLink" href="#return-resources/iap/oauth2ClientSecret" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>OAuth2 Client Secret for IAP .</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/iap/oauth2ClientSecretSha256"></div>
+                <b>oauth2ClientSecretSha256</b>
+                <a class="ansibleOptionLink" href="#return-resources/iap/oauth2ClientSecretSha256" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>OAuth2 Client Secret SHA-256 for IAP .</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/id"></div>
+                <b>id</b>
+                <a class="ansibleOptionLink" href="#return-resources/id" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The unique identifier for the resource.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/loadBalancingScheme"></div>
+                <b>loadBalancingScheme</b>
+                <a class="ansibleOptionLink" href="#return-resources/loadBalancingScheme" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Indicates whether the backend service will be used with internal or external load balancing. A backend service created for one type of load balancing cannot be used with the other.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/localityLbPolicy"></div>
+                <b>localityLbPolicy</b>
+                <a class="ansibleOptionLink" href="#return-resources/localityLbPolicy" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The load balancing algorithm used within the scope of the locality.</div>
+                                        <div>The possible values are - * ROUND_ROBIN - This is a simple policy in which each healthy backend is selected in round robin order.</div>
+                                        <div>* LEAST_REQUEST - An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.</div>
+                                        <div>* RING_HASH - The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.</div>
+                                        <div>* RANDOM - The load balancer selects a random healthy host.</div>
+                                        <div>* ORIGINAL_DESTINATION - Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.</div>
+                                        <div>* MAGLEV - used as a drop in replacement for the ring hash load balancer.</div>
+                                        <div>Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, refer to https://ai.google/research/pubs/pub44824 This field is applicable only when the load_balancing_scheme is set to INTERNAL_SELF_MANAGED.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/logConfig"></div>
+                <b>logConfig</b>
+                <a class="ansibleOptionLink" href="#return-resources/logConfig" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>This field denotes the logging options for the load balancer traffic served by this backend service.</div>
+                                        <div>If logging is enabled, logs will be exported to Stackdriver.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/logConfig/enable"></div>
+                <b>enable</b>
+                <a class="ansibleOptionLink" href="#return-resources/logConfig/enable" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">boolean</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Whether to enable logging for the load balancer traffic served by this backend service.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/logConfig/sampleRate"></div>
+                <b>sampleRate</b>
+                <a class="ansibleOptionLink" href="#return-resources/logConfig/sampleRate" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.</div>
+                                        <div>The default value is 1.0.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/name"></div>
+                <b>name</b>
+                <a class="ansibleOptionLink" href="#return-resources/name" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection"></div>
+                <b>outlierDetection</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Settings controlling eviction of unhealthy hosts from the load balancing pool.</div>
+                                        <div>This field is applicable only when the load_balancing_scheme is set to INTERNAL_SELF_MANAGED.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/baseEjectionTime"></div>
+                <b>baseEjectionTime</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/baseEjectionTime" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The base time that a host is ejected for. The real time is equal to the base time multiplied by the number of times the host has been ejected. Defaults to 30000ms or 30s.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/baseEjectionTime/nanos"></div>
+                <b>nanos</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/baseEjectionTime/nanos" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Span of time that&#x27;s a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 `seconds` field and a positive `nanos` field. Must be from 0 to 999,999,999 inclusive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/baseEjectionTime/seconds"></div>
+                <b>seconds</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/baseEjectionTime/seconds" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/consecutiveErrors"></div>
+                <b>consecutiveErrors</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/consecutiveErrors" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Number of errors before a host is ejected from the connection pool. When the backend host is accessed over HTTP, a 5xx return code qualifies as an error.</div>
+                                        <div>Defaults to 5.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/consecutiveGatewayFailure"></div>
+                <b>consecutiveGatewayFailure</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/consecutiveGatewayFailure" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The number of consecutive gateway failures (502, 503, 504 status or connection errors that are mapped to one of those status codes) before a consecutive gateway failure ejection occurs. Defaults to 5.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/enforcingConsecutiveErrors"></div>
+                <b>enforcingConsecutiveErrors</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/enforcingConsecutiveErrors" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The percentage chance that a host will be actually ejected when an outlier status is detected through consecutive 5xx. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/enforcingConsecutiveGatewayFailure"></div>
+                <b>enforcingConsecutiveGatewayFailure</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/enforcingConsecutiveGatewayFailure" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The percentage chance that a host will be actually ejected when an outlier status is detected through consecutive gateway failures. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 0.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/enforcingSuccessRate"></div>
+                <b>enforcingSuccessRate</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/enforcingSuccessRate" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The percentage chance that a host will be actually ejected when an outlier status is detected through success rate statistics. This setting can be used to disable ejection or to ramp it up slowly. Defaults to 100.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/interval"></div>
+                <b>interval</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/interval" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">complex</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Time interval between ejection sweep analysis. This can result in both new ejections as well as hosts being returned to service. Defaults to 10 seconds.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                                    <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/interval/nanos"></div>
+                <b>nanos</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/interval/nanos" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Span of time that&#x27;s a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 `seconds` field and a positive `nanos` field. Must be from 0 to 999,999,999 inclusive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/interval/seconds"></div>
+                <b>seconds</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/interval/seconds" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/maxEjectionPercent"></div>
+                <b>maxEjectionPercent</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/maxEjectionPercent" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Maximum percentage of hosts in the load balancing pool for the backend service that can be ejected. Defaults to 10%.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/successRateMinimumHosts"></div>
+                <b>successRateMinimumHosts</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/successRateMinimumHosts" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The number of hosts in a cluster that must have enough request volume to detect success rate outliers. If the number of hosts is less than this setting, outlier detection via success rate statistics is not performed for any host in the cluster. Defaults to 5.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/successRateRequestVolume"></div>
+                <b>successRateRequestVolume</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/successRateRequestVolume" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The minimum number of total requests that must be collected in one interval (as defined by the interval duration above) to include this host in success rate based outlier detection. If the volume is lower than this setting, outlier detection via success rate statistics is not performed for that host. Defaults to 100.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="3">
+                <div class="ansibleOptionAnchor" id="return-resources/outlierDetection/successRateStdevFactor"></div>
+                <b>successRateStdevFactor</b>
+                <a class="ansibleOptionLink" href="#return-resources/outlierDetection/successRateStdevFactor" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>This factor is used to determine the ejection threshold for success rate outlier ejection. The ejection threshold is the difference between the mean success rate, and the product of this factor and the standard deviation of the mean success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided by a thousand to get a double. That is, if the desired factor is 1.9, the runtime value should be 1900. Defaults to 1900.</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/portName"></div>
+                <b>portName</b>
+                <a class="ansibleOptionLink" href="#return-resources/portName" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the load balancing scheme is EXTERNAL.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/protocol"></div>
+                <b>protocol</b>
+                <a class="ansibleOptionLink" href="#return-resources/protocol" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The protocol this BackendService uses to communicate with backends.</div>
+                                        <div>The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may result in errors if used with the GA API.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/securityPolicy"></div>
+                <b>securityPolicy</b>
+                <a class="ansibleOptionLink" href="#return-resources/securityPolicy" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>The security policy associated with this backend service.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/sessionAffinity"></div>
+                <b>sessionAffinity</b>
+                <a class="ansibleOptionLink" href="#return-resources/sessionAffinity" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">string</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is UDP.</div>
+                                    <br/>
+                                </td>
+        </tr>
+                            <tr>
+                                <td class="elbow-placeholder">&nbsp;</td>
+                            <td colspan="4">
+                <div class="ansibleOptionAnchor" id="return-resources/timeoutSec"></div>
+                <b>timeoutSec</b>
+                <a class="ansibleOptionLink" href="#return-resources/timeoutSec" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">integer</span>
+                                      </div>
+                                </td>
+            <td>success</td>
+            <td>
+                                        <div>How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds. Valid range is [1, 86400].</div>
+                                    <br/>
+                                </td>
+        </tr>
+
+                    </table>
+<br/><br/><div class="section" id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Google Inc. (&#64;googlecloudplatform)</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          
+
+<footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="gcp_compute_disk_module.html" class="btn btn-neutral float-right" title="google.cloud.gcp_compute_disk – Creates a GCP Disk" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gcp_compute_backend_service_module.html" class="btn btn-neutral float-left" title="google.cloud.gcp_compute_backend_service – Creates a GCP BackendService" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Ansible project contributors.
+      <span class="lastupdated">
+        Last updated on Jul 21, 2021.
+      </span>
+
+    </p>
+  </div>
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  <!-- extra footer elements for Ansible beyond RTD Sphinx Theme --->
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+      (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+      n.id=i;n.src = 'https://js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+      e.parentNode.insertBefore(n, e);
+      })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+  _satellite.pageBottom();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,739 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Contributor guide &mdash; Ansible Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/antsibull-minimal.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/images/Ansible-Mark-RGB_Black.svg"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://docs.ansible.com/ansible/latest/collections/community/hashi_vault/docsite/contributor_guide.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="localenv developer guide" href="localenv_developer_guide.html" />
+    <link rel="prev" title="User guide" href="user_guide.html" /><!---- extra head elements for Ansible beyond RTD Sphinx Theme --->
+<script type="text/javascript" src="https://www.redhat.com/dtm.js"></script>
+
+
+<!-- <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> -->
+<meta class="swiftype" name="version" data-type="string" content="devel">
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+ dataLayer = [];
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+<!-- End Google Tag Manager -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Ansible
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                devel
+              </div>
+            
+          
+
+          <!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    <div class="version-dropdown">
+      <script>
+        function switchVersionTo(slug) {
+          var current_url_path = window.location.pathname;
+          var url_version = current_url_path.search("/devel/") > -1
+            ? "/devel/"
+            : "/latest/";
+          var new_version_url = current_url_path.replace(url_version, "/" + slug + "/");
+          window.location.replace(new_version_url);
+        }
+      </script>
+      <select
+          class="version-list"
+          id="version-list"
+          onchange="switchVersionTo(this.value);"
+      >
+        
+        <option
+            value="latest"
+            
+        >
+            latest
+        </option>
+        
+        <option
+            value="2.9"
+            
+        >
+            2.9
+        </option>
+        
+        <option
+            value="devel"
+            selected="selected"
+        >
+            devel
+        </option>
+        
+      </select>
+    </div>
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Installation, Upgrade &amp; Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation_guide/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../porting_guides/porting_guides.html">Ansible Porting Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../user_guide/index.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../community/index.html">Ansible Community Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_guide/index.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Ansible Scenarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scenario_guides/cloud_guides.html">Public Cloud Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scenario_guides/network_guides.html">Network Technology Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scenario_guides/virt_guides.html">Virtualization and Containerization Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Automation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../network/getting_started/index.html">Network Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../network/user_guide/index.html">Network Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../network/dev_guide/index.html">Network Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ansible Galaxy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../galaxy/user_guide.html">Galaxy User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../galaxy/dev_guide.html">Galaxy Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference &amp; Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Collection Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../amazon/index.html">Collections in the Amazon Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ansible/index.html">Collections in the Ansible Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../arista/index.html">Collections in the Arista Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../awx/index.html">Collections in the Awx Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../azure/index.html">Collections in the Azure Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../check_point/index.html">Collections in the Check_point Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chocolatey/index.html">Collections in the Chocolatey Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cisco/index.html">Collections in the Cisco Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cloudscale_ch/index.html">Collections in the Cloudscale_ch Namespace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Collections in the Community Namespace</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../aws/index.html">Community.Aws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../azure/index.html">Community.Azure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../crypto/index.html">Community.Crypto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../digitalocean/index.html">Community.Digitalocean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docker/index.html">Community.Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../fortios/index.html">Community.Fortios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../general/index.html">Community.General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../google/index.html">Community.Google</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../grafana/index.html">Community.Grafana</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Community.Hashi_Vault</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#guides">Guides</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#plugin-index">Plugin Index</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hrobot/index.html">Community.Hrobot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubernetes/index.html">Community.Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kubevirt/index.html">Community.Kubevirt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../libvirt/index.html">Community.Libvirt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mongodb/index.html">Community.Mongodb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mysql/index.html">Community.Mysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../network/index.html">Community.Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../okd/index.html">Community.Okd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../postgresql/index.html">Community.Postgresql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../proxysql/index.html">Community.Proxysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rabbitmq/index.html">Community.Rabbitmq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../routeros/index.html">Community.Routeros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../skydive/index.html">Community.Skydive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sops/index.html">Community.Sops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vmware/index.html">Community.Vmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../windows/index.html">Community.Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../zabbix/index.html">Community.Zabbix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../containers/index.html">Collections in the Containers Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cyberark/index.html">Collections in the Cyberark Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../dellemc/index.html">Collections in the Dellemc Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../f5networks/index.html">Collections in the F5networks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../fortinet/index.html">Collections in the Fortinet Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../frr/index.html">Collections in the Frr Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gluster/index.html">Collections in the Gluster Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../google/index.html">Collections in the Google Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hetzner/index.html">Collections in the Hetzner Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../hpe/index.html">Collections in the Hpe Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ibm/index.html">Collections in the Ibm Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../infinidat/index.html">Collections in the Infinidat Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../inspur/index.html">Collections in the Inspur Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../junipernetworks/index.html">Collections in the Junipernetworks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../kubernetes/index.html">Collections in the Kubernetes Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../mellanox/index.html">Collections in the Mellanox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../netapp/index.html">Collections in the Netapp Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../netapp_eseries/index.html">Collections in the Netapp_eseries Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../netbox/index.html">Collections in the Netbox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ngine_io/index.html">Collections in the Ngine_io Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../openstack/index.html">Collections in the Openstack Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../openvswitch/index.html">Collections in the Openvswitch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ovirt/index.html">Collections in the Ovirt Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../purestorage/index.html">Collections in the Purestorage Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sensu/index.html">Collections in the Sensu Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../servicenow/index.html">Collections in the Servicenow Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../splunk/index.html">Collections in the Splunk Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../t_systems_mms/index.html">Collections in the T_systems_mms Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../theforeman/index.html">Collections in the Theforeman Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../vyos/index.html">Collections in the Vyos Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../wti/index.html">Collections in the Wti Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../all_plugins.html">Indexes of all modules and plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/playbooks_keywords.html">Playbook Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/common_return_values.html">Return Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/config.html">Ansible Configuration Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/general_precedence.html">Controlling how Ansible behaves: precedence rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/YAMLSyntax.html">YAML Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/python_3_support.html">Python 3 Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/interpreter_discovery.html">Interpreter Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/release_and_maintenance.html">Releases and maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/test_strategies.html">Testing Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dev_guide/testing/sanity/index.html">Sanity Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/module_utils.html">Ansible Reference: Module Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/special_variables.html">Special Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/tower.html">Red Hat Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/automationhub.html">Ansible Automation Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference_appendices/logging.html">Logging Ansible output</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Roadmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../roadmap/ansible_roadmap_index.html">Ansible Roadmap</a></li>
+</ul>
+
+            
+          <!-- extra nav elements for Ansible beyond RTD Sphinx Theme --->
+<!-- changeable widget links to tower - do not change as image controlled by Ansible-->
+<div id="sideBanner">
+  <br/>
+  <a href="https://www.ansible.com/docs-left?utm_source=docs">
+    <img style="border-width:0px;" src="https://cdn2.hubspot.net/hubfs/330046/docs-graphics/ASB-docs-left-rail.png" />
+  </a>
+  <br/><br/><br/>
+</div>
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ansible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Collection Index</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Collections in the Community Namespace</a> &raquo;</li>
+        
+          <li><a href="../index.html">Community.Hashi_Vault</a> &raquo;</li>
+        
+      <li>Contributor guide</li>
+    
+    
+  <li class="wy-breadcrumbs-aside">
+          <!-- Ansible-specific additions for modules etc -->
+            
+              <a href="https://github.com/ansible/ansible/edit/devel/docs/docsite/rst/collections/community/hashi_vault/docsite/contributor_guide.rst?description=%23%23%23%23%23%20SUMMARY%0A%3C!---%20Your%20description%20here%20--%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a>
+            
+  </li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+  <script>
+    function startsWith(str, needle) {
+      return str.slice(0, needle.length) == needle
+    }
+    function startsWithOneOf(str, needles) {
+      return needles.some(function (needle) {
+        return startsWith(str, needle);
+      });
+    }
+    var banner = '';
+    var survey_banner =
+      '<div id="latest_survey_banner_id" class="admonition important">' +
+      '<br>' +
+      '<p>' +
+        'Please take our ' +
+        '<a href="https://www.surveymonkey.co.uk/r/2VWVJY3">survey</a> ' +
+        'to help us improve support for collections and roles in GalaxyNG.' +
+      '</p>' +
+      '<br>' +
+      '</div>';
+    // Create a banner if we're not on the official docs site
+    if (location.host == "docs.testing.ansible.com") {
+      document.write('<div id="testing_banner_id" class="admonition important">' +
+                     '<p>This is the testing site for Ansible Documentation. Unless you are reviewing pre-production changes, please visit the <a href="https://docs.ansible.com/ansible/latest/">official documentation website</a>.</p> <p></p>' +
+                     '</div>');
+    }
+    
+      // Create a banner
+      current_url_path = window.location.pathname;
+
+      var important = false;
+      var msg = '<p>';
+      if (startsWith(current_url_path, "/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/4/"])) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        msg += 'You are reading the latest community version of the Ansible documentation. Red Hat subscribers, select <b>2.9</b> in the version selection to the left for the most recent Red Hat release.';
+      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+        msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
+      } else if (startsWith(current_url_path, "/ansible/devel/")) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        /* temp banner to advertise survey
+        important = true;
+        msg += 'Please take our <a href="https://www.surveymonkey.co.uk/r/B9V3CDY">Docs survey</a> before December 31 to help us improve Ansible documentation.';
+        */
+
+        msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the latest stable released version.';
+      } else {
+        msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the latest stable released version.';
+      }
+      msg += '</p>';
+
+      banner += '<div id="banner_id" class="admonition ';
+      banner += important ? 'important' : 'caution';
+      banner += '">';
+      banner += important ? '<br>' : '';
+      banner += msg;
+      banner += important ? '<br>' : '';
+      banner += '</div>';
+      document.write(banner);
+    
+  </script>
+
+
+  
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributor-guide">
+<span id="ansible-collections-community-hashi-vault-docsite-contributor-guide"></span><h1>Contributor guide<a class="headerlink" href="#contributor-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide aims to help PR authors contribute to the <code class="docutils literal notranslate"><span class="pre">community.hashi_vault</span></code> collection.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide is a work-in-progress and should not be considered complete. Check back often as we fill out more details based on experience and feedback, and please let us know how this guide can be improved by opening a <a class="reference external" href="https://github.com/ansible-collections/community.hashi_vault/issues">GitHub issue in the repository</a>.</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#quick-start" id="id1">Quick start</a></p></li>
+<li><p><a class="reference internal" href="#contributing-documentation" id="id2">Contributing documentation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-and-plugin-documentation" id="id3">Module and plugin documentation</a></p></li>
+<li><p><a class="reference internal" href="#readme-and-other-markdown-files" id="id4">README and other markdown files</a></p></li>
+<li><p><a class="reference internal" href="#collection-docsite" id="id5">Collection docsite</a></p>
+<ul>
+<li><p><a class="reference internal" href="#advanced" id="id6">Advanced</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#running-tests-locally" id="id7">Running tests locally</a></p>
+<ul>
+<li><p><a class="reference internal" href="#integration-tests" id="id8">Integration Tests</a></p>
+<ul>
+<li><p><a class="reference internal" href="#legacy-mode" id="id9">Legacy mode</a></p></li>
+<li><p><a class="reference internal" href="#docker-compose-localenv" id="id10">Docker Compose localenv</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="quick-start">
+<h2><a class="toc-backref" href="#id1">Quick start</a><a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Log into your GitHub account.</p></li>
+<li><p>Fork the <a class="reference external" href="https://github.com/ansible-collections/community.hashi_vault">ansible-collections/community.hashi_vault repository</a> by clicking the <strong>Fork</strong> button in the upper right corner. This will create a fork in your own account.</p></li>
+<li><p>Clone the repository locally, following <a class="reference internal" href="../../../../dev_guide/developing_collections_contributing.html#hacking-collections"><span class="std std-ref">the example instructions here</span></a> (but replace <code class="docutils literal notranslate"><span class="pre">general</span></code> with <code class="docutils literal notranslate"><span class="pre">hashi_vault</span></code>). <strong>Pay special attention to the local path structure</strong> of the cloned repository as described in those instructions (for example <code class="docutils literal notranslate"><span class="pre">ansible_collections/community/hashi_vault</span></code>).</p></li>
+<li><p>As mentioned on that page, commit your changes to a branch, push them to your fork, and create a pull request (GitHub will automatically prompt you to do so when you look at your repository).</p></li>
+<li><p><a class="reference internal" href="../../../../community/development_process.html#community-changelogs"><span class="std std-ref">See the guidance on Changelogs</span></a> and include a <a class="reference internal" href="../../../../community/development_process.html#changelogs-how-to"><span class="std std-ref">changelog fragment</span></a> if appropriate.</p></li>
+</ol>
+</div>
+<div class="section" id="contributing-documentation">
+<h2><a class="toc-backref" href="#id2">Contributing documentation</a><a class="headerlink" href="#contributing-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Additions to the collection documentation are very welcome! We have three primary types of documentation, each with their own syntax and rules.</p>
+<div class="section" id="module-and-plugin-documentation">
+<h3><a class="toc-backref" href="#id3">Module and plugin documentation</a><a class="headerlink" href="#module-and-plugin-documentation" title="Permalink to this headline">¶</a></h3>
+<p>This type of documentation gets generated from structured YAML, inside of a Python string. It is included in the same code that it’s documenting, or in a separate Python file, such as a doc fragment. Please see the <a class="reference internal" href="../../../../dev_guide/developing_modules_documenting.html#developing-modules-documenting"><span class="std std-ref">module format and documentation guidance</span></a> for more information.</p>
+<p>This type of documentation is tested with <code class="docutils literal notranslate"><span class="pre">ansible-test</span> <span class="pre">sanity</span></code> and full instructions are available on the <a class="reference internal" href="../../../../dev_guide/testing_documentation.html#testing-module-documentation"><span class="std std-ref">testing module documentation</span></a> page.</p>
+<p>Although we can’t preview how the documentation will look for these, we can be reasonably sure the output is correct because the documentation is highly structured and validated using sanity tests.</p>
+</div>
+<div class="section" id="readme-and-other-markdown-files">
+<h3><a class="toc-backref" href="#id4">README and other markdown files</a><a class="headerlink" href="#readme-and-other-markdown-files" title="Permalink to this headline">¶</a></h3>
+<p>Markdown files (those with the extension <code class="docutils literal notranslate"><span class="pre">.md</span></code>) can be found in several directories within the repository. These files are primarily aimed at developers and those browsing the repository, to explain or give context to the other files nearby.</p>
+<p>The main exception to the above is the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> in the repository root. This file is more important because it provides introductory information and links for anyone browsing the repository, both on GitHub and on the collection’s <a class="reference external" href="https://galaxy.ansible.com/community/hashi_vault">Ansible Galaxy page</a>.</p>
+<p>Markdown files can be previewed natively in GutHub, so they are easy to validate by reviewers, and there are no specific tests that need to run against them.</p>
+</div>
+<div class="section" id="collection-docsite">
+<h3><a class="toc-backref" href="#id5">Collection docsite</a><a class="headerlink" href="#collection-docsite" title="Permalink to this headline">¶</a></h3>
+<p>The collection docsite is what you are reading now. It is written in reStructuredText (RST) format and published on the <a class="reference external" href="https://docs.ansible.com/ansible/4/index.html#ansible-documentation" title="(in Ansible v4)"><span class="xref std std-ref">ansible_documentation</span></a> site. This is where we have long-form documentation that doesn’t fit into the other two categories.</p>
+<p>If you are considering adding an entirely new document here it may be best to open a GitHub issue first to discuss the idea and how best to organize it.</p>
+<p>Refer to the <a class="reference internal" href="../../../../dev_guide/style_guide/index.html#style-guide"><span class="std std-ref">Ansible style guide</span></a> for all submissions to the collection docsite.</p>
+<p>RST files for the docsite are in the <code class="docutils literal notranslate"><span class="pre">docs/docsite/rst/</span></code> directory. Some submissions may also require edits to <code class="docutils literal notranslate"><span class="pre">docs/docsite/extra-docs.yml</span></code>.</p>
+<p>Only the <code class="docutils literal notranslate"><span class="pre">extra-docs.yml</span></code> file is validated by the collection’s CI, and there is not yet any automated preview for the docsite rendering, but this is an area we are hoping to improve on.</p>
+<div class="section" id="advanced">
+<h4><a class="toc-backref" href="#id6">Advanced</a><a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h4>
+<p>Docsite pages can be generated locally through a workaround technique. <strong>This is not a supported method</strong> but it may be helpful to get more rapid feedback on docsite changes, if you’re comfortable at a command line.</p>
+<p>The process is:</p>
+<ol class="arabic">
+<li><p>Clone <a class="reference external" href="https://github.com/ansible/ansible/">ansible/ansible</a> or a fork of it.</p></li>
+<li><p>Copy the <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files you want to preview into that repository’s <code class="docutils literal notranslate"><span class="pre">docs/docsite/</span></code> directory.</p></li>
+<li><p>Install the requirements needed to build the docsite (from the repository root):</p>
+<blockquote>
+<div><div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install -r requirements.txt
+<span class="gp">$ </span>pip install -r docs/docsite/requirements.txt
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>You may also need to remove write permission from group and other:</p>
+<blockquote>
+<div><div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>chmod -R go-w docs/docsite/rst
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Build the docs:</p>
+<blockquote>
+<div><div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make coredocs
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>The rendered HTML docs should be available in <code class="docutils literal notranslate"><span class="pre">docs/docsite/_build/html/</span></code> and can be opened in a browser.</p>
+</div>
+</div>
+</div>
+<div class="section" id="running-tests-locally">
+<h2><a class="toc-backref" href="#id7">Running tests locally</a><a class="headerlink" href="#running-tests-locally" title="Permalink to this headline">¶</a></h2>
+<p>If you’re making anything more than very small or one-time changes, run the tests locally to avoid having to push a commit for each thing, and waiting for the CI to run tests.</p>
+<p>First, <a class="reference internal" href="../../../../dev_guide/developing_collections_testing.html#testing-collections"><span class="std std-ref">review the guidance on testing collections</span></a>, as it applies to this collection as well.</p>
+<div class="section" id="integration-tests">
+<h3><a class="toc-backref" href="#id8">Integration Tests</a><a class="headerlink" href="#integration-tests" title="Permalink to this headline">¶</a></h3>
+<p>Unlike other collections, we now require an <a class="reference external" href="https://docs.ansible.com/ansible/latest/dev_guide/testing_integration.html#integration-config-yml">integration_config.yml</a> file for properly running integration tests, as the tests require external dependencies (like a Vault server) and they need to know where to find those dependencies.</p>
+<p>If you have contributed to this collection or to the <code class="docutils literal notranslate"><span class="pre">hashi_vault</span></code> lookup plugin in the past, you might remember that the integration tests used to download, extract, and run a Vault server during the course of the tests, by default. This <strong>legacy mode</strong> is not recommended but is still available (for now) via opt-in.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Legacy mode is not recommended because a new Vault server and proxy server will be downloaded, set up, configured, and/or uninstalled, for every <em>target</em>. Traditionally, we’ve only had one target, and so it was a good way to go, but that’s no longer going to be the case. This will make it slower and slower as you’ll incur the overhead on every target, in every run.</p>
+<p>Skip to <a class="reference internal" href="#ansible-collections-community-hashi-vault-docsite-contributor-guide-localenv-docker"><span class="std std-ref">Docker Compose localenv</span></a> for a method that’s nearly as easy as legacy mode, and far more efficient (docker-compose).</p>
+</div>
+<div class="section" id="legacy-mode">
+<h4><a class="toc-backref" href="#id9">Legacy mode</a><a class="headerlink" href="#legacy-mode" title="Permalink to this headline">¶</a></h4>
+<p>To get started quickly without having to set anything else, you can use legacy mode by copying the included integration config sample:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cp tests/integration/integration_config.yml.sample tests/integration/integration_config.yml
+</pre></div>
+</div>
+<p>That file has everything configured to be able to run the integration tests and have them set up the dependencies for you.</p>
+<p>You will also need the following additional Ansible collections:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://galaxy.ansible.com/community/crypto">community.crypto</a></p></li>
+<li><p><a class="reference external" href="https://galaxy.ansible.com/community/general">community.general</a> (MacOS local/venv only)</p></li>
+</ul>
+<p>Running legacy mode tests in docker (<strong>recommended</strong>):</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ansible-test integration --docker default -v
+</pre></div>
+</div>
+<p>Running legacy mode tests in a controlled python virtual environment (<strong>not recommended</strong>):</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ansible-test integration --venv --requirements --allow-destructive -v
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In legacy mode, your system packages may be manipulated by running locally or in a venv.</p>
+</div>
+<p>If you must use legacy mode testing, you can make it more efficient by limiting your test run to the specific target needed, to avoid the overhead of creating and destroying the dependencies for each target. For example:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ansible-test integration --docker default -v lookup_hashi_vault
+</pre></div>
+</div>
+</div>
+<div class="section" id="docker-compose-localenv">
+<span id="ansible-collections-community-hashi-vault-docsite-contributor-guide-localenv-docker"></span><h4><a class="toc-backref" href="#id10">Docker Compose localenv</a><a class="headerlink" href="#docker-compose-localenv" title="Permalink to this headline">¶</a></h4>
+<p>The recommended way to run the tests has Vault and tinyproxy running in their own containers, set up via docker-compose, and the integration tests run in their own container separately.</p>
+<p>We have a pre-defined “localenv” setup role for this purpose.</p>
+<div class="section" id="usage">
+<h5>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h5>
+<p>For ease of typing / length of commands, we’ll enter the role directory first:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">pushd</span> tests/integration/targets/setup_localenv_docker
+</pre></div>
+</div>
+<p>This localenv has both Ansible collection and Python requirements, so let’s get those out of the way:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install -r files/requirements/requirements.txt -c files/requirements/constraints.txt
+<span class="gp">$ </span>ansible-galaxy collection install -r files/requirements/requirements.yml
+</pre></div>
+</div>
+<p>To set up your docker-compose environment with all the defaults:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./setup.sh
+</pre></div>
+</div>
+<p>The setup script does the following:</p>
+<ol class="arabic simple">
+<li><p>Template a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> for the project.</p></li>
+<li><p>Generate a private key and self-signed certificate for Vault.</p></li>
+<li><p>Template a Vault config file.</p></li>
+<li><p>Bring down the existing compose project.</p></li>
+<li><p>Bring up the compose project as defined by the vars (specified or defaults).</p></li>
+<li><p>Template an <code class="docutils literal notranslate"><span class="pre">integration_config.yml</span></code> file that has all the right settings for integration tests to connect.</p></li>
+<li><p>Copy the integration config to the correct location <em>if there isn’t already one there</em> (it won’t overwrite, in case you had customized changes).</p></li>
+</ol>
+<p>With your containers running, you can now run the tests in docker (after returning back to the collection root):</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">popd</span>
+<span class="gp">$ </span>ansible-test integration --docker default --docker-network hashi_vault_default -v
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--docker-network</span></code> part is important, because it ensures that the Ansible test container is in the same network as the dependency containers, that way the test container can reach them by their container names. The network name, <code class="docutils literal notranslate"><span class="pre">hashi_vault_default</span></code> comes from the default docker-compose project name used by this role (<code class="docutils literal notranslate"><span class="pre">hashi_vault</span></code>). See the <a class="reference internal" href="#ansible-collections-community-hashi-vault-docsite-contributor-guide-localenv-docker-customization"><span class="std std-ref">customization section</span></a> for more information.</p>
+<p>Running <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> again can be used to re-deploy the containers, or if you prefer you can use the generated <code class="docutils literal notranslate"><span class="pre">files/.output/&lt;project_name&gt;/docker-compose.yml</span></code> directly with local tools.</p>
+<p>If running again, remember to manually copy the contents of newly generated <code class="docutils literal notranslate"><span class="pre">files/.output/integration_config.yml</span></code> to the integration root, or delete the file in the root before re-running setup so that it copies the file automatically.</p>
+</div>
+<div class="section" id="customization">
+<span id="ansible-collections-community-hashi-vault-docsite-contributor-guide-localenv-docker-customization"></span><h5>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> passes any additional params you send it to the <code class="docutils literal notranslate"><span class="pre">ansible-playbook</span></code> command it calls, so you can customize variables with the standard <code class="docutils literal notranslate"><span class="pre">--extra-vars</span></code> (or <code class="docutils literal notranslate"><span class="pre">-e</span></code>) option. There are many advanced scenarios possible, but a few things you might want to override:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vault_version</span></code> – can target any version of Vault for which a docker container exists</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker_compose</span></code> (defaults to <code class="docutils literal notranslate"><span class="pre">clean</span></code> but could be set to <code class="docutils literal notranslate"><span class="pre">up</span></code>, <code class="docutils literal notranslate"><span class="pre">down</span></code>, or <code class="docutils literal notranslate"><span class="pre">none</span></code>)
+* <code class="docutils literal notranslate"><span class="pre">up</span></code> – similar to running <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code> (no op if the project is running as it should)
+* <code class="docutils literal notranslate"><span class="pre">down</span></code> – similar to <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> (destroys the project)
+* <code class="docutils literal notranslate"><span class="pre">clean</span></code> – (default) similar to <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> followed by <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>
+* <code class="docutils literal notranslate"><span class="pre">none</span></code> – does the other tasks, including templating, but does not bring the project up or down. With this option, the <code class="docutils literal notranslate"><span class="pre">community.docker</span></code> collection is not required.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vault_crypto_force</span></code> – by default this is <code class="docutils literal notranslate"><span class="pre">false</span></code> so if the cert and key exist they won’t be regenerated. Setting to <code class="docutils literal notranslate"><span class="pre">true</span></code> will overwrite them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vault_port_http</span></code>, <code class="docutils literal notranslate"><span class="pre">vault_port_https</span></code>, <code class="docutils literal notranslate"><span class="pre">proxy_port</span></code> – all of the ports are exposed to the host, so if you already have any of the default ports in use on your host, you may need to override these.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vault_container_name</span></code>, <code class="docutils literal notranslate"><span class="pre">proxy_container_name</span></code> – these are the names for their respective containers, which will also be the DNS names used within the container network. In case you have the default names in use you may need to override these.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docker_compose_project_name</span></code> – unlikely to need to be changed, but it affects the name of the docker network which will be needed for your <code class="docutils literal notranslate"><span class="pre">ansible-test</span></code> invocation, so it’s worth mentioning. For example, if you set this to <code class="docutils literal notranslate"><span class="pre">ansible_hashi_vault</span></code> then the docker network name will be <code class="docutils literal notranslate"><span class="pre">ansible_hashi_vault_default</span></code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          
+
+<footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="localenv_developer_guide.html" class="btn btn-neutral float-right" title="localenv developer guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="User guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Ansible project contributors.
+      <span class="lastupdated">
+        Last updated on Jul 21, 2021.
+      </span>
+
+    </p>
+  </div>
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  <!-- extra footer elements for Ansible beyond RTD Sphinx Theme --->
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+      (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+      n.id=i;n.src = 'https://js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+      e.parentNode.insertBefore(n, e);
+      })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+  _satellite.pageBottom();
+}
+</script>
+
+</body>
+</html>

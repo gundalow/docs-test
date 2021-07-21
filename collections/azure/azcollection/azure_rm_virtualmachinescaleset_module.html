@@ -1,0 +1,1759 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>azure.azcollection.azure_rm_virtualmachinescaleset – Manage Azure virtual machine scale sets &mdash; Ansible Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.svg"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/azure_rm_virtualmachinescaleset_module.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="azure.azcollection.azure_rm_virtualmachinescaleset_info – Get Virtual Machine Scale Set facts" href="azure_rm_virtualmachinescaleset_info_module.html" />
+    <link rel="prev" title="azure.azcollection.azure_rm_virtualmachineimage_info – Get virtual machine image facts" href="azure_rm_virtualmachineimage_info_module.html" /><!---- extra head elements for Ansible beyond RTD Sphinx Theme --->
+<script type="text/javascript" src="https://www.redhat.com/dtm.js"></script>
+
+
+<!-- <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> -->
+<meta class="swiftype" name="version" data-type="string" content="devel">
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+ dataLayer = [];
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+<!-- End Google Tag Manager -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Ansible
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                devel
+              </div>
+            
+          
+
+          <!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    <div class="version-dropdown">
+      <script>
+        function switchVersionTo(slug) {
+          var current_url_path = window.location.pathname;
+          var url_version = current_url_path.search("/devel/") > -1
+            ? "/devel/"
+            : "/latest/";
+          var new_version_url = current_url_path.replace(url_version, "/" + slug + "/");
+          window.location.replace(new_version_url);
+        }
+      </script>
+      <select
+          class="version-list"
+          id="version-list"
+          onchange="switchVersionTo(this.value);"
+      >
+        
+        <option
+            value="latest"
+            
+        >
+            latest
+        </option>
+        
+        <option
+            value="2.9"
+            
+        >
+            2.9
+        </option>
+        
+        <option
+            value="devel"
+            selected="selected"
+        >
+            devel
+        </option>
+        
+      </select>
+    </div>
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Installation, Upgrade &amp; Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guide/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../porting_guides/porting_guides.html">Ansible Porting Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Ansible Community Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Ansible Scenarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/cloud_guides.html">Public Cloud Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/network_guides.html">Network Technology Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/virt_guides.html">Virtualization and Containerization Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Automation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/getting_started/index.html">Network Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/user_guide/index.html">Network Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/dev_guide/index.html">Network Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ansible Galaxy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/user_guide.html">Galaxy User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/dev_guide.html">Galaxy Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference &amp; Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Collection Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../amazon/index.html">Collections in the Amazon Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ansible/index.html">Collections in the Ansible Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../arista/index.html">Collections in the Arista Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awx/index.html">Collections in the Awx Namespace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Collections in the Azure Namespace</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Azure.Azcollection</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#plugin-index">Plugin Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../check_point/index.html">Collections in the Check_point Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chocolatey/index.html">Collections in the Chocolatey Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cisco/index.html">Collections in the Cisco Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloudscale_ch/index.html">Collections in the Cloudscale_ch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../community/index.html">Collections in the Community Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../containers/index.html">Collections in the Containers Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cyberark/index.html">Collections in the Cyberark Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dellemc/index.html">Collections in the Dellemc Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../f5networks/index.html">Collections in the F5networks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fortinet/index.html">Collections in the Fortinet Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../frr/index.html">Collections in the Frr Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gluster/index.html">Collections in the Gluster Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../google/index.html">Collections in the Google Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hetzner/index.html">Collections in the Hetzner Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpe/index.html">Collections in the Hpe Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ibm/index.html">Collections in the Ibm Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../infinidat/index.html">Collections in the Infinidat Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inspur/index.html">Collections in the Inspur Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../junipernetworks/index.html">Collections in the Junipernetworks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/index.html">Collections in the Kubernetes Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mellanox/index.html">Collections in the Mellanox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp/index.html">Collections in the Netapp Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp_eseries/index.html">Collections in the Netapp_eseries Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netbox/index.html">Collections in the Netbox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ngine_io/index.html">Collections in the Ngine_io Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openstack/index.html">Collections in the Openstack Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openvswitch/index.html">Collections in the Openvswitch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ovirt/index.html">Collections in the Ovirt Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../purestorage/index.html">Collections in the Purestorage Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sensu/index.html">Collections in the Sensu Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../servicenow/index.html">Collections in the Servicenow Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../splunk/index.html">Collections in the Splunk Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../t_systems_mms/index.html">Collections in the T_systems_mms Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theforeman/index.html">Collections in the Theforeman Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vyos/index.html">Collections in the Vyos Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wti/index.html">Collections in the Wti Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../all_plugins.html">Indexes of all modules and plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/playbooks_keywords.html">Playbook Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/common_return_values.html">Return Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/config.html">Ansible Configuration Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/general_precedence.html">Controlling how Ansible behaves: precedence rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/YAMLSyntax.html">YAML Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/python_3_support.html">Python 3 Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/interpreter_discovery.html">Interpreter Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/release_and_maintenance.html">Releases and maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/test_strategies.html">Testing Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/testing/sanity/index.html">Sanity Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/module_utils.html">Ansible Reference: Module Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/special_variables.html">Special Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/tower.html">Red Hat Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/automationhub.html">Ansible Automation Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/logging.html">Logging Ansible output</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Roadmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap/ansible_roadmap_index.html">Ansible Roadmap</a></li>
+</ul>
+
+            
+          <!-- extra nav elements for Ansible beyond RTD Sphinx Theme --->
+<!-- changeable widget links to tower - do not change as image controlled by Ansible-->
+<div id="sideBanner">
+  <br/>
+  <a href="https://www.ansible.com/docs-left?utm_source=docs">
+    <img style="border-width:0px;" src="https://cdn2.hubspot.net/hubfs/330046/docs-graphics/ASB-docs-left-rail.png" />
+  </a>
+  <br/><br/><br/>
+</div>
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ansible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Collection Index</a> &raquo;</li>
+        
+          <li><a href="../index.html">Collections in the Azure Namespace</a> &raquo;</li>
+        
+          <li><a href="index.html">Azure.Azcollection</a> &raquo;</li>
+        
+      <li>azure.azcollection.azure_rm_virtualmachinescaleset – Manage Azure virtual machine scale sets</li>
+    
+    
+  <li class="wy-breadcrumbs-aside">
+          <!-- Ansible-specific additions for modules etc -->
+            
+            <!--  <a href="https://github.com/ansible/ansible/edit/devel/lib/ansible/modules/?description=%23%23%23%23%23%20SUMMARY%0A%3C!---%20Your%20description%20here%20--%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a> -->
+              <br>
+            
+  </li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+  <script>
+    function startsWith(str, needle) {
+      return str.slice(0, needle.length) == needle
+    }
+    function startsWithOneOf(str, needles) {
+      return needles.some(function (needle) {
+        return startsWith(str, needle);
+      });
+    }
+    var banner = '';
+    var survey_banner =
+      '<div id="latest_survey_banner_id" class="admonition important">' +
+      '<br>' +
+      '<p>' +
+        'Please take our ' +
+        '<a href="https://www.surveymonkey.co.uk/r/2VWVJY3">survey</a> ' +
+        'to help us improve support for collections and roles in GalaxyNG.' +
+      '</p>' +
+      '<br>' +
+      '</div>';
+    // Create a banner if we're not on the official docs site
+    if (location.host == "docs.testing.ansible.com") {
+      document.write('<div id="testing_banner_id" class="admonition important">' +
+                     '<p>This is the testing site for Ansible Documentation. Unless you are reviewing pre-production changes, please visit the <a href="https://docs.ansible.com/ansible/latest/">official documentation website</a>.</p> <p></p>' +
+                     '</div>');
+    }
+    
+      // Create a banner
+      current_url_path = window.location.pathname;
+
+      var important = false;
+      var msg = '<p>';
+      if (startsWith(current_url_path, "/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/4/"])) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        msg += 'You are reading the latest community version of the Ansible documentation. Red Hat subscribers, select <b>2.9</b> in the version selection to the left for the most recent Red Hat release.';
+      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+        msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
+      } else if (startsWith(current_url_path, "/ansible/devel/")) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        /* temp banner to advertise survey
+        important = true;
+        msg += 'Please take our <a href="https://www.surveymonkey.co.uk/r/B9V3CDY">Docs survey</a> before December 31 to help us improve Ansible documentation.';
+        */
+
+        msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the latest stable released version.';
+      } else {
+        msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the latest stable released version.';
+      }
+      msg += '</p>';
+
+      banner += '<div id="banner_id" class="admonition ';
+      banner += important ? 'important' : 'caution';
+      banner += '">';
+      banner += important ? '<br>' : '';
+      banner += msg;
+      banner += important ? '<br>' : '';
+      banner += '</div>';
+      document.write(banner);
+    
+  </script>
+
+
+  
+           <div itemprop="articleBody">
+            
+  <span class="target" id="ansible-collections-azure-azcollection-azure-rm-virtualmachinescaleset-module"></span><div class="section" id="azure-azcollection-azure-rm-virtualmachinescaleset-manage-azure-virtual-machine-scale-sets">
+<h1>azure.azcollection.azure_rm_virtualmachinescaleset – Manage Azure virtual machine scale sets<a class="headerlink" href="#azure-azcollection-azure-rm-virtualmachinescaleset-manage-azure-virtual-machine-scale-sets" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/azure/azcollection">azure.azcollection collection</a> (version 1.7.0).</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">azure.azcollection</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">azure.azcollection.azure_rm_virtualmachinescaleset</span></code>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.1.2: </span>of azure.azcollection</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id2">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id3">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id4">Notes</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id5">See Also</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id6">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id7">Return Values</a></p></li>
+</ul>
+</div>
+<div class="section" id="synopsis">
+<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Create and update a virtual machine scale set.</p></li>
+<li><p>Note that this module was called <span class="xref std std-ref">azure_rm_virtualmachine_scaleset</span> before Ansible 2.8. The usage did not change.</p></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The below requirements are needed on the host that executes this module.</p>
+<ul class="simple">
+<li><p>python &gt;= 2.7</p></li>
+<li><p>The host that executes this module must have the azure.azcollection collection installed via galaxy</p></li>
+<li><p>All python packages listed in collection’s requirements-azure.txt must be installed via pip on the host that executes modules from azure.azcollection</p></li>
+<li><p>Full installation instructions may be found <a class="reference external" href="https://galaxy.ansible.com/azure/azcollection">https://galaxy.ansible.com/azure/azcollection</a></p></li>
+</ul>
+</div>
+<div class="section" id="parameters">
+<h2><a class="toc-backref" href="#id3">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<table  border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="2">Parameter</th>
+        <th>Choices/<font color="blue">Defaults</font></th>
+                    <th width="100%">Comments</th>
+    </tr>
+                <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-ad_user"></div>
+                <b>ad_user</b>
+                <a class="ansibleOptionLink" href="#parameter-ad_user" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Active Directory username. Use when authenticating with an Active Directory user rather than service principal.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-adfs_authority_url"></div>
+                <b>adfs_authority_url</b>
+                <a class="ansibleOptionLink" href="#parameter-adfs_authority_url" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 0.0.1 of azure.azcollection
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Azure AD authority url. Use when authenticating with Username/password, and has your own ADFS authority.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-admin_password"></div>
+                <b>admin_password</b>
+                <a class="ansibleOptionLink" href="#parameter-admin_password" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Password for the admin username.</div>
+                                        <div>Not required if the os_type is Linux and SSH password authentication is disabled by setting <em>ssh_password_enabled=false</em>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-admin_username"></div>
+                <b>admin_username</b>
+                <a class="ansibleOptionLink" href="#parameter-admin_username" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Admin username used to access the host after it is created. Required when creating a VM.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-api_profile"></div>
+                <b>api_profile</b>
+                <a class="ansibleOptionLink" href="#parameter-api_profile" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 0.0.1 of azure.azcollection
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">"latest"</div>
+                                </td>
+                                                            <td>
+                                        <div>Selects an API profile to use when communicating with Azure services. Default value of <code>latest</code> is appropriate for public clouds; future values will allow use with Azure Stack.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-append_tags"></div>
+                <b>append_tags</b>
+                <a class="ansibleOptionLink" href="#parameter-append_tags" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Use to control if tags field is canonical or just appends to existing tags.</div>
+                                        <div>When canonical, any tags not found in the tags parameter will be removed from the object&#x27;s metadata.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-application_gateway"></div>
+                <b>application_gateway</b>
+                <a class="ansibleOptionLink" href="#parameter-application_gateway" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Application gateway name.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-auth_source"></div>
+                <b>auth_source</b>
+                <a class="ansibleOptionLink" href="#parameter-auth_source" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 0.0.1 of azure.azcollection
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>auto</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>cli</li>
+                                                                                                                                                                                            <li>credential_file</li>
+                                                                                                                                                                                            <li>env</li>
+                                                                                                                                                                                            <li>msi</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Controls the source of the credentials to use for authentication.</div>
+                                        <div>Can also be set via the <code>ANSIBLE_AZURE_AUTH_SOURCE</code> environment variable.</div>
+                                        <div>When set to <code>auto</code> (the default) the precedence is module parameters -&gt; <code>env</code> -&gt; <code>credential_file</code> -&gt; <code>cli</code>.</div>
+                                        <div>When set to <code>env</code>, the credentials will be read from the environment variables</div>
+                                        <div>When set to <code>credential_file</code>, it will read the profile from <code>~/.azure/credentials</code>.</div>
+                                        <div>When set to <code>cli</code>, the credentials will be sources from the Azure CLI profile. <code>subscription_id</code> or the environment variable <code>AZURE_SUBSCRIPTION_ID</code> can be used to identify the subscription ID if more than one is present otherwise the default az cli subscription is used.</div>
+                                        <div>When set to <code>msi</code>, the host machine must be an azure resource with an enabled MSI extension. <code>subscription_id</code> or the environment variable <code>AZURE_SUBSCRIPTION_ID</code> can be used to identify the subscription ID if the resource is granted access to more than one subscription, otherwise the first subscription is chosen.</div>
+                                        <div>The <code>msi</code> was added in Ansible 2.6.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-capacity"></div>
+                <b>capacity</b>
+                <a class="ansibleOptionLink" href="#parameter-capacity" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">1</div>
+                                </td>
+                                                            <td>
+                                        <div>Capacity of VMSS.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-cert_validation_mode"></div>
+                <b>cert_validation_mode</b>
+                <a class="ansibleOptionLink" href="#parameter-cert_validation_mode" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 0.0.1 of azure.azcollection
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>ignore</li>
+                                                                                                                                                                                            <li>validate</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Controls the certificate validation behavior for Azure endpoints. By default, all modules will validate the server certificate, but when an HTTPS proxy is in use, or against Azure Stack, it may be necessary to disable this behavior by passing <code>ignore</code>. Can also be set via credential file profile or the <code>AZURE_CERT_VALIDATION</code> environment variable.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-client_id"></div>
+                <b>client_id</b>
+                <a class="ansibleOptionLink" href="#parameter-client_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Azure client ID. Use when authenticating with a Service Principal.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-cloud_environment"></div>
+                <b>cloud_environment</b>
+                <a class="ansibleOptionLink" href="#parameter-cloud_environment" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 0.0.1 of azure.azcollection
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">"AzureCloud"</div>
+                                </td>
+                                                            <td>
+                                        <div>For cloud environments other than the US public cloud, the environment name (as defined by Azure Python SDK, eg, <code>AzureChinaCloud</code>, <code>AzureUSGovernment</code>), or a metadata discovery endpoint URL (required for Azure Stack). Can also be set via credential file profile or the <code>AZURE_CLOUD_ENVIRONMENT</code> environment variable.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-custom_data"></div>
+                <b>custom_data</b>
+                <a class="ansibleOptionLink" href="#parameter-custom_data" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Data which is made available to the virtual machine and used by e.g., <code>cloud-init</code>.</div>
+                                        <div>Many images in the marketplace are not cloud-init ready. Thus, data sent to <em>custom_data</em> would be ignored.</div>
+                                        <div>If the image you are attempting to use is not listed in <a href='https://docs.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init#cloud-init-overview'>https://docs.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init#cloud-init-overview</a>, follow these steps <a href='https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cloudinit-prepare-custom-image'>https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cloudinit-prepare-custom-image</a>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-data_disks"></div>
+                <b>data_disks</b>
+                <a class="ansibleOptionLink" href="#parameter-data_disks" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Describes list of data disks.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-data_disks/caching"></div>
+                <b>caching</b>
+                <a class="ansibleOptionLink" href="#parameter-data_disks/caching" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>ReadOnly</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>ReadWrite</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Type of data disk caching.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-data_disks/disk_size_gb"></div>
+                <b>disk_size_gb</b>
+                <a class="ansibleOptionLink" href="#parameter-data_disks/disk_size_gb" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The initial disk size in GB for blank data disks.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-data_disks/lun"></div>
+                <b>lun</b>
+                <a class="ansibleOptionLink" href="#parameter-data_disks/lun" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">0</div>
+                                </td>
+                                                            <td>
+                                        <div>The logical unit number for data disk.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-data_disks/managed_disk_type"></div>
+                <b>managed_disk_type</b>
+                <a class="ansibleOptionLink" href="#parameter-data_disks/managed_disk_type" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>Standard_LRS</li>
+                                                                                                                                                                                            <li>Premium_LRS</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Managed data disk type.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-enable_accelerated_networking"></div>
+                <b>enable_accelerated_networking</b>
+                <a class="ansibleOptionLink" href="#parameter-enable_accelerated_networking" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Indicates whether user wants to allow accelerated networking for virtual machines in scaleset being created.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-ephemeral_os_disk"></div>
+                <b>ephemeral_os_disk</b>
+                <a class="ansibleOptionLink" href="#parameter-ephemeral_os_disk" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Parameters of ephemeral disk settings that can be specified for operating system disk.</div>
+                                        <div>Ephemeral OS disk is only supported for VMS Instances using Managed Disk.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-image"></div>
+                <b>image</b>
+                <a class="ansibleOptionLink" href="#parameter-image" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Specifies the image used to build the VM.</div>
+                                        <div>If a string, the image is sourced from a custom image based on the name.</div>
+                                        <div>If a dict with the keys <em>publisher</em>, <em>offer</em>, <em>sku</em>, and <em>version</em>, the image is sourced from a Marketplace image. Note that set <em>version=latest</em> to get the most recent version of a given image.</div>
+                                        <div>If a dict with the keys <em>name</em> and <em>resource_group</em>, the image is sourced from a custom image based on the <em>name</em> and <em>resource_group</em> set. Note that the key <em>resource_group</em> is optional and if omitted, all images in the subscription will be searched for by <em>name</em>.</div>
+                                        <div>Custom image support was added in Ansible 2.5.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-load_balancer"></div>
+                <b>load_balancer</b>
+                <a class="ansibleOptionLink" href="#parameter-load_balancer" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Load balancer name.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-location"></div>
+                <b>location</b>
+                <a class="ansibleOptionLink" href="#parameter-location" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Valid Azure location. Defaults to location of the resource group.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-log_mode"></div>
+                <b>log_mode</b>
+                <a class="ansibleOptionLink" href="#parameter-log_mode" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Parent argument.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-log_path"></div>
+                <b>log_path</b>
+                <a class="ansibleOptionLink" href="#parameter-log_path" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Parent argument.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-managed_disk_type"></div>
+                <b>managed_disk_type</b>
+                <a class="ansibleOptionLink" href="#parameter-managed_disk_type" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>Standard_LRS</li>
+                                                                                                                                                                                            <li>Premium_LRS</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Managed disk type.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-name"></div>
+                <b>name</b>
+                <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Name of the virtual machine.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-os_disk_caching"></div>
+                <b>os_disk_caching</b>
+                <a class="ansibleOptionLink" href="#parameter-os_disk_caching" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>ReadOnly</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>ReadWrite</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Type of OS disk caching.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: disk_caching</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-os_type"></div>
+                <b>os_type</b>
+                <a class="ansibleOptionLink" href="#parameter-os_type" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>Windows</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>Linux</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Base type of operating system.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-overprovision"></div>
+                <b>overprovision</b>
+                <a class="ansibleOptionLink" href="#parameter-overprovision" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Specifies whether the Virtual Machine Scale Set should be overprovisioned.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-password"></div>
+                <b>password</b>
+                <a class="ansibleOptionLink" href="#parameter-password" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Active Directory user password. Use when authenticating with an Active Directory user rather than service principal.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-plan"></div>
+                <b>plan</b>
+                <a class="ansibleOptionLink" href="#parameter-plan" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Third-party billing plan for the VM.</div>
+                                                    </td>
+        </tr>
+                                    <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-plan/name"></div>
+                <b>name</b>
+                <a class="ansibleOptionLink" href="#parameter-plan/name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Billing plan name.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-plan/product"></div>
+                <b>product</b>
+                <a class="ansibleOptionLink" href="#parameter-plan/product" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Product name.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-plan/promotion_code"></div>
+                <b>promotion_code</b>
+                <a class="ansibleOptionLink" href="#parameter-plan/promotion_code" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Optional promotion code.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                <td class="elbow-placeholder"></td>
+                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-plan/publisher"></div>
+                <b>publisher</b>
+                <a class="ansibleOptionLink" href="#parameter-plan/publisher" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Publisher offering the plan.</div>
+                                                    </td>
+        </tr>
+
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-profile"></div>
+                <b>profile</b>
+                <a class="ansibleOptionLink" href="#parameter-profile" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Security profile found in ~/.azure/credentials file.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-public_ip_per_vm"></div>
+                <b>public_ip_per_vm</b>
+                <a class="ansibleOptionLink" href="#parameter-public_ip_per_vm" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Assign a public IP to each virtual machine of the scale set</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-remove_on_absent"></div>
+                <b>remove_on_absent</b>
+                <a class="ansibleOptionLink" href="#parameter-remove_on_absent" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">["all"]</div>
+                                </td>
+                                                            <td>
+                                        <div>When removing a VM using <em>state=absent</em>, also remove associated resources.</div>
+                                        <div>It can be <code>all</code> or a list with any of the following [&#x27;network_interfaces&#x27;, &#x27;virtual_storage&#x27;, &#x27;public_ips&#x27;].</div>
+                                        <div>Any other input will be ignored.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-resource_group"></div>
+                <b>resource_group</b>
+                <a class="ansibleOptionLink" href="#parameter-resource_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Name of the resource group containing the virtual machine scale set.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-scale_in_policy"></div>
+                <b>scale_in_policy</b>
+                <a class="ansibleOptionLink" href="#parameter-scale_in_policy" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>Default</li>
+                                                                                                                                                                                            <li>NewestVM</li>
+                                                                                                                                                                                            <li>OldestVM</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>define the order in which vmss instances are scaled-in</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-secret"></div>
+                <b>secret</b>
+                <a class="ansibleOptionLink" href="#parameter-secret" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Azure client secret. Use when authenticating with a Service Principal.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-security_group"></div>
+                <b>security_group</b>
+                <a class="ansibleOptionLink" href="#parameter-security_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Existing security group with which to associate the subnet.</div>
+                                        <div>It can be the security group name which is in the same resource group.</div>
+                                        <div>It can be the resource ID.</div>
+                                        <div>It can be a dict which contains <em>name</em> and <em>resource_group</em> of the security group.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: security_group_name</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-short_hostname"></div>
+                <b>short_hostname</b>
+                <a class="ansibleOptionLink" href="#parameter-short_hostname" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Short host name.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-single_placement_group"></div>
+                <b>single_placement_group</b>
+                <a class="ansibleOptionLink" href="#parameter-single_placement_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>When true this limits the scale set to a single placement group, of max size 100 virtual machines.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-ssh_password_enabled"></div>
+                <b>ssh_password_enabled</b>
+                <a class="ansibleOptionLink" href="#parameter-ssh_password_enabled" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>When the os_type is Linux, setting <em>ssh_password_enabled=false</em> will disable SSH password authentication and require use of SSH keys.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-ssh_public_keys"></div>
+                <b>ssh_public_keys</b>
+                <a class="ansibleOptionLink" href="#parameter-ssh_public_keys" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>For <em>os_type=Linux</em> provide a list of SSH keys.</div>
+                                        <div>Each item in the list should be a dictionary where the dictionary contains two keys, <code>path</code> and <code>key_data</code>.</div>
+                                        <div>Set the <code>path</code> to the default location of the authorized_keys files.</div>
+                                        <div>On an Enterprise Linux host, for example, the <em>path=/home/&lt;admin username&gt;/.ssh/authorized_keys</em>. Set <code>key_data</code> to the actual value of the public key.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-state"></div>
+                <b>state</b>
+                <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>absent</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>present</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Assert the state of the virtual machine scale set.</div>
+                                        <div>State <code>present</code> will check that the machine exists with the requested configuration. If the configuration of the existing machine does not match, the machine will be updated.</div>
+                                        <div>State <code>absent</code> will remove the virtual machine scale set.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-subnet_name"></div>
+                <b>subnet_name</b>
+                <a class="ansibleOptionLink" href="#parameter-subnet_name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Subnet name.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: subnet</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-subscription_id"></div>
+                <b>subscription_id</b>
+                <a class="ansibleOptionLink" href="#parameter-subscription_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Your Azure subscription Id.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-tags"></div>
+                <b>tags</b>
+                <a class="ansibleOptionLink" href="#parameter-tags" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Dictionary of string:string pairs to assign as metadata to the object.</div>
+                                        <div>Metadata tags on the object will be updated with any provided values.</div>
+                                        <div>To remove tags set append_tags option to false.</div>
+                                        <div>Currently, Azure DNS zones and Traffic Manager services also don&#x27;t allow the use of spaces in the tag.</div>
+                                        <div>Azure Front Door doesn&#x27;t support the use of</div>
+                                        <div>Azure Automation and Azure CDN only support 15 tags on resources.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-tenant"></div>
+                <b>tenant</b>
+                <a class="ansibleOptionLink" href="#parameter-tenant" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Azure tenant ID. Use when authenticating with a Service Principal.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-terminate_event_timeout_minutes"></div>
+                <b>terminate_event_timeout_minutes</b>
+                <a class="ansibleOptionLink" href="#parameter-terminate_event_timeout_minutes" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>timeout time for termination notification event</div>
+                                        <div>in range between 5 and 15</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-tier"></div>
+                <b>tier</b>
+                <a class="ansibleOptionLink" href="#parameter-tier" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>Basic</li>
+                                                                                                                                                                                            <li>Standard</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>SKU Tier.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-upgrade_policy"></div>
+                <b>upgrade_policy</b>
+                <a class="ansibleOptionLink" href="#parameter-upgrade_policy" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>Manual</li>
+                                                                                                                                                                                            <li>Automatic</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Upgrade policy.</div>
+                                        <div>Required when creating the Azure virtual machine scale sets.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-virtual_network_name"></div>
+                <b>virtual_network_name</b>
+                <a class="ansibleOptionLink" href="#parameter-virtual_network_name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Virtual Network name.</div>
+                                                            <div style="font-size: small; color: darkgreen"><br/>aliases: virtual_network</div>
+                                </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-virtual_network_resource_group"></div>
+                <b>virtual_network_resource_group</b>
+                <a class="ansibleOptionLink" href="#parameter-virtual_network_resource_group" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>When creating a virtual machine, if a specific virtual network from another resource group should be used.</div>
+                                        <div>Use this parameter to specify the resource group to use.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-vm_size"></div>
+                <b>vm_size</b>
+                <a class="ansibleOptionLink" href="#parameter-vm_size" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A valid Azure VM size value. For example, <code>Standard_D4</code>.</div>
+                                        <div>The list of choices varies depending on the subscription and location. Check your subscription for available choices.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="2">
+                <div class="ansibleOptionAnchor" id="parameter-zones"></div>
+                <b>zones</b>
+                <a class="ansibleOptionLink" href="#parameter-zones" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of Availability Zones for your virtual machine scale set.</div>
+                                                    </td>
+        </tr>
+                    </table>
+<br/></div>
+<div class="section" id="notes">
+<h2><a class="toc-backref" href="#id4">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>For authentication with Azure you can pass parameters, set environment variables, use a profile stored in ~/.azure/credentials, or log in before you run your tasks or playbook with <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">login</span></code>.</p></li>
+<li><p>Authentication is also possible using a service principal or Active Directory user.</p></li>
+<li><p>To authenticate via service principal, pass subscription_id, client_id, secret and tenant or set environment variables AZURE_SUBSCRIPTION_ID, AZURE_CLIENT_ID, AZURE_SECRET and AZURE_TENANT.</p></li>
+<li><p>To authenticate via Active Directory user, pass ad_user and password, or set AZURE_AD_USER and AZURE_PASSWORD in the environment.</p></li>
+<li><p>Alternatively, credentials can be stored in ~/.azure/credentials. This is an ini file containing a [default] section and the following keys: subscription_id, client_id, secret and tenant or subscription_id, ad_user and password. It is also possible to add additional profiles. Specify the profile by passing profile or setting AZURE_PROFILE in the environment.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2><a class="toc-backref" href="#id5">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli?view=azure-cli-latest">Sign in with Azure CLI</a></dt><dd><p>How to authenticate using the <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">login</span></code> command.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id6">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create VMSS</span>
+  <span class="nt">azure_rm_virtualmachinescaleset</span><span class="p">:</span>
+    <span class="nt">resource_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myResourceGroup</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvmss</span>
+    <span class="nt">vm_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_DS1_v2</span>
+    <span class="nt">capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+    <span class="nt">virtual_network_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvnet</span>
+    <span class="nt">upgrade_policy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Manual</span>
+    <span class="nt">subnet_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testsubnet</span>
+    <span class="nt">terminate_event_timeout_minutes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="nt">scale_in_policy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NewestVM</span>
+    <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adminUser</span>
+    <span class="nt">ssh_password_enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">ssh_public_keys</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/adminUser/.ssh/authorized_keys</span>
+        <span class="nt">key_data</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt; insert yor ssh public key here... &gt;</span>
+    <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+    <span class="nt">image</span><span class="p">:</span>
+      <span class="nt">offer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CoreOS</span>
+      <span class="nt">publisher</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CoreOS</span>
+      <span class="nt">sku</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Stable</span>
+      <span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+    <span class="nt">data_disks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lun</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="nt">disk_size_gb</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">64</span>
+        <span class="nt">caching</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ReadWrite</span>
+        <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create VMSS with an image that requires plan information</span>
+  <span class="nt">azure_rm_virtualmachinescaleset</span><span class="p">:</span>
+    <span class="nt">resource_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myResourceGroup</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvmss</span>
+    <span class="nt">vm_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_DS1_v2</span>
+    <span class="nt">capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="nt">virtual_network_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvnet</span>
+    <span class="nt">upgrade_policy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Manual</span>
+    <span class="nt">subnet_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testsubnet</span>
+    <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adminUser</span>
+    <span class="nt">ssh_password_enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">ssh_public_keys</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/adminUser/.ssh/authorized_keys</span>
+        <span class="nt">key_data</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt; insert yor ssh public key here... &gt;</span>
+    <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+    <span class="nt">image</span><span class="p">:</span>
+      <span class="nt">offer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cis-ubuntu-linux-1804-l1</span>
+      <span class="nt">publisher</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">center-for-internet-security-inc</span>
+      <span class="nt">sku</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Stable</span>
+      <span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+    <span class="nt">plan</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cis-ubuntu-linux-1804-l1</span>
+      <span class="nt">product</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cis-ubuntu-linux-1804-l1</span>
+      <span class="nt">publisher</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">center-for-internet-security-inc</span>
+    <span class="nt">data_disks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">lun</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+        <span class="nt">disk_size_gb</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">64</span>
+        <span class="nt">caching</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ReadWrite</span>
+        <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create a VMSS with a custom image</span>
+  <span class="nt">azure_rm_virtualmachinescaleset</span><span class="p">:</span>
+    <span class="nt">resource_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myResourceGroup</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvmss</span>
+    <span class="nt">vm_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_DS1_v2</span>
+    <span class="nt">capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+    <span class="nt">virtual_network_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvnet</span>
+    <span class="nt">upgrade_policy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Manual</span>
+    <span class="nt">subnet_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testsubnet</span>
+    <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adminUser</span>
+    <span class="nt">admin_password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">password01</span>
+    <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">customimage001</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create a VMSS with over 100 instances</span>
+  <span class="nt">azure_rm_virtualmachinescaleset</span><span class="p">:</span>
+    <span class="nt">resource_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myResourceGroup</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvmss</span>
+    <span class="nt">vm_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_DS1_v2</span>
+    <span class="nt">capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">120</span>
+    <span class="nt">single_placement_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+    <span class="nt">virtual_network_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvnet</span>
+    <span class="nt">upgrade_policy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Manual</span>
+    <span class="nt">subnet_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testsubnet</span>
+    <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adminUser</span>
+    <span class="nt">admin_password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">password01</span>
+    <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">customimage001</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create a VMSS with a custom image from a particular resource group</span>
+  <span class="nt">azure_rm_virtualmachinescaleset</span><span class="p">:</span>
+    <span class="nt">resource_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myResourceGroup</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvmss</span>
+    <span class="nt">vm_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_DS1_v2</span>
+    <span class="nt">capacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+    <span class="nt">virtual_network_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testvnet</span>
+    <span class="nt">upgrade_policy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Manual</span>
+    <span class="nt">subnet_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testsubnet</span>
+    <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">adminUser</span>
+    <span class="nt">admin_password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">password01</span>
+    <span class="nt">managed_disk_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Standard_LRS</span>
+    <span class="nt">image</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">customimage001</span>
+      <span class="nt">resource_group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myResourceGroup</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="return-values">
+<h2><a class="toc-backref" href="#id7">Return Values</a><a class="headerlink" href="#return-values" title="Permalink to this headline">¶</a></h2>
+<p>Common return values are documented <a class="reference internal" href="../../../reference_appendices/common_return_values.html#common-return-values"><span class="std std-ref">here</span></a>, the following are the fields unique to this module:</p>
+<table border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="1">Key</th>
+        <th>Returned</th>
+        <th width="100%">Description</th>
+    </tr>
+                <tr>
+                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="return-azure_vmss"></div>
+                <b>azure_vmss</b>
+                <a class="ansibleOptionLink" href="#return-azure_vmss" title="Permalink to this return value"></a>
+                <div style="font-size: small">
+                  <span style="color: purple">dictionary</span>
+                                      </div>
+                                </td>
+            <td>always</td>
+            <td>
+                                        <div>Facts about the current state of the object.</div>
+                                        <div>Note that facts are not part of the registered output but available directly.</div>
+                                    <br/>
+                                        <div style="font-size: smaller"><b>Sample:</b></div>
+                                            <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;properties&#x27;: {&#x27;overprovision&#x27;: True, &#x27;scaleInPolicy&#x27;: {&#x27;rules&#x27;: [&#x27;NewestVM&#x27;]}, &#x27;singlePlacementGroup&#x27;: True, &#x27;upgradePolicy&#x27;: {&#x27;mode&#x27;: &#x27;Manual&#x27;}, &#x27;virtualMachineProfile&#x27;: {&#x27;networkProfile&#x27;: {&#x27;networkInterfaceConfigurations&#x27;: [{&#x27;name&#x27;: &#x27;testvmss&#x27;, &#x27;properties&#x27;: {&#x27;dnsSettings&#x27;: {&#x27;dnsServers&#x27;: []}, &#x27;enableAcceleratedNetworking&#x27;: False, &#x27;ipConfigurations&#x27;: [{&#x27;name&#x27;: &#x27;default&#x27;, &#x27;properties&#x27;: {&#x27;privateIPAddressVersion&#x27;: &#x27;IPv4&#x27;, &#x27;subnet&#x27;: {&#x27;id&#x27;: &#x27;/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroup/myResourceGroup/providers/Microsoft.Network/virtualNetworks/testvnet/subnets/testsubnet&#x27;}}}], &#x27;primary&#x27;: True}}]}, &#x27;osProfile&#x27;: {&#x27;adminUsername&#x27;: &#x27;testuser&#x27;, &#x27;computerNamePrefix&#x27;: &#x27;testvmss&#x27;, &#x27;linuxConfiguration&#x27;: {&#x27;disablePasswordAuthentication&#x27;: True, &#x27;ssh&#x27;: {&#x27;publicKeys&#x27;: [{&#x27;keyData&#x27;: &#x27;&#x27;, &#x27;path&#x27;: &#x27;/home/testuser/.ssh/authorized_keys&#x27;}]}}, &#x27;secrets&#x27;: []}, &#x27;scheduledEventsProfile&#x27;: {&#x27;terminateNotificationProfile&#x27;: {&#x27;enable&#x27;: True, &#x27;notBeforeTimeout&#x27;: &#x27;PT10M&#x27;}}, &#x27;storageProfile&#x27;: {&#x27;dataDisks&#x27;: [{&#x27;caching&#x27;: &#x27;ReadWrite&#x27;, &#x27;createOption&#x27;: &#x27;empty&#x27;, &#x27;diskSizeGB&#x27;: 64, &#x27;lun&#x27;: 0, &#x27;managedDisk&#x27;: {&#x27;storageAccountType&#x27;: &#x27;Standard_LRS&#x27;}}], &#x27;imageReference&#x27;: {&#x27;offer&#x27;: &#x27;CoreOS&#x27;, &#x27;publisher&#x27;: &#x27;CoreOS&#x27;, &#x27;sku&#x27;: &#x27;Stable&#x27;, &#x27;version&#x27;: &#x27;899.17.0&#x27;}, &#x27;osDisk&#x27;: {&#x27;caching&#x27;: &#x27;ReadWrite&#x27;, &#x27;createOption&#x27;: &#x27;fromImage&#x27;, &#x27;managedDisk&#x27;: {&#x27;storageAccountType&#x27;: &#x27;Standard_LRS&#x27;}}}}}, &#x27;sku&#x27;: {&#x27;capacity&#x27;: 2, &#x27;name&#x27;: &#x27;Standard_DS1_v2&#x27;, &#x27;tier&#x27;: &#x27;Standard&#x27;}, &#x27;tags&#x27;: None, &#x27;type&#x27;: &#x27;Microsoft.Compute/virtualMachineScaleSets&#x27;}</div>
+                                </td>
+        </tr>
+                    </table>
+<br/><br/><div class="section" id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Sertac Ozercan (&#64;sozercan)</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          
+
+<footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="azure_rm_virtualmachinescaleset_info_module.html" class="btn btn-neutral float-right" title="azure.azcollection.azure_rm_virtualmachinescaleset_info – Get Virtual Machine Scale Set facts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="azure_rm_virtualmachineimage_info_module.html" class="btn btn-neutral float-left" title="azure.azcollection.azure_rm_virtualmachineimage_info – Get virtual machine image facts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Ansible project contributors.
+      <span class="lastupdated">
+        Last updated on Jul 21, 2021.
+      </span>
+
+    </p>
+  </div>
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  <!-- extra footer elements for Ansible beyond RTD Sphinx Theme --->
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+      (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+      n.id=i;n.src = 'https://js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+      e.parentNode.insertBefore(n, e);
+      })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+  _satellite.pageBottom();
+}
+</script>
+
+</body>
+</html>

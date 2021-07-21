@@ -1,0 +1,1985 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>community.general.nmcli – Manage Networking &mdash; Ansible Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/antsibull-minimal.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.svg"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://docs.ansible.com/ansible/latest/collections/community/general/nmcli_module.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="community.general.nomad_job – Launch a Nomad Job" href="nomad_job_module.html" />
+    <link rel="prev" title="community.general.nios_zone – Configure Infoblox NIOS DNS zones" href="nios_zone_module.html" /><!---- extra head elements for Ansible beyond RTD Sphinx Theme --->
+<script type="text/javascript" src="https://www.redhat.com/dtm.js"></script>
+
+
+<!-- <meta class="swiftype" name="published_at" data-type="date" content="2017-12-13" /> -->
+<meta class="swiftype" name="version" data-type="string" content="devel">
+
+<!-- Google Tag Manager Data Layer -->
+<script>
+ dataLayer = [];
+</script>
+<!-- End Google Tag Manager Data Layer -->
+
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','https://s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yABGvz2N8PwcwBxyfzUc','2.0.0');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+<!-- Google Tag Manager -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSB293" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-PSB293');</script>
+<!-- End Google Tag Manager -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Ansible
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                devel
+              </div>
+            
+          
+
+          <!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    <div class="version-dropdown">
+      <script>
+        function switchVersionTo(slug) {
+          var current_url_path = window.location.pathname;
+          var url_version = current_url_path.search("/devel/") > -1
+            ? "/devel/"
+            : "/latest/";
+          var new_version_url = current_url_path.replace(url_version, "/" + slug + "/");
+          window.location.replace(new_version_url);
+        }
+      </script>
+      <select
+          class="version-list"
+          id="version-list"
+          onchange="switchVersionTo(this.value);"
+      >
+        
+        <option
+            value="latest"
+            
+        >
+            latest
+        </option>
+        
+        <option
+            value="2.9"
+            
+        >
+            2.9
+        </option>
+        
+        <option
+            value="devel"
+            selected="selected"
+        >
+            devel
+        </option>
+        
+      </select>
+    </div>
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+  
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Installation, Upgrade &amp; Configuration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guide/index.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../porting_guides/porting_guides.html">Ansible Porting Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Using Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide/index.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing to Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Ansible Community Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending Ansible</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/index.html">Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Common Ansible Scenarios</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/cloud_guides.html">Public Cloud Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/network_guides.html">Network Technology Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scenario_guides/virt_guides.html">Virtualization and Containerization Guides</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Network Automation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/getting_started/index.html">Network Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/user_guide/index.html">Network Advanced Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../network/dev_guide/index.html">Network Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ansible Galaxy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/user_guide.html">Galaxy User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../galaxy/dev_guide.html">Galaxy Developer Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference &amp; Appendices</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Collection Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../amazon/index.html">Collections in the Amazon Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ansible/index.html">Collections in the Ansible Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../arista/index.html">Collections in the Arista Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awx/index.html">Collections in the Awx Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../azure/index.html">Collections in the Azure Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../check_point/index.html">Collections in the Check_point Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chocolatey/index.html">Collections in the Chocolatey Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cisco/index.html">Collections in the Cisco Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cloudscale_ch/index.html">Collections in the Cloudscale_ch Namespace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Collections in the Community Namespace</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../aws/index.html">Community.Aws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../azure/index.html">Community.Azure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../crypto/index.html">Community.Crypto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../digitalocean/index.html">Community.Digitalocean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker/index.html">Community.Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fortios/index.html">Community.Fortios</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Community.General</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#guides">Guides</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#plugin-index">Plugin Index</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../google/index.html">Community.Google</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../grafana/index.html">Community.Grafana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hashi_vault/index.html">Community.Hashi_Vault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hrobot/index.html">Community.Hrobot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubernetes/index.html">Community.Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kubevirt/index.html">Community.Kubevirt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libvirt/index.html">Community.Libvirt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mongodb/index.html">Community.Mongodb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mysql/index.html">Community.Mysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../network/index.html">Community.Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../okd/index.html">Community.Okd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../postgresql/index.html">Community.Postgresql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../proxysql/index.html">Community.Proxysql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/index.html">Community.Rabbitmq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../routeros/index.html">Community.Routeros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../skydive/index.html">Community.Skydive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sops/index.html">Community.Sops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vmware/index.html">Community.Vmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../windows/index.html">Community.Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../zabbix/index.html">Community.Zabbix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../containers/index.html">Collections in the Containers Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cyberark/index.html">Collections in the Cyberark Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dellemc/index.html">Collections in the Dellemc Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../f5networks/index.html">Collections in the F5networks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fortinet/index.html">Collections in the Fortinet Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../frr/index.html">Collections in the Frr Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gluster/index.html">Collections in the Gluster Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../google/index.html">Collections in the Google Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hetzner/index.html">Collections in the Hetzner Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpe/index.html">Collections in the Hpe Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ibm/index.html">Collections in the Ibm Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../infinidat/index.html">Collections in the Infinidat Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../inspur/index.html">Collections in the Inspur Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../junipernetworks/index.html">Collections in the Junipernetworks Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kubernetes/index.html">Collections in the Kubernetes Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mellanox/index.html">Collections in the Mellanox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp/index.html">Collections in the Netapp Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netapp_eseries/index.html">Collections in the Netapp_eseries Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../netbox/index.html">Collections in the Netbox Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ngine_io/index.html">Collections in the Ngine_io Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openstack/index.html">Collections in the Openstack Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../openvswitch/index.html">Collections in the Openvswitch Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ovirt/index.html">Collections in the Ovirt Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../purestorage/index.html">Collections in the Purestorage Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sensu/index.html">Collections in the Sensu Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../servicenow/index.html">Collections in the Servicenow Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../splunk/index.html">Collections in the Splunk Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../t_systems_mms/index.html">Collections in the T_systems_mms Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../theforeman/index.html">Collections in the Theforeman Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../vyos/index.html">Collections in the Vyos Namespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wti/index.html">Collections in the Wti Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../all_plugins.html">Indexes of all modules and plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/playbooks_keywords.html">Playbook Keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/common_return_values.html">Return Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/config.html">Ansible Configuration Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/general_precedence.html">Controlling how Ansible behaves: precedence rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/YAMLSyntax.html">YAML Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/python_3_support.html">Python 3 Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/interpreter_discovery.html">Interpreter Discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/release_and_maintenance.html">Releases and maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/test_strategies.html">Testing Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev_guide/testing/sanity/index.html">Sanity Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/module_utils.html">Ansible Reference: Module Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/special_variables.html">Special Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/tower.html">Red Hat Ansible Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/automationhub.html">Ansible Automation Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference_appendices/logging.html">Logging Ansible output</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Roadmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../roadmap/ansible_roadmap_index.html">Ansible Roadmap</a></li>
+</ul>
+
+            
+          <!-- extra nav elements for Ansible beyond RTD Sphinx Theme --->
+<!-- changeable widget links to tower - do not change as image controlled by Ansible-->
+<div id="sideBanner">
+  <br/>
+  <a href="https://www.ansible.com/docs-left?utm_source=docs">
+    <img style="border-width:0px;" src="https://cdn2.hubspot.net/hubfs/330046/docs-graphics/ASB-docs-left-rail.png" />
+  </a>
+  <br/><br/><br/>
+</div>
+
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ansible</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Collection Index</a> &raquo;</li>
+        
+          <li><a href="../index.html">Collections in the Community Namespace</a> &raquo;</li>
+        
+          <li><a href="index.html">Community.General</a> &raquo;</li>
+        
+      <li>community.general.nmcli – Manage Networking</li>
+    
+    
+  <li class="wy-breadcrumbs-aside">
+          <!-- Ansible-specific additions for modules etc -->
+            
+            <!--  <a href="https://github.com/ansible/ansible/edit/devel/lib/ansible/modules/?description=%23%23%23%23%23%20SUMMARY%0A%3C!---%20Your%20description%20here%20--%3E%0A%0A%0A%23%23%23%23%23%20ISSUE%20TYPE%0A-%20Docs%20Pull%20Request%0A%0A%2Blabel:%20docsite_pr" class="fa fa-github"> Edit on GitHub</a> -->
+              <br>
+            
+  </li>
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+  <script>
+    function startsWith(str, needle) {
+      return str.slice(0, needle.length) == needle
+    }
+    function startsWithOneOf(str, needles) {
+      return needles.some(function (needle) {
+        return startsWith(str, needle);
+      });
+    }
+    var banner = '';
+    var survey_banner =
+      '<div id="latest_survey_banner_id" class="admonition important">' +
+      '<br>' +
+      '<p>' +
+        'Please take our ' +
+        '<a href="https://www.surveymonkey.co.uk/r/2VWVJY3">survey</a> ' +
+        'to help us improve support for collections and roles in GalaxyNG.' +
+      '</p>' +
+      '<br>' +
+      '</div>';
+    // Create a banner if we're not on the official docs site
+    if (location.host == "docs.testing.ansible.com") {
+      document.write('<div id="testing_banner_id" class="admonition important">' +
+                     '<p>This is the testing site for Ansible Documentation. Unless you are reviewing pre-production changes, please visit the <a href="https://docs.ansible.com/ansible/latest/">official documentation website</a>.</p> <p></p>' +
+                     '</div>');
+    }
+    
+      // Create a banner
+      current_url_path = window.location.pathname;
+
+      var important = false;
+      var msg = '<p>';
+      if (startsWith(current_url_path, "/ansible-core/")) {
+        msg += 'You are reading documentation for Ansible Core, which contains no plugins except for those in ansible.builtin. For documentation of the Ansible package, go to <a href="/ansible/latest">the latest documentation</a>.';
+      } else if (startsWithOneOf(current_url_path, ["/ansible/latest/", "/ansible/4/"])) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        msg += 'You are reading the latest community version of the Ansible documentation. Red Hat subscribers, select <b>2.9</b> in the version selection to the left for the most recent Red Hat release.';
+      } else if (startsWith(current_url_path, "/ansible/2.9/")) {
+        msg += 'You are reading the latest Red Hat released version of the Ansible documentation. Community users can use this version, or select <b>latest</b> from the version selector to the left for the most recent community version.';
+      } else if (startsWith(current_url_path, "/ansible/devel/")) {
+        /* temp banner to advertise GalaxyNG survey */
+      //  banner += survey_banner;
+
+        /* temp banner to advertise survey
+        important = true;
+        msg += 'Please take our <a href="https://www.surveymonkey.co.uk/r/B9V3CDY">Docs survey</a> before December 31 to help us improve Ansible documentation.';
+        */
+
+        msg += 'You are reading the <b>devel</b> version of the Ansible documentation - this version is not guaranteed stable. Use the version selection to the left if you want the latest stable released version.';
+      } else {
+        msg += 'You are reading an older version of the Ansible documentation. Use the version selection to the left if you want the latest stable released version.';
+      }
+      msg += '</p>';
+
+      banner += '<div id="banner_id" class="admonition ';
+      banner += important ? 'important' : 'caution';
+      banner += '">';
+      banner += important ? '<br>' : '';
+      banner += msg;
+      banner += important ? '<br>' : '';
+      banner += '</div>';
+      document.write(banner);
+    
+  </script>
+
+
+  
+           <div itemprop="articleBody">
+            
+  <span class="target" id="ansible-collections-community-general-nmcli-module"></span><div class="section" id="community-general-nmcli-manage-networking">
+<h1>community.general.nmcli – Manage Networking<a class="headerlink" href="#community-general-nmcli-manage-networking" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/community/general">community.general collection</a> (version 3.4.0).</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">community.general</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">community.general.nmcli</span></code>.</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#requirements" id="id2">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id3">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
+</ul>
+</div>
+<div class="section" id="synopsis">
+<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Manage the network devices. Create, modify and manage various connection and device type e.g., ethernet, teams, bonds, vlans etc.</p></li>
+<li><p>On CentOS 8 and Fedora &gt;=29 like systems, the requirements can be met by installing the following packages: NetworkManager.</p></li>
+<li><p>On CentOS 7 and Fedora &lt;=28 like systems, the requirements can be met by installing the following packages: NetworkManager-tui.</p></li>
+<li><p>On Ubuntu and Debian like systems, the requirements can be met by installing the following packages: network-manager</p></li>
+<li><p>On openSUSE, the requirements can be met by installing the following packages: NetworkManager.</p></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2><a class="toc-backref" href="#id2">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The below requirements are needed on the host that executes this module.</p>
+<ul class="simple">
+<li><p>nmcli</p></li>
+</ul>
+</div>
+<div class="section" id="parameters">
+<h2><a class="toc-backref" href="#id3">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<table  border=0 cellpadding=0 class="documentation-table">
+    <tr>
+        <th colspan="1">Parameter</th>
+        <th>Choices/<font color="blue">Defaults</font></th>
+                    <th width="100%">Comments</th>
+    </tr>
+                <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ageingtime"></div>
+                <b>ageingtime</b>
+                <a class="ansibleOptionLink" href="#parameter-ageingtime" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">300</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with bridge - [ageing-time &lt;0-1000000&gt;] the Ethernet MAC address aging time, in seconds.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-arp_interval"></div>
+                <b>arp_interval</b>
+                <a class="ansibleOptionLink" href="#parameter-arp_interval" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bond - ARP interval.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-arp_ip_target"></div>
+                <b>arp_ip_target</b>
+                <a class="ansibleOptionLink" href="#parameter-arp_ip_target" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bond - ARP IP target.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-autoconnect"></div>
+                <b>autoconnect</b>
+                <a class="ansibleOptionLink" href="#parameter-autoconnect" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Whether the connection should start on boot.</div>
+                                        <div>Whether the connection profile can be automatically activated</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-conn_name"></div>
+                <b>conn_name</b>
+                <a class="ansibleOptionLink" href="#parameter-conn_name" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The name used to call the connection. Pattern is &lt;type&gt;[-&lt;ifname&gt;][-&lt;num&gt;].</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dhcp_client_id"></div>
+                <b>dhcp_client_id</b>
+                <a class="ansibleOptionLink" href="#parameter-dhcp_client_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>DHCP Client Identifier sent to the DHCP server.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dns4"></div>
+                <b>dns4</b>
+                <a class="ansibleOptionLink" href="#parameter-dns4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of up to 3 dns servers.</div>
+                                        <div>IPv4 format e.g. to add two IPv4 DNS server addresses, use <code>192.0.2.53 198.51.100.53</code>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dns4_ignore_auto"></div>
+                <b>dns4_ignore_auto</b>
+                <a class="ansibleOptionLink" href="#parameter-dns4_ignore_auto" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.2.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Ignore automatically configured IPv4 name servers.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dns4_search"></div>
+                <b>dns4_search</b>
+                <a class="ansibleOptionLink" href="#parameter-dns4_search" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of DNS search domains.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dns6"></div>
+                <b>dns6</b>
+                <a class="ansibleOptionLink" href="#parameter-dns6" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of up to 3 dns servers.</div>
+                                        <div>IPv6 format e.g. to add two IPv6 DNS server addresses, use <code>2001:4860:4860::8888 2001:4860:4860::8844</code>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dns6_ignore_auto"></div>
+                <b>dns6_ignore_auto</b>
+                <a class="ansibleOptionLink" href="#parameter-dns6_ignore_auto" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.2.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Ignore automatically configured IPv6 name servers.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-dns6_search"></div>
+                <b>dns6_search</b>
+                <a class="ansibleOptionLink" href="#parameter-dns6_search" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>A list of DNS search domains.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-downdelay"></div>
+                <b>downdelay</b>
+                <a class="ansibleOptionLink" href="#parameter-downdelay" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bond - downdelay.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-egress"></div>
+                <b>egress</b>
+                <a class="ansibleOptionLink" href="#parameter-egress" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VLAN - VLAN egress priority mapping.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-flags"></div>
+                <b>flags</b>
+                <a class="ansibleOptionLink" href="#parameter-flags" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VLAN - flags.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-forwarddelay"></div>
+                <b>forwarddelay</b>
+                <a class="ansibleOptionLink" href="#parameter-forwarddelay" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">15</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with bridge - [forward-delay &lt;2-30&gt;] STP forwarding delay, in seconds.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-gw4"></div>
+                <b>gw4</b>
+                <a class="ansibleOptionLink" href="#parameter-gw4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The IPv4 gateway for this interface.</div>
+                                        <div>Use the format <code>192.0.2.1</code>.</div>
+                                        <div>This parameter is mutually_exclusive with never_default4 parameter.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-gw4_ignore_auto"></div>
+                <b>gw4_ignore_auto</b>
+                <a class="ansibleOptionLink" href="#parameter-gw4_ignore_auto" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.2.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Ignore automatically configured IPv4 routes.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-gw6"></div>
+                <b>gw6</b>
+                <a class="ansibleOptionLink" href="#parameter-gw6" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The IPv6 gateway for this interface.</div>
+                                        <div>Use the format <code>2001:db8::1</code>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-gw6_ignore_auto"></div>
+                <b>gw6_ignore_auto</b>
+                <a class="ansibleOptionLink" href="#parameter-gw6_ignore_auto" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.2.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Ignore automatically configured IPv6 routes.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-hairpin"></div>
+                <b>hairpin</b>
+                <a class="ansibleOptionLink" href="#parameter-hairpin" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with &#x27;bridge-slave&#x27; - &#x27;hairpin mode&#x27; for the slave, which allows frames to be sent back out through the slave the frame was received on.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-hellotime"></div>
+                <b>hellotime</b>
+                <a class="ansibleOptionLink" href="#parameter-hellotime" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">2</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with bridge - [hello-time &lt;1-10&gt;] STP hello time, in seconds.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ifname"></div>
+                <b>ifname</b>
+                <a class="ansibleOptionLink" href="#parameter-ifname" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The interface to bind the connection to.</div>
+                                        <div>The connection will only be applicable to this interface name.</div>
+                                        <div>A special value of <code>&#x27;*&#x27;</code> can be used for interface-independent connections.</div>
+                                        <div>The ifname argument is mandatory for all connection types except bond, team, bridge and vlan.</div>
+                                        <div>This parameter defaults to <code>conn_name</code> when left unset.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ingress"></div>
+                <b>ingress</b>
+                <a class="ansibleOptionLink" href="#parameter-ingress" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VLAN - VLAN ingress priority mapping.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ip4"></div>
+                <b>ip4</b>
+                <a class="ansibleOptionLink" href="#parameter-ip4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The IPv4 address to this interface.</div>
+                                        <div>Use the format <code>192.0.2.24/24</code>.</div>
+                                        <div>If defined and <em>method4</em> is not specified, automatically set <code>ipv4.method</code> to <code>manual</code>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ip6"></div>
+                <b>ip6</b>
+                <a class="ansibleOptionLink" href="#parameter-ip6" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The IPv6 address to this interface.</div>
+                                        <div>Use the format <code>abbe::cafe</code>.</div>
+                                        <div>If defined and <em>method6</em> is not specified, automatically set <code>ipv6.method</code> to <code>manual</code>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ip_tunnel_dev"></div>
+                <b>ip_tunnel_dev</b>
+                <a class="ansibleOptionLink" href="#parameter-ip_tunnel_dev" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is used with IPIP/SIT - parent device this IPIP/SIT tunnel, can use ifname.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ip_tunnel_local"></div>
+                <b>ip_tunnel_local</b>
+                <a class="ansibleOptionLink" href="#parameter-ip_tunnel_local" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is used with IPIP/SIT - IPIP/SIT local IP address.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ip_tunnel_remote"></div>
+                <b>ip_tunnel_remote</b>
+                <a class="ansibleOptionLink" href="#parameter-ip_tunnel_remote" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is used with IPIP/SIT - IPIP/SIT destination IP address.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mac"></div>
+                <b>mac</b>
+                <a class="ansibleOptionLink" href="#parameter-mac" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>MAC address of the connection.</div>
+                                        <div>Note this requires a recent kernel feature, originally introduced in 3.15 upstream kernel.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-master"></div>
+                <b>master</b>
+                <a class="ansibleOptionLink" href="#parameter-master" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Master &lt;master (ifname, or connection UUID or conn_name) of bridge, team, bond master connection profile.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-maxage"></div>
+                <b>maxage</b>
+                <a class="ansibleOptionLink" href="#parameter-maxage" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">20</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with bridge - [max-age &lt;6-42&gt;] STP maximum message age, in seconds.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-may_fail4"></div>
+                <b>may_fail4</b>
+                <a class="ansibleOptionLink" href="#parameter-may_fail4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.3.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>If you need <em>ip4</em> configured before <code>network-online.target</code> is reached, set this option to <code>false</code>.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-method4"></div>
+                <b>method4</b>
+                <a class="ansibleOptionLink" href="#parameter-method4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 2.2.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>auto</li>
+                                                                                                                                                                                            <li>link-local</li>
+                                                                                                                                                                                            <li>manual</li>
+                                                                                                                                                                                            <li>shared</li>
+                                                                                                                                                                                            <li>disabled</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Configuration method to be used for IPv4.</div>
+                                        <div>If <em>ip4</em> is set, <code>ipv4.method</code> is automatically set to <code>manual</code> and this parameter is not needed.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-method6"></div>
+                <b>method6</b>
+                <a class="ansibleOptionLink" href="#parameter-method6" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 2.2.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>ignore</li>
+                                                                                                                                                                                            <li>auto</li>
+                                                                                                                                                                                            <li>dhcp</li>
+                                                                                                                                                                                            <li>link-local</li>
+                                                                                                                                                                                            <li>manual</li>
+                                                                                                                                                                                            <li>shared</li>
+                                                                                                                                                                                            <li>disabled</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Configuration method to be used for IPv6</div>
+                                        <div>If <em>ip6</em> is set, <code>ipv6.method</code> is automatically set to <code>manual</code> and this parameter is not needed.</div>
+                                        <div><code>disabled</code> was added in community.general 3.3.0.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-miimon"></div>
+                <b>miimon</b>
+                <a class="ansibleOptionLink" href="#parameter-miimon" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bond - miimon.</div>
+                                        <div>This parameter defaults to <code>100</code> when unset.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mode"></div>
+                <b>mode</b>
+                <a class="ansibleOptionLink" href="#parameter-mode" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>802.3ad</li>
+                                                                                                                                                                                            <li>active-backup</li>
+                                                                                                                                                                                            <li>balance-alb</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>balance-rr</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>balance-tlb</li>
+                                                                                                                                                                                            <li>balance-xor</li>
+                                                                                                                                                                                            <li>broadcast</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>This is the type of device or network connection that you wish to create for a bond or bridge.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-mtu"></div>
+                <b>mtu</b>
+                <a class="ansibleOptionLink" href="#parameter-mtu" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The connection MTU, e.g. 9000. This can&#x27;t be applied when creating the interface and is done once the interface has been created.</div>
+                                        <div>Can be used when modifying Team, VLAN, Ethernet (Future plans to implement wifi, pppoe, infiniband)</div>
+                                        <div>This parameter defaults to <code>1500</code> when unset.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-never_default4"></div>
+                <b>never_default4</b>
+                <a class="ansibleOptionLink" href="#parameter-never_default4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 2.0.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>yes</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Set as default route.</div>
+                                        <div>This parameter is mutually_exclusive with gw4 parameter.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-path_cost"></div>
+                <b>path_cost</b>
+                <a class="ansibleOptionLink" href="#parameter-path_cost" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">100</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with &#x27;bridge-slave&#x27; - [&lt;1-65535&gt;] - STP port cost for destinations via this slave.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-primary"></div>
+                <b>primary</b>
+                <a class="ansibleOptionLink" href="#parameter-primary" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bond and is the primary interface name (for &quot;active-backup&quot; mode), this is the usually the &#x27;ifname&#x27;.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-priority"></div>
+                <b>priority</b>
+                <a class="ansibleOptionLink" href="#parameter-priority" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">128</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with &#x27;bridge&#x27; - sets STP priority.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-route_metric4"></div>
+                <b>route_metric4</b>
+                <a class="ansibleOptionLink" href="#parameter-route_metric4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 2.0.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Set metric level of ipv4 routes configured on interface.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-routes4"></div>
+                <b>routes4</b>
+                <a class="ansibleOptionLink" href="#parameter-routes4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">list</span>
+                     / <span style="color: purple">elements=string</span>                                            </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 2.0.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The list of ipv4 routes.</div>
+                                        <div>Use the format &#x27;192.0.3.0/24 192.0.2.1&#x27;</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-routing_rules4"></div>
+                <b>routing_rules4</b>
+                <a class="ansibleOptionLink" href="#parameter-routing_rules4" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.3.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Is the same as in an <code>ip route add</code> command, except always requires specifying a priority.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-runner"></div>
+                <b>runner</b>
+                <a class="ansibleOptionLink" href="#parameter-runner" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.4.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>broadcast</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>roundrobin</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                            <li>activebackup</li>
+                                                                                                                                                                                            <li>loadbalance</li>
+                                                                                                                                                                                            <li>lacp</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>This is the type of device or network connection that you wish to create for a team.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-runner_hwaddr_policy"></div>
+                <b>runner_hwaddr_policy</b>
+                <a class="ansibleOptionLink" href="#parameter-runner_hwaddr_policy" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.4.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>same_all</li>
+                                                                                                                                                                                            <li>by_active</li>
+                                                                                                                                                                                            <li>only_active</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>This defines the policy of how hardware addresses of team device and port devices should be set during the team lifetime.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-slavepriority"></div>
+                <b>slavepriority</b>
+                <a class="ansibleOptionLink" href="#parameter-slavepriority" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                <b>Default:</b><br/><div style="color: blue">32</div>
+                                </td>
+                                                            <td>
+                                        <div>This is only used with &#x27;bridge-slave&#x27; - [&lt;0-63&gt;] - STP priority of this slave.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-ssid"></div>
+                <b>ssid</b>
+                <a class="ansibleOptionLink" href="#parameter-ssid" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.0.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>Name of the Wireless router or the access point.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-state"></div>
+                <b>state</b>
+                <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                             / <span style="color: red">required</span>                    </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>absent</li>
+                                                                                                                                                                                            <li>present</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>Whether the device should exist or not, taking action if the state is different from what is stated.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-stp"></div>
+                <b>stp</b>
+                <a class="ansibleOptionLink" href="#parameter-stp" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">boolean</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                                                                                <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>no</li>
+                                                                                                                                                                                            <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bridge and controls whether Spanning Tree Protocol (STP) is enabled for this bridge.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-type"></div>
+                <b>type</b>
+                <a class="ansibleOptionLink" href="#parameter-type" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                            <li>bond</li>
+                                                                                                                                                                                            <li>bond-slave</li>
+                                                                                                                                                                                            <li>bridge</li>
+                                                                                                                                                                                            <li>bridge-slave</li>
+                                                                                                                                                                                            <li>ethernet</li>
+                                                                                                                                                                                            <li>generic</li>
+                                                                                                                                                                                            <li>infiniband</li>
+                                                                                                                                                                                            <li>ipip</li>
+                                                                                                                                                                                            <li>sit</li>
+                                                                                                                                                                                            <li>team</li>
+                                                                                                                                                                                            <li>team-slave</li>
+                                                                                                                                                                                            <li>vlan</li>
+                                                                                                                                                                                            <li>vxlan</li>
+                                                                                                                                                                                            <li>wifi</li>
+                                                                                </ul>
+                                                                        </td>
+                                                            <td>
+                                        <div>This is the type of device or network connection that you wish to create or modify.</div>
+                                        <div>Type <code>generic</code> is added in Ansible 2.5.</div>
+                                        <div>Type <code>infiniband</code> is added in community.general 2.0.0.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-updelay"></div>
+                <b>updelay</b>
+                <a class="ansibleOptionLink" href="#parameter-updelay" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with bond - updelay.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-vlandev"></div>
+                <b>vlandev</b>
+                <a class="ansibleOptionLink" href="#parameter-vlandev" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VLAN - parent device this VLAN is on, can use ifname.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-vlanid"></div>
+                <b>vlanid</b>
+                <a class="ansibleOptionLink" href="#parameter-vlanid" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VLAN - VLAN ID in range &lt;0-4095&gt;.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-vxlan_id"></div>
+                <b>vxlan_id</b>
+                <a class="ansibleOptionLink" href="#parameter-vxlan_id" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">integer</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VXLAN - VXLAN ID.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-vxlan_local"></div>
+                <b>vxlan_local</b>
+                <a class="ansibleOptionLink" href="#parameter-vxlan_local" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VXLAN - VXLAN local IP address.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-vxlan_remote"></div>
+                <b>vxlan_remote</b>
+                <a class="ansibleOptionLink" href="#parameter-vxlan_remote" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>This is only used with VXLAN - VXLAN destination IP address.</div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-wifi_sec"></div>
+                <b>wifi_sec</b>
+                <a class="ansibleOptionLink" href="#parameter-wifi_sec" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">dictionary</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 3.0.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The security configuration of the Wifi connection. The valid attributes are listed on:</div>
+                                        <div><a href='https://developer.gnome.org/NetworkManager/stable/settings-802-11-wireless-security.html'>https://developer.gnome.org/NetworkManager/stable/settings-802-11-wireless-security.html</a></div>
+                                        <div>For instance to use common WPA-PSK auth with a password:</div>
+                                        <div>- <code>{key-mgmt: wpa-psk, psk: my_password}</code></div>
+                                                    </td>
+        </tr>
+                            <tr>
+                                                            <td colspan="1">
+                <div class="ansibleOptionAnchor" id="parameter-zone"></div>
+                <b>zone</b>
+                <a class="ansibleOptionLink" href="#parameter-zone" title="Permalink to this option"></a>
+                <div style="font-size: small">
+                    <span style="color: purple">string</span>
+                                                                </div>
+                                      <div style="font-style: italic; font-size: small; color: darkgreen">
+                    added in 2.0.0 of community.general
+                  </div>
+                                                    </td>
+                            <td>
+                                                                                                                                                        </td>
+                                                            <td>
+                                        <div>The trust level of the connection.</div>
+                                        <div>When updating this property on a currently activated connection, the change takes effect immediately.</div>
+                                                    </td>
+        </tr>
+                    </table>
+<br/></div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="c1"># These examples are using the following inventory:</span>
+<span class="c1">#</span>
+<span class="c1"># ## Directory layout:</span>
+<span class="c1">#</span>
+<span class="c1"># |_/inventory/cloud-hosts</span>
+<span class="c1"># |           /group_vars/openstack-stage.yml</span>
+<span class="c1"># |           /host_vars/controller-01.openstack.host.com</span>
+<span class="c1"># |           /host_vars/controller-02.openstack.host.com</span>
+<span class="c1"># |_/playbook/library/nmcli.py</span>
+<span class="c1"># |          /playbook-add.yml</span>
+<span class="c1"># |          /playbook-del.yml</span>
+<span class="c1"># ```</span>
+<span class="c1">#</span>
+<span class="c1"># ## inventory examples</span>
+<span class="c1"># ### groups_vars</span>
+<span class="c1"># ```yml</span>
+<span class="c1"># ---</span>
+<span class="c1"># #devops_os_define_network</span>
+<span class="c1"># storage_gw: &quot;192.0.2.254&quot;</span>
+<span class="c1"># external_gw: &quot;198.51.100.254&quot;</span>
+<span class="c1"># tenant_gw: &quot;203.0.113.254&quot;</span>
+<span class="c1">#</span>
+<span class="c1"># #Team vars</span>
+<span class="c1"># nmcli_team:</span>
+<span class="c1">#   - conn_name: tenant</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#   - conn_name: external</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">external_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">external_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#   - conn_name: storage</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">storage_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">storage_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1"># nmcli_team_slave:</span>
+<span class="c1">#   - conn_name: em1</span>
+<span class="c1">#     ifname: em1</span>
+<span class="c1">#     master: tenant</span>
+<span class="c1">#   - conn_name: em2</span>
+<span class="c1">#     ifname: em2</span>
+<span class="c1">#     master: tenant</span>
+<span class="c1">#   - conn_name: p2p1</span>
+<span class="c1">#     ifname: p2p1</span>
+<span class="c1">#     master: storage</span>
+<span class="c1">#   - conn_name: p2p2</span>
+<span class="c1">#     ifname: p2p2</span>
+<span class="c1">#     master: external</span>
+<span class="c1">#</span>
+<span class="c1"># #bond vars</span>
+<span class="c1"># nmcli_bond:</span>
+<span class="c1">#   - conn_name: tenant</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;&#39;</span>
+<span class="c1">#     mode: balance-rr</span>
+<span class="c1">#   - conn_name: external</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">external_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;&#39;</span>
+<span class="c1">#     mode: balance-rr</span>
+<span class="c1">#   - conn_name: storage</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">storage_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">storage_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     mode: balance-rr</span>
+<span class="c1"># nmcli_bond_slave:</span>
+<span class="c1">#   - conn_name: em1</span>
+<span class="c1">#     ifname: em1</span>
+<span class="c1">#     master: tenant</span>
+<span class="c1">#   - conn_name: em2</span>
+<span class="c1">#     ifname: em2</span>
+<span class="c1">#     master: tenant</span>
+<span class="c1">#   - conn_name: p2p1</span>
+<span class="c1">#     ifname: p2p1</span>
+<span class="c1">#     master: storage</span>
+<span class="c1">#   - conn_name: p2p2</span>
+<span class="c1">#     ifname: p2p2</span>
+<span class="c1">#     master: external</span>
+<span class="c1">#</span>
+<span class="c1"># #ethernet vars</span>
+<span class="c1"># nmcli_ethernet:</span>
+<span class="c1">#   - conn_name: em1</span>
+<span class="c1">#     ifname: em1</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#   - conn_name: em2</span>
+<span class="c1">#     ifname: em2</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_ip1</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">tenant_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#   - conn_name: p2p1</span>
+<span class="c1">#     ifname: p2p1</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">storage_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">storage_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#   - conn_name: p2p2</span>
+<span class="c1">#     ifname: p2p2</span>
+<span class="c1">#     ip4: &#39;</span><span class="cp">{{</span> <span class="nv">external_ip</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1">#     gw4: &#39;</span><span class="cp">{{</span> <span class="nv">external_gw</span> <span class="cp">}}</span><span class="c1">&#39;</span>
+<span class="c1"># ```</span>
+<span class="c1">#</span>
+<span class="c1"># ### host_vars</span>
+<span class="c1"># ```yml</span>
+<span class="c1"># ---</span>
+<span class="c1"># storage_ip: &quot;192.0.2.91/23&quot;</span>
+<span class="c1"># external_ip: &quot;198.51.100.23/21&quot;</span>
+<span class="c1"># tenant_ip: &quot;203.0.113.77/23&quot;</span>
+<span class="c1"># ```</span>
+
+
+
+<span class="c1">## playbook-add.yml example</span>
+
+<span class="nn">---</span>
+<span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">openstack-stage</span>
+  <span class="nt">remote_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">tasks</span><span class="p">:</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install needed network manager libs</span>
+    <span class="nt">ansible.builtin.package</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">NetworkManager-libnm</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">nm-connection-editor</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libsemanage-python</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">policycoreutils-python</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="c1">##### Working with all cloud nodes - Teaming</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Try nmcli add team - conn_name only &amp; ip4 gw4</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.conn_name</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">ip4</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.ip4</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">gw4</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.gw4</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="nt">with_items</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">nmcli_team</span> <span class="cp">}}</span><span class="s">&#39;</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Try nmcli add teams-slave</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-slave</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.conn_name</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">ifname</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.ifname</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">master</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.master</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="nt">with_items</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">nmcli_team_slave</span> <span class="cp">}}</span><span class="s">&#39;</span>
+
+<span class="c1">###### Working with all cloud nodes - Bonding</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Try nmcli add bond - conn_name only &amp; ip4 gw4 mode</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bond</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.conn_name</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">ip4</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.ip4</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">gw4</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.gw4</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">mode</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.mode</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="nt">with_items</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">nmcli_bond</span> <span class="cp">}}</span><span class="s">&#39;</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Try nmcli add bond-slave</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bond-slave</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.conn_name</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">ifname</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.ifname</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">master</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.master</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="nt">with_items</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">nmcli_bond_slave</span> <span class="cp">}}</span><span class="s">&#39;</span>
+
+<span class="c1">##### Working with all cloud nodes - Ethernet</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Try nmcli add Ethernet - conn_name only &amp; ip4 gw4</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.conn_name</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">ip4</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.ip4</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">gw4</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.gw4</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="nt">with_items</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">nmcli_ethernet</span> <span class="cp">}}</span><span class="s">&#39;</span>
+
+<span class="c1">## playbook-del.yml example</span>
+<span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">openstack-stage</span>
+  <span class="nt">remote_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+  <span class="nt">tasks</span><span class="p">:</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Try nmcli del team - multiple</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="s">&#39;</span><span class="cp">{{</span> <span class="nv">item.conn_name</span> <span class="cp">}}</span><span class="s">&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
+    <span class="nt">with_items</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">em1</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">em2</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">p1p1</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">p1p2</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">p2p1</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">p2p2</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tenant</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">storage</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">external</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-em1</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-em2</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-p1p1</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-p1p2</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-p2p1</span>
+      <span class="p p-Indicator">-</span> <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team-p2p2</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add an Ethernet connection with static IP configuration</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-eth1</span>
+      <span class="nt">ifname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eth1</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">ip4</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.100/24</span>
+      <span class="nt">gw4</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.1</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add an Team connection with static IP configuration</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-team1</span>
+      <span class="nt">ifname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-team1</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">team</span>
+      <span class="nt">ip4</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.100/24</span>
+      <span class="nt">gw4</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.1</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+      <span class="nt">autoconnect</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Optionally, at the same time specify IPv6 addresses for the device</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-eth1</span>
+      <span class="nt">ifname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eth1</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">ip4</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.100/24</span>
+      <span class="nt">gw4</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.1</span>
+      <span class="nt">ip6</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2001:db8::cafe</span>
+      <span class="nt">gw6</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2001:db8::1</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add two IPv4 DNS server addresses</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-eth1</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">dns4</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">192.0.2.53</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">198.51.100.53</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Make a profile usable for all compatible Ethernet interfaces</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">ctype</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-eth1</span>
+      <span class="nt">ifname</span><span class="p">:</span> <span class="s">&#39;*&#39;</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Change the property of a setting e.g. MTU</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-eth1</span>
+      <span class="nt">mtu</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9000</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add VxLan</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vxlan</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vxlan_test1</span>
+      <span class="nt">vxlan_id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16</span>
+      <span class="nt">vxlan_local</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.2</span>
+      <span class="nt">vxlan_remote</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.5</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add ipip</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipip</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ipip_test1</span>
+      <span class="nt">ip_tunnel_dev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eth0</span>
+      <span class="nt">ip_tunnel_local</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.2</span>
+      <span class="nt">ip_tunnel_remote</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.5</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add sit</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sit</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sit_test1</span>
+      <span class="nt">ip_tunnel_dev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eth0</span>
+      <span class="nt">ip_tunnel_local</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.2</span>
+      <span class="nt">ip_tunnel_remote</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">192.168.1.5</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Add zone</span>
+    <span class="nt">community.general.nmcli</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ethernet</span>
+      <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my-eth1</span>
+      <span class="nt">zone</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">external</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="c1"># nmcli exits with status 0 if it succeeds and exits with a status greater</span>
+<span class="c1"># than zero when there is a failure. The following list of status codes may be</span>
+<span class="c1"># returned:</span>
+<span class="c1">#</span>
+<span class="c1">#     - 0 Success - indicates the operation succeeded</span>
+<span class="c1">#     - 1 Unknown or unspecified error</span>
+<span class="c1">#     - 2 Invalid user input, wrong nmcli invocation</span>
+<span class="c1">#     - 3 Timeout expired (see --wait option)</span>
+<span class="c1">#     - 4 Connection activation failed</span>
+<span class="c1">#     - 5 Connection deactivation failed</span>
+<span class="c1">#     - 6 Disconnecting device failed</span>
+<span class="c1">#     - 7 Connection deletion failed</span>
+<span class="c1">#     - 8 NetworkManager is not running</span>
+<span class="c1">#     - 9 nmcli and NetworkManager versions mismatch</span>
+<span class="c1">#     - 10 Connection, device, or access point does not exist.</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create the wifi connection</span>
+  <span class="nt">community.general.nmcli</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wifi</span>
+    <span class="nt">conn_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Brittany</span>
+    <span class="nt">ifname</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wlp4s0</span>
+    <span class="nt">ssid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Brittany</span>
+    <span class="nt">wifi_sec</span><span class="p">:</span>
+      <span class="nt">key-mgmt</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wpa-psk</span>
+      <span class="nt">psk</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_password</span>
+    <span class="nt">autoconnect</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+</pre></div>
+</div>
+<div class="section" id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Chris Long (&#64;alcamie101)</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          
+
+<footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="nomad_job_module.html" class="btn btn-neutral float-right" title="community.general.nomad_job – Launch a Nomad Job" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="nios_zone_module.html" class="btn btn-neutral float-left" title="community.general.nios_zone – Configure Infoblox NIOS DNS zones" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Ansible project contributors.
+      <span class="lastupdated">
+        Last updated on Jul 21, 2021.
+      </span>
+
+    </p>
+  </div>
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  <!-- extra footer elements for Ansible beyond RTD Sphinx Theme --->
+<!-- begin analytics -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+      (function(d,s,i,r) {
+      if (d.getElementById(i)){return;}
+      var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+      n.id=i;n.src = 'https://js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/330046.js';
+      e.parentNode.insertBefore(n, e);
+      })(document, "script", "hs-analytics",300000);
+</script>
+<!-- end analytics -->
+<script type="text/javascript">
+if (("undefined" !== typeof _satellite) && ("function" === typeof _satellite.pageBottom)) {
+  _satellite.pageBottom();
+}
+</script>
+
+</body>
+</html>
